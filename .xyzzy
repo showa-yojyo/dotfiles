@@ -1,0 +1,146 @@
+;;; -*- Mode: Lisp; Package: LISP -*-
+;;;
+
+;;; キーバインドだけ外部ファイルにまとめた
+(require "mykeymap")
+
+;;; 自作リスプ関数たち
+(require "mymacs")
+
+;;; メニューカスタム
+(require "mymenu")
+
+(setq *default-fileio-encoding* *encoding-utf8n*)
+(setq *default-eol-code* *eol-lf*)
+
+(setq *move-forward-after-undo-deletion* t)
+;; 廃棄するバッファのファイル名がミニバッファに表示 C-x C-v
+(setq *find-other-file-requires-file-name* t)
+
+(require "buf2html")
+(buf2html-set-app-menu)
+(buf2html-set-app-popup-menu)
+;(setq *buf2html-auto-mode-parameter-string* "Mode: html+")
+;(setq *buf2html-date-format* "%a, %d %b %Y %H:%M:%S %Z")
+;(setq *buf2html-time-stamp-start* "Time-stamp: &lt;")
+;(setq *buf2html-time-stamp-end* "&gt;")
+;(setq *buf2html-css-list* '("xyzzy.css" "foo.css"))
+(setq *buf2html-region-css-class-list* '("CCode"))
+;(setq *buf2html-ignore-paren-highlight* t)
+;(setq *buf2html-anchor-url* t)
+(setq *buf2html-lower-case* t)
+;(setq *buf2html-internal-css-alist*
+;      '(("A.buf2html" . ("text-decoration: none"
+;                         "background: #ffe0e0"))
+;        ("A.buf2html:active" . ("background: #ffaaaa"))
+;        ("A.buf2html:hover" . ("background: #ffaaaa"))))
+(setq *buf2html-mode-function* 'ed::html-mode)
+
+;;; TODO
+(require "template-insert")
+;;(use-package "template-insert") ;; これは何のためにある？
+
+(setq ed::*basic-indent-level* 4)
+(setq ed::*basic-continued-line-offset* 4)
+(setq ed::*basic-label-offset* -4)
+(setq ed::*basic-tab-always-indent* t)
+
+(setq c-indent-level 4)
+(setq c-continued-statement-offset 4)
+(setq c-argdecl-indent 5)
+(setq c-brace-offset -4)
+(setq c-brace-imaginary-offset 0)
+(setq c-label-offset -4)
+(setq c-comment-indent 1)
+(setq *c-indent-tabs-mode* t)
+(setq *c-comment-column* t)
+
+(setq ed::c++-indent-level 4)
+(setq ed::c++-continued-statement-offset 4)
+(setq ed::c++-argdecl-indent 5)
+(setq ed::c++-brace-offset -4)
+(setq ed::c++-brace-imaginary-offset 0)
+(setq ed::c++-label-offset -4)
+(setq ed::*c++-indent-tabs-mode* t)
+(setq ed::*c++-comment-column* t)
+
+(setq java-indent-level 4)
+(setq java-continued-statement-offset 4)
+(setq java-argdecl-indent 5)
+(setq java-brace-offset -4)
+(setq java-brace-imaginary-offset 0)
+(setq java-label-offset -4)
+(setq java-comment-indent 1)
+(setq *java-indent-tabs-mode* t)
+(setq *java-comment-column* t)
+
+(setq ed::csharp-indent-level 4)
+(setq ed::csharp-continued-statement-offset 4)
+(setq ed::csharp-argdecl-indent 5)
+(setq ed::csharp-brace-offset -4)
+(setq ed::csharp-brace-imaginary-offset 0)
+(setq ed::csharp-label-offset -4)
+(setq ed::csharp-comment-indent 1)
+(setq ed::*csharp-comment-column* t)
+
+;;; ツールバーデモ
+
+;(find-file "C:/Program Files/xyzzy/lisp/app-menu.l")
+
+(push '("\\.vbs$" . basic-mode) *auto-mode-alist*)
+(push '("\\.rst$" . text-mode) *auto-mode-alist*)
+
+(require "py-mode")
+(push '("\\.pyw?$" . py-mode) *auto-mode-alist*)
+
+;(setq *py-indent-tabs-mode* t)
+
+(add-hook 'ed::*create-buffer-hook*
+		  #'(lambda(buf)
+			  (change-fileio-encoding *encoding-utf8n*)
+			  (change-eol-code *eol-lf*)))
+
+; VB, VBScript 系
+
+; Cモード カスタマイズ
+(add-hook 'ed::*c-mode-hook*
+		  #'(lambda()
+			  (abbrev-mode)))
+
+; C++モード カスタマイズ
+(add-hook 'ed::*c++-mode-hook*
+		  #'(lambda()
+			  (abbrev-mode t)))
+
+(add-hook 'ed::*csharp-mode-hook*
+		  #'(lambda()
+			  (change-fileio-encoding *encoding-utf8n*)
+			  (change-eol-code *eol-lf*)))
+
+(add-hook 'ed::*text-mode-hook*
+		  #'(lambda()
+			  (change-fileio-encoding *encoding-utf8n*)
+			  (change-eol-code *eol-lf*)))
+
+(add-hook 'ed::*py-mode-hook*
+		  #'(lambda()
+			  (change-fileio-encoding *encoding-utf8n*)
+			  (change-eol-code *eol-lf*)))
+
+; sns-mode
+(require "sns/sns-mode")
+(pushnew '("\\.sns$" . sns-mode) *auto-mode-alist* :test 'equal)
+(add-hook 'ed::*sns-mode-hook*
+		  #'(lambda()
+			  (setq sns-nexdump-level 40)
+			  (setq dispel-exec-directory "D:/home/yojyo/bin/")
+			  (abbrev-mode)))
+
+; 起動時に abbrev file を読み込む
+(quietly-read-abbrev-file)
+
+; find-file 等で . から始まるファイルをもリストするようにする
+(setq ed::show-dots t)
+
+; Ctrl+Enter でタブ文字で埋められるのはたまらない。
+(setq indent-tabs-mode nil)
