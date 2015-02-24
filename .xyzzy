@@ -120,7 +120,8 @@
 (add-hook 'ed::*text-mode-hook*
 		  #'(lambda()
 			  (change-fileio-encoding *encoding-utf8n*)
-			  (change-eol-code *eol-lf*)))
+			  (change-eol-code *eol-lf*)
+			  (setq indent-tabs-mode nil)))
 
 (add-hook 'ed::*py-mode-hook*
 		  #'(lambda()
