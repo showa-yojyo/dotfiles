@@ -1,11 +1,11 @@
 # .bash_profile
-# システムにログインするたびに読み込まれるファイル
+# When Bash is invoked as an interactive login shell, it reads this file.
 
 # base-files version 3.9-3
 
 # To pick up the latest recommended .bash_profile content,
 # look in /etc/defaults/etc/skel/.bash_profile
- \
+
 # Modifying /etc/skel/.bash_profile directly will prevent
 # setup from updating it.
 
@@ -27,11 +27,16 @@ if [ -e "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+TEXLIVE_PATH=/cygdrive/d/texlive/2014/bin/win32
+GRAPHVIZ_PATH=/cygdrive/d/Program\ Files/Graphviz/bin
+PYTHON_SCRIPTS_PATH=/cygdrive/d/Python34:/cygdrive/d/Python34/Scripts
+GIT_PATH=/cygdrive/c/Program\ Files\ \(x86\)/Git/bin
+
+PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PYTHON_SCRIPTS_PATH:$GIT_PATH
 # Set PATH so it includes user's private bin if it exists
-# if [ -d "${HOME}/bin" ] ; then
-#   PATH=${HOME}/bin:${PATH}
-# fi
-PATH=${PATH}:${HOME}/bin:/cygdrive/d/Python34:/cygdrive/d/Python34/Scripts:/cygdrive/c/Program\ Files\ \(x86\)/Git/bin
+if [ -d "${HOME}/bin" ] ; then
+  PATH=${HOME}/bin:${PATH}
+fi
 
 # Set MANPATH so it includes users' private man if it exists
 # if [ -d "${HOME}/man" ]; then
@@ -43,10 +48,7 @@ PATH=${PATH}:${HOME}/bin:/cygdrive/d/Python34:/cygdrive/d/Python34/Scripts:/cygd
 #   INFOPATH=${HOME}/info:${INFOPATH}
 # fi
 
-# その他
+# Miscellaneous commands.
 
 stty stop ^S intr ^C erase ^?
 set -o nounset
-
-# ラストに日付を表示しておく
-LANG= date +"%Y/%m/%d (%a) %T "
