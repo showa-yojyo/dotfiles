@@ -1,6 +1,6 @@
 # .bashrc
-# 環境定義ファイル
-# サブシェルもこの値を読み取れる
+# When Bash is invoked as an interactive shell that is not a login shell,
+# it reads and executes commands from this file.
 
 # base-files version 3.9-3
 
@@ -29,7 +29,6 @@ unset TEMP
 
 # Alternatively, set them to the Cygwin temporary directory
 # or to any other tmp directory of your choice
-# これのほうがよさそうに思える
 export TMP=/tmp
 export TEMP=/tmp
 
@@ -51,8 +50,6 @@ export TEMP=/tmp
 # shopt -s nocaseglob
 
 # Make bash append rather than overwrite the history on disk
-# シェル終了時に $HISTFILE を履歴リストで上書きするのではなく、
-# 履歴リストをファイル末尾に追加するオプション
 shopt -s histappend
 
 # When changing directory small typos can be ignored by bash
@@ -167,6 +164,18 @@ function xyzzycli()
 	for name in "$@"; do
 		echo \"$(cygpath -m "$name")\"
 	done | xargs "$prog"
+}
+
+function sympydoc()
+{
+	pushd ~/devel/sympy
+	git checkout master
+	git pull
+	git checkout mine
+	git merge master
+	cd doc
+	make html
+	popd
 }
 
 #
