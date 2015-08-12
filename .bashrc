@@ -188,9 +188,6 @@ export TZ=JST-09
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
 
-# Python's environmental variables
-export PYTHONIOENCODING=UTF-8
-
 #
 # set prompt
 #
