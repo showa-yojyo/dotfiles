@@ -27,7 +27,7 @@ if [ -e "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
-TEXLIVE_PATH=/cygdrive/d/texlive/2014/bin/win32
+TEXLIVE_PATH=/cygdrive/d/texlive/2015/bin/win32
 GRAPHVIZ_PATH=/cygdrive/d/Program\ Files/Graphviz/bin
 PYTHON_SCRIPTS_PATH=/cygdrive/d/Python34:/cygdrive/d/Python34/Scripts
 GIT_PATH=/cygdrive/c/Program\ Files\ \(x86\)/Git/bin
