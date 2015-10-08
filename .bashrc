@@ -137,6 +137,7 @@ a po='popd'
 a python26='D:/Python26/python.exe'
 a python27='D:/Python27/python.exe'
 a python34='D:/Python34/python.exe'
+a python35='D:/Python35/python.exe'
 a runhhc='/cygdrive/c/Program\ Files/HTML\ Help\ Workshop/hhc.exe'
 
 # Git
