@@ -161,22 +161,29 @@ export GIT_EDITOR="'D:/Program Files/xyzzy/xyzzy.exe'"
 
 function xyzzycli()
 {
-	local prog='/cygdrive/d/Program Files/xyzzy/xyzzycli.exe'
-	for name in "$@"; do
-		echo \"$(cygpath -m "$name")\"
-	done | xargs "$prog"
+    local prog='/cygdrive/d/Program Files/xyzzy/xyzzycli.exe'
+    for name in "$@"; do
+        echo \"$(cygpath -m "$name")\"
+    done | xargs "$prog"
 }
 
 function sympydoc()
 {
-	pushd ~/devel/sympy
-	git checkout master
-	git pull
-	git checkout mine
-	git merge master
-	cd doc
-	make html
-	popd
+    pushd ~/devel/sympy/doc
+    git checkout master
+    git remote -v update 2>&1 | grep -qE "up to date.+origin/master"
+    if [[ $? -eq 0 ]]; then
+        # Your branch is up-to-date with 'origin/master'.
+        git checkout -
+        popd
+        return
+    fi
+
+    git merge
+    make html
+
+    git checkout -
+    popd
 }
 
 #
