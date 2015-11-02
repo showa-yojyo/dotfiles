@@ -167,23 +167,40 @@ function xyzzycli()
     done | xargs "$prog"
 }
 
-function sympydoc()
+function update-local-copy()
 {
-    pushd ~/devel/sympy/doc
-    git checkout master
-    git remote -v update 2>&1 | grep -qE "up to date.+origin/master"
+    local REPOS_PATH="$1"
+
+    git -C "$REPOS_PATH" checkout master
+    git -C "$REPOS_PATH" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
     if [[ $? -eq 0 ]]; then
         # Your branch is up-to-date with 'origin/master'.
-        git checkout -
-        popd
+        git -C "$REPOS_PATH" checkout -
         return
     fi
 
-    git merge
-    make html
+    git -C "$REPOS_PATH" merge
 
-    git checkout -
-    popd
+    if [ ! -v 2 ]; then
+        pushd "$REPOS_PATH"
+        make html
+        popd
+    fi
+
+    git -C "$REPOS_PATH" checkout -
+}
+
+# XXX: Cygwin-only
+function sympydoc()
+{
+    update-local-copy "$(cygpath -aw ~/devel/sympy/doc)" dummy
+}
+
+# XXX: Cygwin-only
+function update-all-repos()
+{
+    update-local-copy "$(cygpath -aw ~/devel/gitignore)"
+    update-local-copy "$(cygpath -aw ~/devel/sympy/doc)"
 }
 
 #
