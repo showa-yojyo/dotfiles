@@ -181,10 +181,8 @@ function update-local-copy()
 
     git -C "$REPOS_PATH" merge
 
-    if [ ! -v 2 ]; then
-        pushd "$REPOS_PATH"
-        make html
-        popd
+    if [ $# -gt 1 ]; then
+        make -C "$REPOS_PATH" html
     fi
 
     git -C "$REPOS_PATH" checkout -
