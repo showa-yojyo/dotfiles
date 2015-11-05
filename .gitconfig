@@ -1,67 +1,82 @@
-[user]
-	email = yojyo@hotmail.com
-	name = showa_yojyo
-	signingkey = 6ED8D1B3
+# .gitconfig
+
 [core]
-	excludesfile = d:/home/yojyo/.gitignore
-	autocrlf = input
+    autocrlf = input
+    excludesFile = ~/.gitignore
+    editor = 'D:/Program Files/xyzzy/xyzzy.exe'
 
-[diff]
-	tool = tortoisediff
-[difftool]
-	prompt = false
-[merge]
-	tool = tortoisemerge
-[mergetool]
-	prompt = false
-	keepBackup = false
+[alias]
+    ci = commit -a
+    co = checkout
+    st = status
+    stat = status
+    br = branch
+    df = diff
+    dc = diff --cached
+    wdiff = diff --color-words
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ls = ls-files
 
-[difftool "tortoisediff"]
-	cmd = \"C:/Program Files/TortoiseGIT/bin/TortoiseGitMerge.exe\" -mine:\"$REMOTE\" -base:\"$LOCAL\"
-[mergetool "tortoisemerge"]
-	cmd = \"C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe\" -base:\"$BASE\" -theirs:\"$REMOTE\" -mine:\"$LOCAL\" -merged:\"$MERGED\"
+[alias "merge"]
+    summary = true
 
-[push]
-	default = current
 [branch]
-	autosetuprebase = always
+    autoSetupRebase = always
+
+[browser "default-browser"]
+    cmd = cygstart
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [color]
-	ui = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    ui = auto
+
+[diff]
+    tool = tortoisediff
+
+[difftool "tortoisediff"]
+    cmd = 'C:/Program Files/TortoiseGIT/bin/TortoiseGitMerge.exe' -mine:\"$REMOTE\" -base:\"$LOCAL\"
+
+[difftool]
+    prompt = false
+
+[help]
+    browser = default-browser
+    format = html
+
+[merge]
+    tool = tortoisemerge
+
+[mergetool "tortoisemerge"]
+    cmd = 'C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe' -base:\"$BASE\" -theirs:\"$REMOTE\" -mine:\"$LOCAL\" -merged:\"$MERGED\"
+
+[mergetool]
+    keepBackup = false
+    prompt = false
+
+[push]
+    default = current
+
+[user]
+    email = yojyo@hotmail.com
+    name = showa_yojyo
+    signingKey = 6ED8D1B3
 
 [web]
-	browser = sleipnir
-[browser "sleipnir"]
-	path = 'C:/Program Files (x86)/Fenrir Inc/Sleipnir6/bin/Sleipnir.exe'
-	cmd = 'C:/Program Files (x86)/Fenrir Inc/Sleipnir6/bin/Sleipnir.exe'
-[help]
-	browser = sleipnir
-	format = web
-[alias]
-	ci = commit -a
-	co = checkout
-	st = status
-	stat = status
-	br = branch
-	df = diff
-	dc = diff --cached
-	wdiff = diff --color-words
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	ls = ls-files
-[alias "merge"]
-	summary = true
+    browser = default-browser
