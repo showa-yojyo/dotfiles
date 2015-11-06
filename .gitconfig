@@ -6,21 +6,43 @@
     editor = 'D:/Program Files/xyzzy/xyzzy.exe'
 
 [alias]
-    ci = commit -a
-    co = checkout
-    st = status
-    stat = status
     br = branch
+
+    type = cat-file -t
+    dump = cat-file -p
+
+    co = checkout
+
+    cp = cherry-pick
+
+    ci = commit
+
+    lasttag = describe --tags --abbrev=0
+
     df = diff
     dc = diff --cached
+    dlc = diff --cached HEAD^
     wdiff = diff --color-words
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset' --abbrev-commit --date=relative
+
+    gr = grep -I
+
+    ls = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --decorate
+    lds = log --pretty=format:'%C(auto)%h %ad%d %s %C(bold blue)[%cn]' --decorate --date=short
+    ll = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --decorate --numstat
+    hist = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --graph --date=short
+    dl = "!git ll -1"
+    lnc = log --pretty=format:'%h %s [%cn]' # WITHOUT COLOR
+    le = log --oneline --decorate
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = ls-files
+    fl = log -u
+    lc = log ORIG_HEAD.. --stat --no-merges
+    lg = log -p
 
-[alias "merge"]
-    summary = true
+    who = shortlog -s --
+
+    st = status #-s
+    stat = status
 
 [branch]
     autoSetupRebase = always
