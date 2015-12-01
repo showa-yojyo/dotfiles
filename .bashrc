@@ -138,6 +138,8 @@ a python34='D:/Python34/python.exe'
 a python35='D:/Python35/python.exe'
 a runhhc='/cygdrive/c/Program\ Files/HTML\ Help\ Workshop/hhc.exe'
 
+a chcp='C:/WINDOWS/System32/chcp.com'
+
 # Git
 
 export GIT_EDITOR="'D:/Program Files/xyzzy/xyzzy.exe'"
