@@ -201,6 +201,17 @@ function update-all-repos()
     update-local-copy "$(cygpath -aw ~/devel/sympy/doc)"
 }
 
+function gendiary()
+{
+    python "$(cygpath -aw ~/bin/gendiary.py)" $@
+}
+
+function runhhc()
+{
+    local HHC='C:/Program Files/HTML Help Workshop/hhc.exe'
+    "$HHC" $@
+}
+
 #
 # set locale
 #
