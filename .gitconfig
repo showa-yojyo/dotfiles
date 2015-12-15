@@ -16,6 +16,7 @@
     cp = cherry-pick
 
     ci = commit
+    carn = commit --amend --reset-author --no-edit
 
     lasttag = describe --tags --abbrev=0
 
