@@ -39,6 +39,7 @@
     fl = log -u
     lc = log ORIG_HEAD.. --stat --no-merges
     lg = log -p
+    lfu = log --pretty=fuller
 
     who = shortlog -s --
 
