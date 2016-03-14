@@ -31,8 +31,9 @@ TEXLIVE_PATH=/cygdrive/d/texlive/2015/bin/win32
 GRAPHVIZ_PATH=/cygdrive/d/Program\ Files/Graphviz/bin
 PYTHON_PATH=/cygdrive/d/Python35:/cygdrive/d/Python35/Scripts
 GIT_PATH=/cygdrive/d/Program\ Files/Git/bin
+JAVA_HOME=/cygdrive/c/Program\ Files/Java/jre1.8.0_73
 
-PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PYTHON_PATH:$GIT_PATH
+PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PYTHON_PATH:$GIT_PATH:$JAVA_HOME/bin
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH=${HOME}/bin:${PATH}

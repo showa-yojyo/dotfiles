@@ -169,7 +169,11 @@ function xyzzycli()
 
 function update-local-copy()
 {
-    local REPOS_PATH="$1"
+    if [[ "$OSTYPE" == cygwin ]] ; then
+        local REPOS_PATH="$(cygpath -aw $1)"
+    else
+        local REPOS_PATH="$1"
+    fi
 
     git -C "$REPOS_PATH" checkout master
     git -C "$REPOS_PATH" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
@@ -188,29 +192,33 @@ function update-local-copy()
     git -C "$REPOS_PATH" checkout -
 }
 
-# XXX: Cygwin-only
+function plantuml()
+{
+    local PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
+    if [[ "$OSTYPE" == cygwin ]] ; then
+        PLANTUML_PATH="$(cygpath -aw $PLANTUML_PATH)"
+    fi
+
+    java -jar "$PLANTUML_PATH" -charset UTF-8 $@
+}
+
 function sympydoc()
 {
-    update-local-copy "$(cygpath -aw ~/devel/sympy/doc)" dummy
+    update-local-copy ~/devel/sympy/doc dummy
 }
 
-# XXX: Cygwin-only
 function update-all-repos()
 {
-    update-local-copy "$(cygpath -aw ~/devel/gitignore)"
-    update-local-copy "$(cygpath -aw ~/devel/sympy/doc)"
+    update-local-copy ~/devel/gitignore
+    update-local-copy ~/devel/sympy/doc
 }
 
+if [[ "$OSTYPE" == cygwin ]] ; then
 function gendiary()
 {
     python "$(cygpath -aw ~/bin/gendiary.py)" $@
 }
-
-function runhhc()
-{
-    local HHC='C:/Program Files/HTML Help Workshop/hhc.exe'
-    "$HHC" $@
-}
+fi
 
 #
 # set locale
