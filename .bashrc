@@ -192,13 +192,16 @@ function update-local-copy()
     git -C "$REPOS_PATH" checkout -
 }
 
+if [[ "$OSTYPE" == cygwin ]] ; then
+    export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
+    export GRAPHVIZ_DOT="$(cygpath -aw "$(which dot.exe)")"
+else
+    export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
+    export GRAPHVIZ_DOT=$(which dot)
+fi
+
 function plantuml()
 {
-    local PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
-    if [[ "$OSTYPE" == cygwin ]] ; then
-        PLANTUML_PATH="$(cygpath -aw $PLANTUML_PATH)"
-    fi
-
     java -jar "$PLANTUML_PATH" -charset UTF-8 $@
 }
 
