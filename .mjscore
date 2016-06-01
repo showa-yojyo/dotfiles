@@ -2,3 +2,4 @@
 [General]
 language = ja
 input = D:\Program Files\mattari09\mjscore.txt
+target_player = all
