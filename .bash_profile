@@ -27,10 +27,14 @@ if [ -e "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
-TEXLIVE_PATH=/cygdrive/d/texlive/2015/bin/win32
-GRAPHVIZ_PATH=/cygdrive/d/Program\ Files/Graphviz/bin
-PYTHON_PATH=/cygdrive/d/Python35:/cygdrive/d/Python35/Scripts
-GIT_PATH=/cygdrive/d/Program\ Files/Git/bin
+
+# See also /etc/fstab.
+CYGDRIVE_PREFIX=
+
+TEXLIVE_PATH=${CYGDRIVE_PREFIX}/d/texlive/2015/bin/win32
+GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
+PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Python35:${CYGDRIVE_PREFIX}/d/Python35/Scripts
+GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/bin
 
 if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
     JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
