@@ -33,7 +33,7 @@ CYGDRIVE_PREFIX=
 
 TEXLIVE_PATH=${CYGDRIVE_PREFIX}/d/texlive/2015/bin/win32
 GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
-PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Python35:${CYGDRIVE_PREFIX}/d/Python35/Scripts
+PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Miniconda3:${CYGDRIVE_PREFIX}/d/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/d/Miniconda3/Library/bin
 GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/bin
 
 if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
