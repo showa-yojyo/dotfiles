@@ -1,0 +1,8 @@
+# dqutils config
+
+# ROM section
+# A list of pairs of ROM name and its path in filesystem.
+[ROM]
+DRAGONQUEST3 = D:/home/yojyo/data/work_dq3.smc
+DRAGONQUEST5 = D:/home/yojyo/data/work_dq5.smc
+DRAGONQUEST6 = D:/home/yojyo/data/work_dq6.smc
