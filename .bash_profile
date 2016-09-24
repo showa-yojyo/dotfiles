@@ -36,12 +36,13 @@ GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
 PANDOC_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Pandoc
 PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Miniconda3:${CYGDRIVE_PREFIX}/d/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/d/Miniconda3/Library/bin
 GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/bin
+SYSTEM_PATH=${CYGDRIVE_PREFIX}/c/WINDOWS/System32
 
 if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
     JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
 fi
 
-PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$JAVA_HOME/bin
+PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$SYSTEM_PATH:$JAVA_HOME/bin
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH=${HOME}/bin:${PATH}
