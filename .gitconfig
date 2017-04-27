@@ -28,9 +28,9 @@
     gr = grep -I
 
     ls = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --decorate
-    lds = log --pretty=format:'%C(auto)%h %ad%d %s %C(bold blue)[%cn]' --decorate --date=short
+    lds = log --pretty=format:'%C(auto)%h %ad%d %s %C(bold blue)[%cn]' --decorate --date=iso
     ll = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --decorate --numstat
-    hist = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --graph --date=short
+    hist = log --pretty=format:'%C(auto)%h%d %s %C(bold blue)[%cn]' --graph --date=iso
     dl = "!git ll -1"
     lnc = log --pretty=format:'%h %s [%cn]' # WITHOUT COLOR
     le = log --oneline --decorate
