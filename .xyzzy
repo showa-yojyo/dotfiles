@@ -144,4 +144,4 @@
 (setq ed::show-dots t)
 
 ; Ctrl+Enter でタブ文字で埋められるのはたまらない。
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
