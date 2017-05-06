@@ -50,7 +50,12 @@
     autoSetupRebase = always
 
 [browser "default-browser"]
-    cmd = cygstart
+    # In Cygwin, git-web--browse script, which eventually executes
+    #     cygstart "$@",
+    # fails if the argument includes white space characters.
+    # To avoid this, replace cygstart to a real browser path.
+    cmd = 'C:\\Program Files (x86)\\Fenrir Inc\\Sleipnir5\\bin\\Sleipnir.exe'
+    #cmd = cygstart
 
 [color "branch"]
     current = yellow reverse
@@ -71,24 +76,12 @@
 [color]
     ui = auto
 
-[diff]
-    tool = tortoisediff
-
-[difftool "tortoisediff"]
-    cmd = 'C:/Program Files/TortoiseGIT/bin/TortoiseGitMerge.exe' -mine:\"$REMOTE\" -base:\"$LOCAL\"
-
 [difftool]
     prompt = false
 
 [help]
     browser = default-browser
     format = html
-
-[merge]
-    tool = tortoisemerge
-
-[mergetool "tortoisemerge"]
-    cmd = 'C:/Program Files/TortoiseGit/bin/TortoiseGitMerge.exe' -base:\"$BASE\" -theirs:\"$REMOTE\" -mine:\"$LOCAL\" -merged:\"$MERGED\"
 
 [mergetool]
     keepBackup = false
