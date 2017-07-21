@@ -129,8 +129,7 @@ alias la='ls -A'  # all but . and ..
 
 a h='history 16'
 
-a pu='pushd'
-a po='popd'
+a pu='putclip'
 
 a chcp='C:/WINDOWS/System32/chcp.com'
 
