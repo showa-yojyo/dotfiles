@@ -1,20 +1,23 @@
 ;;; -*- Mode: Lisp; Package: LISP -*-
 ;;;
 
-;;; ã‚­ãƒ¼ãƒã‚¤ãƒ³ãƒ‰ã ã‘å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¾ã¨ã‚ãŸ
+;;; ƒL[ƒoƒCƒ“ƒh‚¾‚¯ŠO•”ƒtƒ@ƒCƒ‹‚É‚Ü‚Æ‚ß‚½
 (require "mykeymap")
 
-;;; è‡ªä½œãƒªã‚¹ãƒ—é–¢æ•°ãŸã¡
+;;; ©ìƒŠƒXƒvŠÖ”‚½‚¿
 (require "mymacs")
 
-;;; ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ã‚¹ã‚¿ãƒ 
+;;; ƒƒjƒ…[ƒJƒXƒ^ƒ€
 (require "mymenu")
 
 (setq *default-fileio-encoding* *encoding-utf8n*)
 (setq *default-eol-code* *eol-lf*)
 
+; Ctrl+Enter ‚Åƒ^ƒu•¶š‚Å–„‚ß‚ç‚ê‚é‚Ì‚Í‚½‚Ü‚ç‚È‚¢B
+(setq-default ed::indent-tabs-mode nil)
+
 (setq *move-forward-after-undo-deletion* t)
-;; å»ƒæ£„ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚¡ã‚¤ãƒ«åãŒãƒŸãƒ‹ãƒãƒƒãƒ•ã‚¡ã«è¡¨ç¤º C-x C-v
+;; ”pŠü‚·‚éƒoƒbƒtƒ@‚Ìƒtƒ@ƒCƒ‹–¼‚ªƒ~ƒjƒoƒbƒtƒ@‚É•\¦ C-x C-v
 (setq *find-other-file-requires-file-name* t)
 
 (require "buf2html")
@@ -38,7 +41,7 @@
 
 ;;; TODO
 (require "template-insert")
-;;(use-package "template-insert") ;; ã“ã‚Œã¯ä½•ã®ãŸã‚ã«ã‚ã‚‹ï¼Ÿ
+;;(use-package "template-insert") ;; ‚±‚ê‚Í‰½‚Ì‚½‚ß‚É‚ ‚éH
 
 (setq ed::*basic-indent-level* 4)
 (setq ed::*basic-continued-line-offset* 4)
@@ -83,7 +86,7 @@
 (setq ed::csharp-comment-indent 1)
 (setq ed::*csharp-comment-column* t)
 
-;;; ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãƒ‡ãƒ¢
+;;; ƒc[ƒ‹ƒo[ƒfƒ‚
 
 ;(find-file "C:/Program Files/xyzzy/lisp/app-menu.l")
 
@@ -100,14 +103,14 @@
 			  (change-fileio-encoding *encoding-utf8n*)
 			  (change-eol-code *eol-lf*)))
 
-; VB, VBScript ç³»
+; VB, VBScript Œn
 
-; Cãƒ¢ãƒ¼ãƒ‰ ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
+; Cƒ‚[ƒh ƒJƒXƒ^ƒ}ƒCƒY
 (add-hook 'ed::*c-mode-hook*
 		  #'(lambda()
 			  (abbrev-mode)))
 
-; C++ãƒ¢ãƒ¼ãƒ‰ ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
+; C++ƒ‚[ƒh ƒJƒXƒ^ƒ}ƒCƒY
 (add-hook 'ed::*c++-mode-hook*
 		  #'(lambda()
 			  (abbrev-mode t)))
@@ -137,11 +140,8 @@
 			  (setq dispel-exec-directory "D:/home/yojyo/bin/")
 			  (abbrev-mode)))
 
-; èµ·å‹•æ™‚ã« abbrev file ã‚’èª­ã¿è¾¼ã‚€
+; ‹N“®‚É abbrev file ‚ğ“Ç‚İ‚Ş
 (quietly-read-abbrev-file)
 
-; find-file ç­‰ã§ . ã‹ã‚‰å§‹ã¾ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚‚ãƒªã‚¹ãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+; find-file “™‚Å . ‚©‚çn‚Ü‚éƒtƒ@ƒCƒ‹‚ğ‚àƒŠƒXƒg‚·‚é‚æ‚¤‚É‚·‚é
 (setq ed::show-dots t)
-
-; Ctrl+Enter ã§ã‚¿ãƒ–æ–‡å­—ã§åŸ‹ã‚ã‚‰ã‚Œã‚‹ã®ã¯ãŸã¾ã‚‰ãªã„ã€‚
-(setq-default indent-tabs-mode nil)
