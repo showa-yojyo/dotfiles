@@ -11,6 +11,7 @@
 (require "mymenu")
 
 (setq *default-fileio-encoding* *encoding-utf8n*)
+(setq *clipboard-char-encoding* *encoding-auto*)
 (setq *default-eol-code* *eol-lf*)
 
 ; Ctrl+Enter ‚Åƒ^ƒu•¶š‚Å–„‚ß‚ç‚ê‚é‚Ì‚Í‚½‚Ü‚ç‚È‚¢B
