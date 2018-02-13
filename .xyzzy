@@ -130,7 +130,8 @@
 (add-hook 'ed::*py-mode-hook*
 		  #'(lambda()
 			  (change-fileio-encoding *encoding-utf8n*)
-			  (change-eol-code *eol-lf*)))
+			  (change-eol-code *eol-lf*)
+			  (abbrev-mode t)))
 
 ; sns-mode
 (require "sns/sns-mode")
