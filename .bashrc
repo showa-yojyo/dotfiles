@@ -85,7 +85,7 @@ export HISTCONTROL="ignoredups"
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
-export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate:exit:which.+'
+export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
