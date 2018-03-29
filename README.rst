@@ -1,83 +1,53 @@
 ======================================================================
-My $HOME/bin Contents
+プライベートドットファイル
 ======================================================================
+これはいわゆるドットファイルのためのリポジトリーだが、
+現在想定している環境は Windows + Cygwin であり、そこではシェルは `bash`
+しか用いない。
 
-.. contents:: Table of Contents
+以下は完全に自分用のメモだ。
 
-What is this?
+管理外ファイル
 ======================================================================
+現在、次の構成ファイル群はバージョン管理下にない。
+理由は内容が各種パスワードを含んでいるか、管理するに及ばないかのどちらかだ。
 
-This project maintains the contents in my $HOME/bin directory.
+* `.bash_history`: 履歴データなので除外。
+* `.conda/`: 管理の必要がないはず。
+* `.gimp-2.8/`: 調査中。カスタムブラシとかなのでバージョン管理したいと言えばしたい。
+* `.gnupg/`: 機密情報含むため除外。
+* `.ipynb_checkpoints/`: 管理の必要がないはず。
+* `.my_app_credentials`: Twitter スクリプトで使う認証情報を含むため除外。
+* `.netrc`: 認証情報を含むため除外。
+* `.opentweenrc/`: OpenTween のカスタム版の構成ファイル群格納ディレクトリー。機密情報含むため除外。
+* `.pylint.d/`: 管理の必要がないはず。
+* `.python_history`: 履歴データなので除外。
+* `.ssh/`: 機密情報含むため除外。
+* `.subversion/`: 機密情報含むため除外。
+* `.thumbnails/`: 単なるキャッシュデータ。
+* `.twitter_log_oauth`: Twitter スクリプトで使う認証情報を含むため除外。
+* `.twitter_oauth`: Twitter スクリプトで使う認証情報を含むため除外。
+* `.twitter-archiver_oauth`: Twitter スクリプトで使う認証情報を含むため除外。
+* `.twitter-follow_oauth`: Twitter スクリプトで使う認証情報を含むため除外。
 
-The Latest Version
+ただしバックアップが必要であることは変わりはないので、どうにかしないといけない。
+
+シンボリックリンク
 ======================================================================
+DOS プロンプトから `mklink` コマンドを用いて、
+ローカルリポジトリ―の各ファイルへのシンボリックリンクを定義する。
+なお `mklink` コマンドを実行するには管理人権限が必要だ。
+`%HOME%` 直下に当リポジトリーがある場合の例を示す。
 
-Details of the latest version can be found on my $HOME/bin
-project page under https://github.com/showa-yojyo/bin
+..
 
-Documentation
-======================================================================
+  > cd %HOME%
+  > mklink .bashrc .\dotfiles\.bashrc
+  > mklink /D .ipython .\dotfiles\.ipython
 
-TBW
-
-Installation
-======================================================================
-
-As this is my private project, you might not want
-this git repository in your machine.
-
-.. code:: bash
-
-   $ cd
-   $ git clone https://github.com/showa-yojyo/bin.git -b develop
-
-And make ``$PATH`` enviroment value include ``~/bin``.
-
-Requirements
-----------------------------------------------------------------------
-
-* Bash 4.3.x
-
-  I use Cygwin.
-
-* Python_ 3.5.x
-
-  I use Windows x86-64 executable.
-
-  * Some scripts need third party's packages, e.g.,
-    Pillow_,
-    Jinja2_,
-    `Python Twitter Tools`_,
-    `Beautiful Soup`_,
-    Docutils_,
-    dateutil_,
-    etc.
-
-Bug Reporting
-======================================================================
-
-Please do not report to me if you find any bugs or problems.
-
-Licensing
-======================================================================
-
-See the file LICENSE.
-
-Contacts
-======================================================================
-
-* `プレハブ小屋`_
-
-  * Web site: https://github.com/showa-yojyo/bin (GitHub)
-  * E-mail: yojyo@hotmail.com
-  * Twitter: `@showa_yojyo`_
-
-.. _`プレハブ小屋`: http://www.geocities.jp/showa_yojyo/
-.. _`@showa_yojyo`: http://twitter.com/showa_yojyo
-.. _Python: http://www.python.org/
-.. _Beautiful Soup: http://www.crummy.com/software/BeautifulSoup/
-.. _Pillow: https://pillow.readthedocs.org/en/latest/
-.. _Python Twitter Tools: http://mike.verdone.ca/twitter/
-.. _Jinja2: http://jinja.pocoo.org/
-.. _Docutils: http://docutils.sourceforge.net/
-.. _Dateutil: https://dateutil.readthedocs.org/
+既にシンボリックリンクが定義されている場合は、いったんリンクを削除してから
+上のコマンドを実行する必要がある。このときディレクトリー型の扱いには注意を
+要する。`del` ではなく `rmdir` でリンクを削除しないと、対象そのものを削除する。
+この挙動がたいへん危なっかしいので、シンボリックリンクを再設定する
+バッチファイルを作成するのが望ましいのだが、DOS のスクリプトをまともに書けないので
+現在は保留している。
