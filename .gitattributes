@@ -1,3 +1,4 @@
 # For xyzzy.exe
 .xyzzy text eol=crlf
 .abbrev_defs eol=crlf
+.olt text eol=crlf
