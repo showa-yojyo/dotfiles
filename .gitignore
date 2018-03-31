@@ -8,3 +8,6 @@
 
 # .jupyter
 .jupyter/migrated
+
+# .matplotlib
+.matplotlib/fontList.json
