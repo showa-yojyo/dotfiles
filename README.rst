@@ -39,11 +39,11 @@ DOS プロンプトから `mklink` コマンドを用いて、
 なお `mklink` コマンドを実行するには管理人権限が必要だ。
 `%HOME%` 直下に当リポジトリーがある場合の例を示す。
 
-..
+::
 
-  > cd %HOME%
-  > mklink .bashrc .\dotfiles\.bashrc
-  > mklink /D .ipython .\dotfiles\.ipython
+  %HOME%> cd %HOME%
+  %HOME%> mklink .bashrc .\dotfiles\.bashrc
+  %HOME%> mklink /D .ipython .\dotfiles\.ipython
 
 既にシンボリックリンクが定義されている場合は、いったんリンクを削除してから
 上のコマンドを実行する必要がある。このときディレクトリー型の扱いには注意を
