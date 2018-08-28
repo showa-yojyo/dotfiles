@@ -35,6 +35,7 @@ TEXLIVE_PATH=${CYGDRIVE_PREFIX}/d/texlive/2015/bin/win32
 GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
 PANDOC_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Pandoc
 PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Miniconda3:${CYGDRIVE_PREFIX}/d/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/d/Miniconda3/Library/bin
+RUBY_PATH=${CYGDRIVE_PREFIX}/d/Ruby25-x64/bin
 GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/bin
 SYSTEM_PATH=${CYGDRIVE_PREFIX}/c/WINDOWS/System32
 
@@ -42,7 +43,7 @@ if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
     JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
 fi
 
-PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$SYSTEM_PATH:$JAVA_HOME/bin
+PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$RUBY_PATH:$SYSTEM_PATH:$JAVA_HOME/bin
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH=${HOME}/bin:${PATH}

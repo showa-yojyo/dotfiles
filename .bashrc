@@ -216,6 +216,11 @@ function gendiary()
 }
 fi
 
+function bundle()
+{
+    ruby "$(cygpath -aw $(which bundle))" $@
+}
+
 #
 # set locale
 #
