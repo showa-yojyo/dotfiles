@@ -102,4 +102,5 @@
 [winUpdater]
 	recentlySeenVersion = 2.17.0.windows.1
 [gui]
-	recentrepo = D:/home/yojyo/devel/highperformancepython/bin
+	encoding = utf-8
+	tabsize = 4
