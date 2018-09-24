@@ -13,8 +13,6 @@
 
     co = checkout
 
-    cp = cherry-pick
-
     ci = commit
     carn = commit --amend --reset-author --no-edit
 
@@ -43,10 +41,8 @@
 
     who = shortlog -s --
 
-    st = status -s
+    st = status -sb
     stat = status
-
-    snapshot = "!snapshot() { COMMENT=wip; if [ \"$*\" ] ; then COMMENT=\"$*\"; fi; git add -A; git commit -m \"$COMMENT\"; }; snapshot"
 
 [branch]
     autoSetupRebase = always
@@ -100,7 +96,7 @@
 [web]
     browser = default-browser
 [winUpdater]
-	recentlySeenVersion = 2.17.0.windows.1
+    recentlySeenVersion = 2.17.0.windows.1
 [gui]
-	encoding = utf-8
-	tabsize = 4
+    encoding = utf-8
+    tabsize = 4
