@@ -221,6 +221,16 @@ function bundle()
     ruby "$(cygpath -aw $(which bundle))" $@
 }
 
+function push-all-repos()
+{
+    local repos=(bin dotfiles devel/all-note/notebook devel/all-note/notebook/gh-pages devel/wandering)
+    pushd ~
+    for repo in "${repos[@]}" ; do
+        git -C "$repos" push &
+    done
+    popd
+}
+
 #
 # set locale
 #
