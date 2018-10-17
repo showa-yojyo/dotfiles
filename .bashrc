@@ -205,8 +205,8 @@ function sympydoc()
 
 function update-all-repos()
 {
-    update-local-copy ~/devel/gitignore
-    update-local-copy ~/devel/sympy/doc
+    update-local-copy ~/devel/gitignore &
+    update-local-copy ~/devel/sympy/doc &
 }
 
 if [[ "$OSTYPE" == cygwin ]] ; then
@@ -214,21 +214,38 @@ function gendiary()
 {
     python "$(cygpath -aw ~/bin/gendiary.py)" $@
 }
-fi
 
 function bundle()
 {
     ruby "$(cygpath -aw $(which bundle))" $@
 }
+fi
 
 function push-all-repos()
 {
-    local repos=(bin dotfiles devel/all-note/notebook devel/all-note/notebook/gh-pages devel/wandering)
-    pushd ~
+    local repos=(\
+        ~/bin \
+        ~/dotfiles \
+        ~/devel/sketchbook \
+        ~/devel/all-note/notebook \
+        ~/devel/all-note/notebook/gh-pages \
+        ~/devel/all-note/jupyter-notebooks \
+        ~/devel/wandering)
+
     for repo in "${repos[@]}" ; do
-        git -C "$repos" push &
+        if [[ "$OSTYPE" == cygwin ]] ; then
+            repo=$(cygpath -aw "$repo")
+        fi
+        # Push the current branch to the same name on the remote
+        git -C "$repo" push -n origin HEAD &
     done
-    popd
+}
+
+function sync-all()
+{
+    push-all-repos &
+    update-all-repos $
+    yes | conda update --all &
 }
 
 #
