@@ -245,7 +245,7 @@ function sync-all()
 {
     push-all-repos &
     update-all-repos $
-    yes | conda update --all &
+    conda update --all -y &
 }
 
 #
