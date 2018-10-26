@@ -11,3 +11,6 @@
 
 # .matplotlib
 .matplotlib/fontList.json
+
+# XML
+.resolver/CatalogManager.properties.*.bak
