@@ -237,7 +237,7 @@ function push-all-repos()
             repo=$(cygpath -aw "$repo")
         fi
         # Push the current branch to the same name on the remote
-        git -C "$repo" push -n origin HEAD &
+        git -C "$repo" push origin HEAD &
     done
 }
 
