@@ -316,7 +316,8 @@ c.InteractiveShellApp.pylab_import_all = False
 # c.TerminalInteractiveShell.editing_mode = 'emacs'
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = 'D:/Program Files/xyzzy/xyzzy.exe'
+# Use Visual Studio Code
+c.TerminalInteractiveShell.editor = '"C:/Users/work/AppData/Local/Programs/Microsoft VS Code/bin/code.cmd" --wait' #--new-window
 
 # Highlight matching brackets .
 # c.TerminalInteractiveShell.highlight_matching_brackets = True

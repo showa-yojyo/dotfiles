@@ -135,7 +135,7 @@ a chcp='C:/WINDOWS/System32/chcp.com'
 
 # Git
 
-export GIT_EDITOR="'D:/Program Files/xyzzy/xyzzy.exe'"
+export GIT_EDITOR='code --wait' # --new-window
 
 #GIT_PS1_SHOWUPSTREAM="auto"
 #GIT_PS1_SHOWCOLORHINTS="yes"
