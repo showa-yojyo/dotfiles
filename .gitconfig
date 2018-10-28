@@ -2,7 +2,6 @@
 
 [core]
     autocrlf = input
-    excludesFile = ~/.gitignore
     editor = code --wait #--new-window
 
 [alias]
