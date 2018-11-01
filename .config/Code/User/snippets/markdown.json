@@ -1,0 +1,39 @@
+{
+	// Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"Template": {
+		"prefix": "front-matter",
+		"body": [
+			"---",
+			"title: xxx 日目（天気）（執筆中）",
+			"---",
+			"",
+			"* TODO: 就寝・起床",
+			"* TODO: 朝飯",
+			"* TODO: 昼飯",
+			"* TODO: 晩飯",
+			"* TODO: 風呂（ある場合）",
+			"* TODO: ゲーセン",
+			"",
+			"{% include libraries/reference.html %}",
+			"",
+		],
+		"description": "日記の front matter"
+	},
+	"SectionReading": {
+		"prefix": "reading",
+		"body": [
+			"# 読み物",
+			"",
+			"* TODO: 朝刊（朝日、産経、東京）",
+			"* TODO: 夕刊（朝日、東京）",
+			"* TODO: 雑誌",
+			"* TODO: 書籍",
+			"",
+		],
+		"description": "日記の読み物の部分"
+	}
+}

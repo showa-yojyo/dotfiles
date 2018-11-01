@@ -2,3 +2,7 @@
 .xyzzy text eol=crlf
 .abbrev_defs eol=crlf
 .olt text eol=crlf
+
+# VSCode
+.config/Code/User/*.json text eol=crlf
+.config/Code/User/snippets/*.json text eol=crlf
