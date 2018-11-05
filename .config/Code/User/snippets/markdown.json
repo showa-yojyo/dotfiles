@@ -8,7 +8,7 @@
 		"prefix": "front-matter",
 		"body": [
 			"---",
-			"title: xxx 日目（天気）（執筆中）",
+			"title: [$0]xxx 日目（天気）（執筆中）",
 			"---",
 			"",
 			"* TODO: 就寝・起床",
@@ -28,12 +28,19 @@
 		"body": [
 			"# 読み物",
 			"",
-			"* TODO: 朝刊（朝日、産経、東京）",
+			"* [$0]TODO: 朝刊（朝日、産経、東京）",
 			"* TODO: 夕刊（朝日、東京）",
 			"* TODO: 雑誌",
 			"* TODO: 書籍",
 			"",
 		],
 		"description": "日記の読み物の部分"
+	},
+	"PostUrl": {
+		"prefix": "_posturl",
+		"body": [
+			"[$0]({{ site.baseurl }}{% post_url $1 %})"
+		],
+		"description": "post_url directive"
 	}
 }
