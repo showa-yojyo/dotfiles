@@ -4,5 +4,5 @@
 .olt text eol=crlf
 
 # VSCode
-.config/Code/User/*.json text eol=crlf
-.config/Code/User/snippets/*.json text eol=crlf
+.config/Code/User/*.json text eol=lf
+.config/Code/User/snippets/*.json text eol=lf
