@@ -3,9 +3,62 @@
     "workbench.colorTheme": "Visual Studio Light",
     "terminal.external.windowsExec": "D:\\cygwin64\\bin\\bash.exe --login -i",
     "terminal.integrated.shell.windows": "D:\\cygwin64\\cygwin.bat",
+    "terminal.integrated.scrollback": 5000,
     "git.path": "D:\\Program Files\\Git\\cmd\\git.exe",
     "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": -1,
     "files.eol": "\n",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "shellLauncher.shells.windows": [
+        {
+            "shell": "D:\\cygwin64\\bin\\bash.exe",
+            "label": "Cygwin bash",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        },
+        {
+            "shell": "D:\\Program Files\\Git\\bin\\bash.exe",
+            "label": "Git bash",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        },
+        {
+            "shell": "C:\\Windows\\System32\\bash.exe",
+            "label": "WSL Bash",
+            "args": [
+                "--login",
+                "-i"
+            ]
+        },
+        {
+            "shell": "D:\\Miniconda3\\Scripts\\ipython3.exe",
+            "label": "IPython (default)",
+        },
+        {
+            "shell": "D:\\Miniconda3\\Scripts\\jupyter.exe",
+            "label": "Jupyter notebook",
+        },
+        {
+            "shell": "D:\\Ruby25-x64\\bin\\irb.cmd",
+            "label": "irb",
+            "args": [
+                "-r",
+                "irb/completion",
+                "--simple-prompt"
+            ],
+        },
+        {
+            "shell": "C:\\Windows\\System32\\cmd.exe",
+            "label": "cmd",
+            "args": ["/k"]
+        },
+        {
+            "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "label": "PowerShell"
+        },
+    ]
 }
