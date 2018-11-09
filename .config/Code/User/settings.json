@@ -7,12 +7,10 @@
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "Visual Studio Light",
     "terminal.external.windowsExec": "D:\\cygwin64\\bin\\bash.exe --login -i",
     "terminal.integrated.shell.windows": "D:\\cygwin64\\cygwin.bat",
     "terminal.integrated.scrollback": 5000,
     "git.path": "D:\\Program Files\\Git\\cmd\\git.exe",
-    "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": -1,
     "shellLauncher.shells.windows": [
         {
@@ -68,5 +66,8 @@
             "label": "PowerShell"
         },
     ],
-
+    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.settings.editor": "json",
+    "workbench.startupEditor": "none"
 }
