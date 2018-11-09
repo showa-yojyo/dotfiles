@@ -1,5 +1,9 @@
 {
+    "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
     "workbench.colorTheme": "Visual Studio Light",
     "terminal.external.windowsExec": "D:\\cygwin64\\bin\\bash.exe --login -i",
     "terminal.integrated.shell.windows": "D:\\cygwin64\\cygwin.bat",
@@ -7,8 +11,6 @@
     "git.path": "D:\\Program Files\\Git\\cmd\\git.exe",
     "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": -1,
-    "files.eol": "\n",
-    "editor.minimap.enabled": false,
     "shellLauncher.shells.windows": [
         {
             "shell": "D:\\cygwin64\\bin\\bash.exe",
@@ -60,5 +62,5 @@
             "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "label": "PowerShell"
         },
-    ]
+    ],
 }
