@@ -1,4 +1,7 @@
 {
+    "editor.folding": false,
+    "editor.fontFamily": "'源ノ角ゴシック Code JP', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all",
     "files.eol": "\n",
@@ -56,11 +59,14 @@
         {
             "shell": "C:\\Windows\\System32\\cmd.exe",
             "label": "cmd",
-            "args": ["/k"]
+            "args": [
+                "/k"
+            ]
         },
         {
             "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "label": "PowerShell"
         },
     ],
+
 }
