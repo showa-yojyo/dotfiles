@@ -11,6 +11,8 @@
     "editor.renderWhitespace": "boundary",
     "editor.roundedSelection": false,
     "editor.rulers": [80],
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
@@ -80,5 +82,5 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.editor.tabSizing": "shrink",
     "workbench.settings.editor": "json",
-    "workbench.startupEditor": "none",
+    "workbench.startupEditor": "none"
 }
