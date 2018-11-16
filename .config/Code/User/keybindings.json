@@ -3,5 +3,9 @@
     {
         "key": "ctrl+shift+t",
         "command": "shellLauncher.launch"
+    },
+    {
+        "key": "ctrl+x s",
+        "command": "workbench.action.files.saveAll"
     }
 ]
