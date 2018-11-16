@@ -87,6 +87,7 @@
     format = html
 
 [merge]
+    ff = false
     tool = vscode
 
 [mergetool]
@@ -95,6 +96,9 @@
 
 [mergetool "vscode"]
     cmd = code --wait $MERGED
+
+[pull]
+    ff = only
 
 [push]
     default = current
