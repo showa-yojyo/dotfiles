@@ -82,5 +82,9 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.editor.tabSizing": "shrink",
     "workbench.settings.editor": "json",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "[markdown]": {
+        "editor.wordWrap": "off",
+        "editor.quickSuggestions": false
+    }
 }
