@@ -1,0 +1,61 @@
+{
+    // Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+    // same ids are connected.
+    "shebang": {
+        "prefix": "#!",
+        "body": "#!/usr/bin/env python",
+        "description": "shebang line for Python scripts"
+    },
+    "def parse_args": {
+        "prefix": "def parse_args",
+        "body": [
+            "def parse_args(args):",
+            "    \"\"\"Parse the command line parameters.\"",
+            "",
+            "    Returns:",
+            "        An instance of argparse.ArgumentParser that stores the command line",
+            "        parameters.",
+            "    \"\"\"",
+            "",
+            "    parser = ArgumentParser(description='TBW')",
+            "    parser.add_argument('--version', action='version', version=__version__)",
+            "",
+            "    parser.add_argument(",
+            "        '-f', '--file',",
+            "        type=FileType('r', encoding='utf-8'),",
+            "        default=None,",
+            "        help='a file which lists screen names to be added or removed')",
+            "",
+            "    return parser.parse_args(args or ['--help'])",
+            ""
+        ],
+        "description": "definition of parse_args"
+    },
+    "def run": {
+        "prefix": "def run",
+        "body": [
+            "def run(args):",
+            "    \"\"\"The main function.",
+            "",
+            "    Args:",
+            "        args: An instance of argparse.ArgumentParser parsed in the configure",
+            "        function.",
+            "",
+            "    Returns:",
+            "        None.",
+            "    \"\"\""
+        ],
+        "description": "run for stanard scripts"
+    },
+    "def main": {
+        "prefix": "def main",
+        "body": [
+            "def main(args=sys.argv[1:]):",
+            "    sys.exit(run(parse_args(args)))",
+            ""
+        ],
+        "description": "main for standard scripts"
+    }
+}
