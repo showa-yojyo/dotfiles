@@ -11,6 +11,7 @@
     "editor.renderWhitespace": "boundary",
     "editor.roundedSelection": false,
     "editor.rulers": [80],
+    "editor.tabCompletion": "onlySnippets",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "files.eol": "\n",
@@ -115,4 +116,6 @@
         }
     ],
     "latex-workshop.view.pdf.viewer": "tab",
+    "breadcrumbs.enabled": false,
+    "terminal.integrated.rendererType": "dom",
 }
