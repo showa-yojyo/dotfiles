@@ -245,7 +245,7 @@ function sync-all()
 {
     push-all-repos &
     update-all-repos $
-    conda update --all -y &
+    conda update --all --yes &
 }
 
 #
@@ -265,3 +265,4 @@ PS1='[\u \W \!]\\$ '
 #PS1='[\u \W$(__git_ps1 " (%s)") \!]\\$ '
 #PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 PS2='> '
+
