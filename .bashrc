@@ -248,6 +248,11 @@ function sync-all()
     conda update --all --yes &
 }
 
+function homeless-anniversary()
+{
+    LC_ALL=C date -d "2018-05-31 $1 days" +"%Y-%m-%d (%a)"
+}
+
 #
 # set locale
 #
