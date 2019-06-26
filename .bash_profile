@@ -35,7 +35,7 @@ if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
   GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
   PANDOC_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Pandoc
   PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Miniconda3:${CYGDRIVE_PREFIX}/d/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/d/Miniconda3/Library/bin
-  RUBY_PATH=${CYGDRIVE_PREFIX}/d/Ruby25-x64/bin
+  RUBY_PATH=${CYGDRIVE_PREFIX}/d/Ruby26-x64/bin
   GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/cmd
   VSCODE_PATH=$(cygpath ${LOCALAPPDATA}/Programs/Microsoft\ VS\ Code/bin)
   SYSTEM_PATH=${CYGDRIVE_PREFIX}/c/WINDOWS/System32
