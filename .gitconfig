@@ -2,7 +2,7 @@
 
 [core]
     autocrlf = input
-	editor = 'C:\\Users\\work\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe' --wait
+	editor = 'C:\\Program Files\\Microsoft VS Code\\Code.exe' --wait
 
 [alias]
     br = branch

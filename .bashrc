@@ -154,7 +154,7 @@ export GIT_EDITOR='code --wait' # --new-window
 
 function xyzzycli()
 {
-    local prog='D:/Program Files/xyzzy/xyzzycli.exe'
+    local prog='C:/Program Files/xyzzy/xyzzycli.exe'
     for name in "$@"; do
         echo \"$(cygpath -m "$name")\"
     done | xargs "$prog"
@@ -224,8 +224,8 @@ fi
 function push-all-repos()
 {
     local repos=(\
-        ~/bin \
-        ~/dotfiles \
+        ~/devel/bin \
+        ~/devel/dotfiles \
         ~/devel/sketchbook \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \

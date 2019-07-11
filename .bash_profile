@@ -27,19 +27,22 @@ if [ -e "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
-if [[ "$OSTYPE" == "cygwin" && -n "$JAVA_HOME" ]] ; then
+if [[ "$OSTYPE" == "cygwin" ]] ; then
   # See also /etc/fstab.
   CYGDRIVE_PREFIX=
 
-  TEXLIVE_PATH=${CYGDRIVE_PREFIX}/d/texlive/2015/bin/win32
-  GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Graphviz/bin
-  PANDOC_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Pandoc
-  PYTHON_PATH=${CYGDRIVE_PREFIX}/d/Miniconda3:${CYGDRIVE_PREFIX}/d/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/d/Miniconda3/Library/bin
-  RUBY_PATH=${CYGDRIVE_PREFIX}/d/Ruby26-x64/bin
-  GIT_PATH=${CYGDRIVE_PREFIX}/d/Program\ Files/Git/cmd
-  VSCODE_PATH=$(cygpath ${LOCALAPPDATA}/Programs/Microsoft\ VS\ Code/bin)
+  TEXLIVE_PATH=${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32
+  GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin
+  PANDOC_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc
+  PYTHON_PATH=${CYGDRIVE_PREFIX}/c/Miniconda3:${CYGDRIVE_PREFIX}/c/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/c/Miniconda3/Library/bin
+  RUBY_PATH=${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin
+  GIT_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd
+  VSCODE_PATH=$(cygpath /c/Program\ Files/Microsoft\ VS\ Code)
   SYSTEM_PATH=${CYGDRIVE_PREFIX}/c/WINDOWS/System32
-  JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
+
+  if [[ -n "$JAVA_HOME" ]] ; then
+    JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
+  fi
 fi
 
 PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$RUBY_PATH:$VSCODE_PATH:$SYSTEM_PATH:$JAVA_HOME/bin

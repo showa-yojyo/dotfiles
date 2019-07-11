@@ -17,16 +17,16 @@
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "git.path": "D:\\Program Files\\Git\\cmd\\git.exe",
+    "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
     "git.promptToSaveFilesBeforeCommit": true,
-    "terminal.external.windowsExec": "D:\\cygwin64\\bin\\bash.exe --login -i",
+    "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe --login -i",
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
-    "terminal.integrated.shell.windows": "D:\\cygwin64\\cygwin.bat",
+    "terminal.integrated.shell.windows": "C:\\cygwin64\\cygwin.bat",
     "shellLauncher.shells.windows": [
         {
-            "shell": "D:\\cygwin64\\bin\\bash.exe",
+            "shell": "C:\\cygwin64\\bin\\bash.exe",
             "label": "Cygwin bash",
             "args": [
                 "--login",
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "shell": "D:\\Program Files\\Git\\bin\\bash.exe",
+            "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
             "label": "Git bash",
             "args": [
                 "--login",
@@ -50,15 +50,15 @@
             ]
         },
         {
-            "shell": "D:\\Miniconda3\\Scripts\\ipython3.exe",
+            "shell": "C:\\Miniconda3\\Scripts\\ipython3.exe",
             "label": "IPython (default)",
         },
         {
-            "shell": "D:\\Miniconda3\\Scripts\\jupyter.exe",
+            "shell": "C:\\Miniconda3\\Scripts\\jupyter.exe",
             "label": "Jupyter notebook",
         },
         {
-            "shell": "D:\\Ruby25-x64\\bin\\irb.cmd",
+            "shell": "C:\\Ruby25-x64\\bin\\irb.cmd",
             "label": "irb",
             "args": [
                 "-r",
