@@ -34,7 +34,8 @@ if [[ "$OSTYPE" == "cygwin" ]] ; then
   TEXLIVE_PATH=${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32
   GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin
   PANDOC_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc
-  PYTHON_PATH=${CYGDRIVE_PREFIX}/c/Miniconda3:${CYGDRIVE_PREFIX}/c/Miniconda3/Scripts:${CYGDRIVE_PREFIX}/c/Miniconda3/Library/bin
+  MINICONDA_PATH=${CYGDRIVE_PREFIX}/c/ProgramData/Miniconda3
+  PYTHON_PATH=$MINICONDA_PATH:$MINICONDA_PATH/Scripts:$MINICONDA_PATH/Library/bin
   RUBY_PATH=${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin
   GIT_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd
   VSCODE_PATH=$(cygpath /c/Program\ Files/Microsoft\ VS\ Code)
