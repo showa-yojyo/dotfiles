@@ -168,6 +168,10 @@ function update-local-copy()
         local REPOS_PATH="$1"
     fi
 
+    if [[ ! -d "$REPOS_PATH" ]] ; then
+        return
+    fi
+
     git -C "$REPOS_PATH" checkout master
     git -C "$REPOS_PATH" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
     if [[ $? -eq 0 ]]; then
@@ -245,7 +249,7 @@ function sync-all()
 {
     push-all-repos &
     update-all-repos $
-    conda update --all --yes &
+    #conda update --all --yes &
 }
 
 function homeless-anniversary()
