@@ -34,31 +34,15 @@
             ]
         },
         {
-            "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
-            "label": "Git bash",
-            "args": [
-                "--login",
-                "-i"
-            ]
-        },
-        {
-            "shell": "C:\\Windows\\System32\\bash.exe",
-            "label": "WSL Bash",
-            "args": [
-                "--login",
-                "-i"
-            ]
-        },
-        {
-            "shell": "C:\\Miniconda3\\Scripts\\ipython3.exe",
+            "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\ipython3.exe",
             "label": "IPython (default)",
         },
         {
-            "shell": "C:\\Miniconda3\\Scripts\\jupyter.exe",
+            "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\jupyter.exe",
             "label": "Jupyter notebook",
         },
         {
-            "shell": "C:\\Ruby25-x64\\bin\\irb.cmd",
+            "shell": "C:\\Ruby26-x64\\bin\\irb.cmd",
             "label": "irb",
             "args": [
                 "-r",
