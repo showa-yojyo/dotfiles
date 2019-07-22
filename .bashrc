@@ -189,12 +189,14 @@ function update-local-copy()
     git -C "$REPOS_PATH" checkout -
 }
 
-if [[ "$OSTYPE" == cygwin ]] ; then
-    export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
-    export GRAPHVIZ_DOT="$(cygpath -aw "$(which dot.exe)")"
-else
-    export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
-    export GRAPHVIZ_DOT=$(which dot)
+if [[ -x "$(command -v dot)" ]] ; then
+    if [[ "$OSTYPE" == cygwin ]] ; then
+        export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
+        export GRAPHVIZ_DOT="$(cygpath -aw "$(which dot)")"
+    else
+        export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
+        export GRAPHVIZ_DOT=$(which dot)
+    fi
 fi
 
 function plantuml()
@@ -255,6 +257,18 @@ function sync-all()
 function homeless-anniversary()
 {
     LC_ALL=C date -d "2018-05-31 $1 days" +"%Y-%m-%d (%a)"
+}
+
+function convert_mp3()
+{
+    if [[ ! -x "$(command -v ffmpeg)" ]]; then
+        echo 'Error: ffmpeg is not installed.' >&2
+        return
+    fi
+
+    local source_mp4="$1"
+    local dest_mp3="${source_mp4%.mp4}.mp3"
+    ffmpeg -hide_banner -loglevel fatal -i "$source_mp4" "$dest_mp3"
 }
 
 #
