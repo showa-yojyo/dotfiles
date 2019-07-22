@@ -33,20 +33,40 @@ if [[ "$OSTYPE" == "cygwin" ]] ; then
   CYGDRIVE_PREFIX=
 fi
 
-TEXLIVE_PATH=${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32
-GRAPHVIZ_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin
-PANDOC_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc
-MINICONDA_PATH=${CYGDRIVE_PREFIX}/c/ProgramData/Miniconda3
-PYTHON_PATH=$MINICONDA_PATH:$MINICONDA_PATH/Scripts:$MINICONDA_PATH/Library/bin
-RUBY_PATH=${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin
-GIT_PATH=${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd
-VSCODE_PATH=$(cygpath /c/Program\ Files/Microsoft\ VS\ Code)
-SYSTEM_PATH=${CYGDRIVE_PREFIX}/c/WINDOWS/System32
+PATH=/bin:/usr/local/bin:/usr/bin
+
+function append_path()
+{
+  local one_path="$1"
+  if [[ -d "$one_path" ]] ; then
+    PATH=${PATH}:"$one_path"
+  else
+    echo Warning: $one_path is not directory. >&2
+  fi
+}
+
+# Python stuffs
+MINICONDA_PATH="${CYGDRIVE_PREFIX}/c/ProgramData/Miniconda3"
+append_path "${MINICONDA_PATH}"
+append_path "${MINICONDA_PATH}/Scripts"
+append_path "${MINICONDA_PATH}/Library/bin"
+unset MINICONDA_PATH
+
+append_path "${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32"
+append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin)"
+append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc)"
+append_path "${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin"
+append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd)"
+append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Microsoft\ VS\ Code)"
+append_path "${CYGDRIVE_PREFIX}/c/WINDOWS/System32"
+
+# Java stuff
 if [[ -n "$JAVA_HOME" ]] ; then
   JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
+  append_path "$JAVA_HOME/bin"
 fi
 
-PATH=/bin:/usr/local/bin:/usr/bin:$TEXLIVE_PATH:$GRAPHVIZ_PATH:$PANDOC_PATH:$PYTHON_PATH:$GIT_PATH:$RUBY_PATH:$VSCODE_PATH:$SYSTEM_PATH:$JAVA_HOME/bin
+unset -f append_path
 
 # Set PATH so it includes user's private bin if it exists
 HOME_BIN="${HOME}/devel/bin"
