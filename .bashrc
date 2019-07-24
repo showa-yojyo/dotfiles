@@ -268,7 +268,7 @@ function convert_mp3()
 
     local source_mp4="$1"
     local dest_mp3="${source_mp4%.mp4}.mp3"
-    ffmpeg -hide_banner -loglevel fatal -i "$source_mp4" "$dest_mp3"
+    ffmpeg -loglevel fatal -i "$source_mp4" "$dest_mp3"
 }
 
 #
