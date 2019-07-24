@@ -52,5 +52,20 @@
             ""
         ],
         "description": "main for standard scripts"
+    },
+    "add_argument":{
+        "prefix": "add_argument",
+        "body":[
+            "add_argument(",
+            "    ${1:name_or_flags},",
+            "    metavar=$2,",
+            "    dest=$2,",
+            "    action=$3,",
+            "    type=$4,",
+            "    default=$5,",
+            "    nargs=${6|'*','+'|},",
+            "    help='${7:help string}')",
+        ],
+        "description": "add_argument(...)"
     }
 }
