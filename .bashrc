@@ -218,13 +218,19 @@ function update-all-repos()
 if [[ "$OSTYPE" == cygwin ]] ; then
 function gendiary()
 {
-    python "$(cygpath -aw ~/bin/gendiary.py)" $@
+    python "$(cygpath -aw ~/devel/bin/gendiary.py)" $@
+}
+
+function download_mp4()
+{
+    python "$(cygpath -aw ~/devel/bin/mp3.py)" -s -v $@
 }
 
 function bundle()
 {
     ruby "$(cygpath -aw $(which bundle))" $@
 }
+
 fi
 
 function push-all-repos()
@@ -266,9 +272,14 @@ function convert_mp3()
         return
     fi
 
-    local source_mp4="$1"
-    local dest_mp3="${source_mp4%.mp4}.mp3"
-    ffmpeg -loglevel fatal -i "$source_mp4" "$dest_mp3"
+    for i in "$@" ; do
+        local source_mp4="$i"
+        local dest_mp3="${source_mp4%.mp4}.mp3"
+        ffmpeg -loglevel fatal -i "${source_mp4}" "${dest_mp3}"
+        if [[ $? != 0 ]] ; then
+            echo 'Error: '${dest_mp3} 'is not generated' >&2
+        fi
+    done
 }
 
 #
