@@ -223,7 +223,7 @@ function gendiary()
 
 function download_mp4()
 {
-    python "$(cygpath -aw ~/devel/bin/mp3.py)" $@
+    python "$(cygpath -aw ~/devel/bin/dlmp4.py)" $@
 }
 
 function bundle()
