@@ -23,7 +23,7 @@
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
-    "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.shell.windows": "C:\\cygwin64\\Cygwin.bat",
     "shellLauncher.shells.windows": [
         {
             "shell": "C:\\cygwin64\\bin\\bash.exe",
