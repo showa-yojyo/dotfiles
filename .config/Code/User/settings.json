@@ -19,7 +19,7 @@
     "files.trimTrailingWhitespace": true,
     "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
     "git.promptToSaveFilesBeforeCommit": true,
-    "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe --login -i",
+    "terminal.external.windowsExec": "C:\\cygwin64\\Cygwin.bat",
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
@@ -27,15 +27,22 @@
     "shellLauncher.shells.windows": [
         {
             "shell": "C:\\cygwin64\\bin\\bash.exe",
-            "label": "Cygwin bash",
-            "args": [
-                "--login",
-                "-i"
-            ]
+            "label": "bash (Cygwin)",
+            "args": ["--login"]
+        },
+        {
+            "shell": "C:\\msys64\\usr\\bin\\bash.exe",
+            "label": "bash (MSYS2)",
+            "args": ["--login"]
+        },
+        {
+            "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "label": "bash (Git)",
+            "args": ["--login"]
         },
         {
             "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\ipython3.exe",
-            "label": "IPython (default)",
+            "label": "IPython",
         },
         {
             "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\jupyter.exe",
@@ -54,15 +61,7 @@
             "shell": "cmd.exe",
             "label": "cmd",
             "args": [],
-          },
-          {
-            "shell": "cmd.exe",
-            "label": "Conda",
-            "args": [
-              "/K",
-              "C:\\ProgramData\\Miniconda3\\Scripts\\activate C:\\ProgramData\\Miniconda3"
-            ]
-          },
+        },
         {
             "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "label": "PowerShell"
