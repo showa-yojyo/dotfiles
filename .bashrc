@@ -295,7 +295,7 @@ export TZ=JST-09
 #
 # set prompt
 #
-PS1='[\u \W \!]\\$ '
+PS1='[$OSTYPE \s \W \!]\\$ '
 #PS1='[\u \W$(__git_ps1 " (%s)") \!]\\$ '
 #PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 PS2='> '
