@@ -3,8 +3,10 @@
 
 # base-files version 3.9-3
 
-# To pick up the latest recommended .bash_profile content,
-# look in /etc/defaults/etc/skel/.bash_profile
+# ~/.bash_profile: executed by bash(1) for login shells.
+
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.bash_profile
 
 # Modifying /etc/skel/.bash_profile directly will prevent
 # setup from updating it.
@@ -15,12 +17,7 @@
 # would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
 
-# ~/.bash_profile: executed by bash for login shells.
-
-# source the system wide bashrc if it exists
-if [ -e /etc/bash.bashrc ] ; then
-  source /etc/bash.bashrc
-fi
+# User dependent .bash_profile file
 
 # source the users bashrc if it exists
 if [ -e "${HOME}/.bashrc" ] ; then
@@ -88,8 +85,3 @@ unset HOME_BIN
 # if [ -d "${HOME}/info" ]; then
 #   INFOPATH=${HOME}/info:${INFOPATH}
 # fi
-
-# Miscellaneous commands.
-
-stty stop ^S intr ^C erase ^?
-set -o nounset

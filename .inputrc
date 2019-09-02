@@ -1,9 +1,9 @@
-# .inputrc
+# .inputrc: readline initialization file.
 
 # base-files version 3.9-3
 
-# To pick up the latest recommended .inputrc content,
-# look in /etc/defaults/etc/skel/.inputrc
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.inputrc
 
 # Modifying /etc/skel/.inputrc directly will prevent
 # setup from updating it.
@@ -15,16 +15,9 @@
 # a patch to the cygwin mailing list.
 
 # Allow 8-bit input/output
-# on に設定すると 8 bit での入力が可能になる
-# どちらか一方でよいが
 set meta-flag on
-set input-meta on
-
-# on に設定すると、8 bit 目が立っている文字に対し、
-# 8 bit 目を削除してエスケープ記号を付け、ASCII シーケンスに変換する
 set convert-meta off
-
-# on に設定すると、文字は 8 bit 目が設定されたままの状態で表示される
+set input-meta on
 set output-meta on
 
 #$if Bash
@@ -53,6 +46,3 @@ set output-meta on
   # a history expansion in the line
   #Space: magic-space
 #$endif
-
-# ???
-#set kanji-code sjis
