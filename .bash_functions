@@ -72,7 +72,7 @@ function xyzzycli()
 
 function update-local-copy()
 {
-    if [[ "$OSTYPE" == cygwin ]] ; then
+    if [[ -x "$(command -v cygpath)" ]] ; then
         local REPOS_PATH="$(cygpath -aw $1)"
     else
         local REPOS_PATH="$1"
@@ -100,7 +100,7 @@ function update-local-copy()
 }
 
 if [[ -x "$(command -v dot)" ]] ; then
-    if [[ "$OSTYPE" == cygwin ]] ; then
+    if [[ -x "$(command -v cygpath)" ]] ; then
         export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
         export GRAPHVIZ_DOT="$(cygpath -aw "$(which dot)")"
     else
@@ -125,23 +125,32 @@ function update-all-repos()
     update-local-copy ~/devel/sympy/doc &
 }
 
-if [[ "$OSTYPE" == cygwin ]] ; then
 function gendiary()
 {
-    python "$(cygpath -aw ~/devel/bin/gendiary.py)" $@
+    if [[ -x "$(command -v cygpath)" ]] ; then
+        python "$(cygpath -aw ~/devel/bin/gendiary.py)" $@
+    else
+        gendiary.py $@
+    fi
 }
 
 function download_mp4()
 {
-    python "$(cygpath -aw ~/devel/bin/dlmp4.py)" $@
+    if [[ -x "$(command -v cygpath)" ]] ; then
+        python "$(cygpath -aw ~/devel/bin/dlmp4.py)" $@
+    else
+        dlmp4.py $@
+    fi
 }
 
-function bundle()
-{
-    ruby "$(cygpath -aw $(which bundle))" $@
-}
-
-fi
+# function bundle()
+# {
+#     if [[ -x "$(command -v cygpath)" ]] ; then
+#         ruby "$(cygpath -aw $(which bundle))" $@
+#     else
+#         bundle $@
+#     fi
+# }
 
 function push-all-repos()
 {
@@ -155,7 +164,7 @@ function push-all-repos()
         ~/devel/wandering)
 
     for repo in "${repos[@]}" ; do
-        if [[ "$OSTYPE" == cygwin ]] ; then
+        if [[ -x "$(command -v cygpath)" ]] ; then
             repo=$(cygpath -aw "$repo")
         fi
         # Push the current branch to the same name on the remote
