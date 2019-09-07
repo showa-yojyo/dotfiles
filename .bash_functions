@@ -200,3 +200,11 @@ function convert_mp3()
         fi
     done
 }
+
+function opti()
+{
+    local dir=${USERPROFILE}/Dropbox/Photos/twitter/2019
+    pushd $dir
+    optipng 2019*.png
+    popd
+}
