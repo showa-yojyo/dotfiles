@@ -28,3 +28,10 @@ alias la='ls -A'  # all but . and ..
 
 a h='history 16'
 a pu='putclip'
+
+# Cygwin exclusive
+if [[ "$(uname -o)" == "Cygwin" ]] ; then
+    a dlmp4='python $(cygpath -aw ~/devel/bin/dlmp4.py)'
+    a gendiary='python $(cygpath -aw ~/devel/bin/gendiary.py)'
+    a bundle='ruby $(cygpath -aw $(which bundle))'
+fi

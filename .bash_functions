@@ -125,33 +125,6 @@ function update-all-repos()
     update-local-copy ~/devel/sympy/doc &
 }
 
-function gendiary()
-{
-    if [[ -x "$(command -v cygpath)" ]] ; then
-        python "$(cygpath -aw ~/devel/bin/gendiary.py)" $@
-    else
-        gendiary.py $@
-    fi
-}
-
-function download_mp4()
-{
-    if [[ -x "$(command -v cygpath)" ]] ; then
-        python "$(cygpath -aw ~/devel/bin/dlmp4.py)" $@
-    else
-        dlmp4.py $@
-    fi
-}
-
-# function bundle()
-# {
-#     if [[ -x "$(command -v cygpath)" ]] ; then
-#         ruby "$(cygpath -aw $(which bundle))" $@
-#     else
-#         bundle $@
-#     fi
-# }
-
 function push-all-repos()
 {
     local repos=(\
