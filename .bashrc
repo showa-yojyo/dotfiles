@@ -24,20 +24,6 @@
 # Environment Variables
 # #####################
 
-# TMP and TEMP are defined in the Windows environment.  Leaving
-# them set to the default Windows temporary directory can have
-# unexpected consequences.
-unset TMP
-unset TEMP
-
-# Alternatively, set them to the Cygwin temporary directory
-# or to any other tmp directory of your choice
-export TMP=/tmp
-export TEMP=/tmp
-
-# Or use TMPDIR instead
-# export TMPDIR=/tmp
-
 # Shell Options
 #
 # See man bash for more options...
@@ -63,33 +49,14 @@ shopt -s histappend
 # is installed.  Any completions you add in ~/.bash_completion are
 # sourced last.
 
-# History Options
-#
-# Don't put duplicate lines in the history.
-export HISTCONTROL="ignoredups"
+DEFAULT_EDITOR='code --wait' # --new-window
 
-# Ignore some controlling instructions
-# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
-# The '&' is a special pattern which suppresses duplicate entries.
-export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
-
-# Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
-
-# その他
-export HISTFILESIZE=100
-export HISTTIMEFORMAT="%Y/%m/%d (%a) %T "
-
-# Aliases
-#
-# Some people use a different file for aliases
-if [ -f "${HOME}/.bash_aliases" ]; then
-  source "${HOME}/.bash_aliases"
-fi
+# FCEDIT: the default editor for the fc builtin command.
+export FCEDIT=$DEFAULT_EDITOR
 
 # Git
 
-export GIT_EDITOR='code --wait' # --new-window
+export GIT_EDITOR=$DEFAULT_EDITOR
 
 #GIT_PS1_SHOWUPSTREAM="auto"
 #GIT_PS1_SHOWCOLORHINTS="yes"
@@ -99,6 +66,83 @@ export GIT_EDITOR='code --wait' # --new-window
 #if [ -f "${HOME}/.git-completion.sh" ] ; then
 #  source "${HOME}/.git-completion.sh"
 #fi
+
+# grep's default options
+#export GREP_OPTIONS='--color=auto'
+
+# History Options
+#
+# ignoredups: lines matching the previous history entry to not be saved.
+export HISTCONTROL="ignoredups"
+
+# Ignore some controlling instructions
+# The '&' is a special pattern which suppresses duplicate entries.
+export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
+
+# Whenever displaying the prompt, write the previous line to disk
+# export PROMPT_COMMAND="history -a"
+
+# The maximum number of lines contained in the history file
+export HISTFILESIZE=200
+export HISTSIZE=$HISTFILESIZE
+export HISTTIMEFORMAT="%F (%a) %T "
+
+# Locale
+#
+# LANG: the locale category for any category not specifically selected
+# with a variable starting with LC_.
+export LANG=ja_JP.UTF-8
+
+# LC_ALL: overrides the value of LANG and any other LC_ variable
+# specifying a locale category.
+export LC_ALL=
+
+#LC_COLLATE
+#LC_CTYPE
+#LC_MESSAGES
+#LC_NUMERIC
+
+#export PATH
+
+# Prompt
+#
+#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+
+# PS1: the primary prompt string.
+export PS1='[$OSTYPE \s \W \!]\\$ '
+# export PS1='[\u \W$(__git_ps1 " (%s)") \!]\\$ '
+
+export PS2='> '
+
+# PS3: the prompt for the select command
+# export PS3
+
+# PS4: the value is printed before each command bash displays during
+# an execution trace.
+# export PS4
+
+# TMP and TEMP are defined in the Windows environment.  Leaving
+# them set to the default Windows temporary directory can have
+# unexpected consequences.
+unset TMP
+unset TEMP
+
+# Alternatively, set them to the Cygwin temporary directory
+# or to any other tmp directory of your choice
+export TMP=/tmp
+export TEMP=/tmp
+
+# Or use TMPDIR instead
+export TMPDIR=/tmp
+
+export TZ=JST-09
+
+# Aliases
+#
+# Some people use a different file for aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
 
 # Umask
 #
@@ -114,22 +158,3 @@ export GIT_EDITOR='code --wait' # --new-window
 if [ -f "${HOME}/.bash_functions" ]; then
   source "${HOME}/.bash_functions"
 fi
-
-#
-# set locale
-#
-export LC_ALL=
-export LANG=ja_JP.UTF-8
-export TZ=JST-09
-
-# grep's default options
-#export GREP_OPTIONS='--color=auto'
-
-#
-# set prompt
-#
-PS1='[$OSTYPE \s \W \!]\\$ '
-#PS1='[\u \W$(__git_ps1 " (%s)") \!]\\$ '
-#PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
-PS2='> '
-
