@@ -125,7 +125,7 @@ function update-all-repos()
     update-local-copy ~/devel/sympy/doc &
 }
 
-function push-all-repos()
+function backup()
 {
     local repos=(\
         ~/devel/bin \
@@ -147,7 +147,7 @@ function push-all-repos()
 
 function sync-all()
 {
-    push-all-repos &
+    backup &
     update-all-repos $
     #conda update --all --yes &
 }
