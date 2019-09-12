@@ -50,6 +50,7 @@ shopt -s histappend
 # sourced last.
 
 DEFAULT_EDITOR='code --wait' # --new-window
+export EDITOR=$DEFAULT_EDITOR
 
 # FCEDIT: the default editor for the fc builtin command.
 export FCEDIT=$DEFAULT_EDITOR

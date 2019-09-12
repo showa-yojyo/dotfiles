@@ -54,7 +54,7 @@ append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin)"
 append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc)"
 append_path "${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin"
 append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd)"
-append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Microsoft\ VS\ Code)"
+append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Microsoft\ VS\ Code)/bin"
 append_path "${CYGDRIVE_PREFIX}/c/WINDOWS/System32"
 
 # Java stuff
