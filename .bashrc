@@ -40,6 +40,14 @@
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 
+# When a history substitution fails, grant a chance to edit the failed history
+# substitution.
+shopt -u histreedit
+
+# Do not the results of history substitution immediately
+# pass to the shell parser.
+shopt -p histverify
+
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 # shopt -s cdspell
