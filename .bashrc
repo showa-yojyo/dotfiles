@@ -67,11 +67,12 @@ export FCEDIT=$DEFAULT_EDITOR
 
 export GIT_EDITOR=$DEFAULT_EDITOR
 
-#GIT_PS1_SHOWUPSTREAM="auto"
-#GIT_PS1_SHOWCOLORHINTS="yes"
-#if [ -f "${HOME}/.git-prompt.sh" ] ; then
-#  source "${HOME}/.git-prompt.sh"
-#fi
+# See .git-prompt.sh
+GIT_PS1_SHOWUPSTREAM="verbose"
+GIT_PS1_SHOWCOLORHINTS="yes"
+if [ -f "${HOME}/.git-prompt.sh" ] ; then
+  source "${HOME}/.git-prompt.sh"
+fi
 
 # Enable the official completion script by Git.
 # Some examples:
@@ -125,13 +126,11 @@ export LC_ALL=
 #export PATH
 
 # Prompt
-#
-#export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+# See .git-priompt.sh
+export PROMPT_COMMAND='__git_ps1 "[$OSTYPE \\s \\W" " \\!]\\\$ "'
 
 # PS1: the primary prompt string.
-export PS1='[$OSTYPE \s \W \!]\\$ '
-# export PS1='[\u \W$(__git_ps1 " (%s)") \!]\\$ '
-
+#export PS1='[$OSTYPE \s \W \!]\\$ '
 export PS2='> '
 
 # PS3: the prompt for the select command
