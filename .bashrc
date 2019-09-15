@@ -68,8 +68,32 @@ export FCEDIT=$DEFAULT_EDITOR
 export GIT_EDITOR=$DEFAULT_EDITOR
 
 # See .git-prompt.sh
+# Show unstaged (*) and staged (+) changes.
+GIT_PS1_SHOWDIRTYSTATE="yes"
+
+# Show if currently something is stashed.
+GIT_PS1_SHOWSTASHSTATE="yes"
+
+# Show if there're untracked files.
+#GIT_PS1_SHOWUNTRACKEDFILES=
+
+# Show the difference between HEAD and its upstream.
 GIT_PS1_SHOWUPSTREAM="verbose"
+
+# Specify the separator between the branch name and the state symbol.
+#GIT_PS1_STATESEPARATOR=" "
+
+# Show more information about the identity of commits checked out as a
+# detached HEAD.
+#GIT_PS1_DESCRIBE_STYLE="default"
+
+# Enable a colored hint about the current dirty state.
 GIT_PS1_SHOWCOLORHINTS="yes"
+
+# Make __git_ps1 to do nothing in the case when the current directory is set
+# up to be ignored by git.
+#GIT_PS1_HIDE_IF_PWD_IGNORED=
+
 if [ -f "${HOME}/.git-prompt.sh" ] ; then
   source "${HOME}/.git-prompt.sh"
 fi
