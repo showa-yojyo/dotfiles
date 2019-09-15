@@ -72,9 +72,20 @@ export GIT_EDITOR=$DEFAULT_EDITOR
 #if [ -f "${HOME}/.git-prompt.sh" ] ; then
 #  source "${HOME}/.git-prompt.sh"
 #fi
-#if [ -f "${HOME}/.git-completion.sh" ] ; then
-#  source "${HOME}/.git-completion.sh"
-#fi
+
+# Enable the official completion script by Git.
+# Some examples:
+# $ git co<tab><tab>
+# commit config
+#
+# $ git log --s<tab><tab>
+# --shortstat               --sparse
+# --simplify-by-decoration  --src-prefix=
+# --simplify-merges         --stat
+# --since=                  --summary
+if [ -f "${HOME}/.git-completion.sh" ] ; then
+  source "${HOME}/.git-completion.sh"
+fi
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
