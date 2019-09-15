@@ -46,7 +46,7 @@ shopt -u histreedit
 
 # Do not the results of history substitution immediately
 # pass to the shell parser.
-shopt -p histverify
+shopt -s histverify
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
