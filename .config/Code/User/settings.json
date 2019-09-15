@@ -1,4 +1,5 @@
 {
+    "breadcrumbs.enabled": false,
     "editor.folding": false,
     "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
     "editor.fontSize": 14,
@@ -10,7 +11,9 @@
     "editor.renderLineHighlight": "none",
     "editor.renderWhitespace": "boundary",
     "editor.roundedSelection": false,
-    "editor.rulers": [80],
+    "editor.rulers": [
+        80
+    ],
     "editor.tabCompletion": "onlySnippets",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -18,9 +21,11 @@
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
-    "git.promptToSaveFilesBeforeCommit": true,
+    "git.promptToSaveFilesBeforeCommit": "always",
+    "git.suggestSmartCommit": false,
     "terminal.external.windowsExec": "C:\\cygwin64\\Cygwin.bat",
     "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.rendererType": "dom",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
     "terminal.integrated.shell.windows": "C:\\cygwin64\\Cygwin.bat",
@@ -28,17 +33,23 @@
         {
             "shell": "C:\\cygwin64\\bin\\bash.exe",
             "label": "bash (Cygwin)",
-            "args": ["--login"]
+            "args": [
+                "--login"
+            ]
         },
         {
             "shell": "C:\\msys64\\usr\\bin\\bash.exe",
             "label": "bash (MSYS2)",
-            "args": ["--login"]
+            "args": [
+                "--login"
+            ]
         },
         {
             "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
             "label": "bash (Git)",
-            "args": ["--login"]
+            "args": [
+                "--login"
+            ]
         },
         {
             "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\ipython3.exe",
@@ -104,7 +115,5 @@
             ]
         }
     ],
-    "latex-workshop.view.pdf.viewer": "tab",
-    "breadcrumbs.enabled": false,
-    "terminal.integrated.rendererType": "dom",
+    "latex-workshop.view.pdf.viewer": "tab"
 }
