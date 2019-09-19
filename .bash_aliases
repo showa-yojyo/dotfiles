@@ -28,6 +28,8 @@ a la='ls -A'  # all but . and ..
 # a l='ls -CF'
 
 a j='jobs -l'
+a jekyll='bundle exec jekyll serve'
+
 a h='history 16'
 
 a path='echo -e ${PATH//:/\\n}'
