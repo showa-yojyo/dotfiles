@@ -23,6 +23,8 @@
     "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
     "git.promptToSaveFilesBeforeCommit": "always",
     "git.suggestSmartCommit": false,
+    "python.dataScience.sendSelectionToInteractiveWindow": false,
+    "python.terminal.activateEnvironment": false,
     "terminal.external.windowsExec": "C:\\cygwin64\\Cygwin.bat",
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rendererType": "dom",
