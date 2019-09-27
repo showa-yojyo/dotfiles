@@ -70,6 +70,15 @@ function xyzzycli()
     done | xargs "$prog"
 }
 
+function optimize-dropbox()
+{
+    # Examples:
+    # bash$ optimize-dropbox
+    # bash$ optimize-dropbox 201910*
+    local target_dir=$(cygpath $USERPROFILE)/Dropbox
+    echo optipng -quiet ${target_dir}/Photos/twitter/2019/${1:-"*"}.png
+}
+
 function update-local-copy()
 {
     if [[ -x "$(command -v cygpath)" ]] ; then
@@ -172,12 +181,4 @@ function convert_mp3()
             echo 'Error: '${dest_mp3} 'is not generated' >&2
         fi
     done
-}
-
-function opti()
-{
-    local dir=${USERPROFILE}/Dropbox/Photos/twitter/2019
-    pushd $dir
-    optipng 2019*.png
-    popd
 }
