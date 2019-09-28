@@ -147,6 +147,9 @@ export LC_ALL=
 #LC_MESSAGES
 #LC_NUMERIC
 
+# less
+export LESSHISTFILE=-
+
 #export PATH
 
 # Prompt
