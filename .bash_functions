@@ -76,7 +76,7 @@ function optimize-dropbox()
     # bash$ optimize-dropbox
     # bash$ optimize-dropbox 201910*
     local target_dir=$(cygpath $USERPROFILE)/Dropbox
-    echo optipng -quiet ${target_dir}/Photos/twitter/2019/${1:-"*"}.png
+    optipng -quiet ${target_dir}/Photos/twitter/2019/${1:-"*"}.png
 }
 
 function update-local-copy()
