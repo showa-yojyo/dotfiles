@@ -182,3 +182,24 @@ function convert_mp3()
         fi
     done
 }
+
+function backup_bookmark()
+{
+    local source="Sleipnir ブックマーク.html"
+    if [[ ! -f "$source" ]] ; then
+        echo File $source not found >&2
+        return 1
+    fi
+
+    local password="$1"
+    if [[ -z $1 ]] ; then
+        read -sp "Password: " password
+        tty -s && echo
+    fi
+
+    # 手抜き
+    local target=${source%.html}.zip
+    zip -e --password "$password" "$target" "$source"
+    mv "$target" $USERPROFILE/Dropbox/locked
+    rm -f "$source"
+}
