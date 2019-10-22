@@ -11,6 +11,7 @@
 (global-set-key '(#\C-x #\r #\t) 'string-rectangle)
 (global-set-key '(#\C-x #\r #\y) 'yank-rectangle)
 (global-set-key '(#\C-x #\3) 'split-window-vertically)
+(global-set-key '(#\C-x #\h) 'selection-whole-buffer)
 
 (require "dabbrev")
 (global-set-key #\M-/ 'dabbrev-expand)
