@@ -183,7 +183,7 @@ function convert_mp3()
     done
 }
 
-function backup_bookmark()
+function backup-bookmark()
 {
     local source="Sleipnir ブックマーク.html"
     if [[ ! -f "$source" ]] ; then
