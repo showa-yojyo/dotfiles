@@ -157,7 +157,7 @@ function backup()
 function sync-all()
 {
     backup &
-    update-all-repos $
+    update-all-repos &
     #conda update --all --yes &
 }
 
