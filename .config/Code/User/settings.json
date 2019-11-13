@@ -82,6 +82,11 @@
     ],
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
     "window.zoomLevel": -1,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBorder": "#ff1493",
+        "activityBarBadge.background": "#ff1493",
+        "statusBar.background": "#ff1493"
+    },
     "workbench.colorTheme": "Default Light+",
     "workbench.editor.tabSizing": "shrink",
     "workbench.settings.editor": "json",
