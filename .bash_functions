@@ -179,6 +179,8 @@ function convert_mp3()
         ffmpeg -loglevel fatal -i "${source_mp4}" "${dest_mp3}"
         if [[ $? != 0 ]] ; then
             echo 'Error: '${dest_mp3} 'is not generated' >&2
+        else
+            rm -f "${source_mp4}"
         fi
     done
 }
