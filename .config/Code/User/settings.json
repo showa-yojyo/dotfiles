@@ -1,5 +1,6 @@
 {
     "breadcrumbs.enabled": false,
+    "editor.cursorBlinking": "solid",
     "editor.folding": false,
     "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
     "editor.fontSize": 14,
@@ -25,6 +26,8 @@
     "git.suggestSmartCommit": false,
     "python.dataScience.sendSelectionToInteractiveWindow": false,
     "python.terminal.activateEnvironment": false,
+    "search.showLineNumbers": true,
+    "search.followSymlinks": false,
     "terminal.external.windowsExec": "C:\\cygwin64\\Cygwin.bat",
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rendererType": "dom",
@@ -80,6 +83,7 @@
             "label": "PowerShell"
         },
     ],
+    "window.newWindowDimensions": "maximized",
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
     "window.zoomLevel": -1,
     "workbench.colorCustomizations": {
@@ -90,6 +94,7 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.editor.tabSizing": "shrink",
     "workbench.settings.editor": "json",
+    "workbench.settings.useSplitJSON": true,
     "workbench.startupEditor": "none",
     "[markdown]": {
         "editor.wordWrap": "off",
