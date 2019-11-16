@@ -67,5 +67,16 @@
             "    help='${7:help string}')",
         ],
         "description": "add_argument(...)"
+    },
+    "decorator": {
+        "prefix": "decorator",
+        "body": [
+            "def decorator(func):",
+            "    \"\"\"${1:docstring}\"\"\"",
+                "    def wrapper(*args, **kwargs):",
+                "        return func(*args, **kwargs)",
+                "    return wrapper"
+            ],
+        "description": "typical code of decorator"
     }
 }
