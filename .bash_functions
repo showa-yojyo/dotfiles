@@ -138,6 +138,7 @@ function backup()
 {
     local repos=(\
         ~/devel/bin \
+        ~/devel/deep-learning-from-scratch \
         ~/devel/dotfiles \
         ~/devel/sketchbook \
         ~/devel/all-note/notebook \
