@@ -136,14 +136,16 @@ function update-all-repos()
 
 function backup()
 {
+    # ~/devel/all-dq/dqbook
+    # ~/devel/all-note/jupyter-notebooks \
+    # ~/devel/dqutils \
+    # ~/devel/sketchbook
     local repos=(\
         ~/devel/bin \
         ~/devel/deep-learning-from-scratch \
         ~/devel/dotfiles \
-        ~/devel/sketchbook \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \
-        ~/devel/all-note/jupyter-notebooks \
         ~/devel/wandering)
 
     for repo in "${repos[@]}" ; do
