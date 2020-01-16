@@ -54,6 +54,7 @@ if [[ "$(uname -o)" == "Cygwin" ]] ; then
     a gendiary='python $(cygpath -aw ~/devel/bin/gendiary.py)'
     a wselect='python $(cygpath -aw ~/devel/bin/wselect.py)'
     a bundle='ruby $(cygpath -aw $(which bundle))'
+    a wifikoto='python $(cygpath -aw ~/devel/bin/wifikoto.py)''
     a wifiota='python $(cygpath -aw ~/devel/bin/wifiota.py)'
     a wifishinagawa='python $(cygpath -aw ~/devel/bin/wifishinagawa.py)'
     a mjnet='python $(cygpath -aw ~/devel/bin/mjnet.py)'
