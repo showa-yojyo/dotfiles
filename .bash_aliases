@@ -54,10 +54,18 @@ if [[ "$(uname -o)" == "Cygwin" ]] ; then
     a gendiary='python $(cygpath -aw ~/devel/bin/gendiary.py)'
     a wselect='python $(cygpath -aw ~/devel/bin/wselect.py)'
     a bundle='ruby $(cygpath -aw $(which bundle))'
-    a wifikoto='python $(cygpath -aw ~/devel/bin/wifikoto.py)'
+    a wifikoto='python $(cygpath -aw ~/devel/bin/wificloud.py koto)'
+    a wifishinagawa='python $(cygpath -aw ~/devel/bin/wificloud.py shinagawa)'
     a wifiota='python $(cygpath -aw ~/devel/bin/wifiota.py)'
-    a wifishinagawa='python $(cygpath -aw ~/devel/bin/wifishinagawa.py)'
     a mjnet='python $(cygpath -aw ~/devel/bin/mjnet.py)'
+else
+    a dlmp4='dlmp4.py'
+    a gendiary='gendiary.py'
+    a wselect='wselect.py'
+    a wifikoto='wificloud.py koto'
+    a wifishinagawa='wificloud.py shinagawa'
+    a wifiota='wifiota.py'
+    a mjnet='mjnet.py'
 fi
 
 unalias a
