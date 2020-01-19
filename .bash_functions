@@ -76,7 +76,7 @@ function optimize-dropbox()
     # bash$ optimize-dropbox
     # bash$ optimize-dropbox 201910*
     local target_dir=$(cygpath $USERPROFILE)/Dropbox
-    optipng -quiet ${target_dir}/Photos/twitter/2019/${1:-"*"}.png
+    optipng -quiet ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
 }
 
 function update-local-copy()
@@ -137,13 +137,15 @@ function update-all-repos()
 function backup()
 {
     # ~/devel/all-dq/dqbook
-    # ~/devel/all-note/jupyter-notebooks \
-    # ~/devel/dqutils \
+    # ~/devel/all-note/jupyter-notebooks
+    # ~/devel/dqutils
     # ~/devel/sketchbook
+    # ~/devel/Software-Architecture-with-Python
     local repos=(\
         ~/devel/bin \
         ~/devel/deep-learning-from-scratch \
         ~/devel/dotfiles \
+        ~/devel/fluent-python \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \
         ~/devel/wandering)
