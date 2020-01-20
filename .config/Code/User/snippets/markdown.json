@@ -1,0 +1,126 @@
+{
+	// Place your snippets for markdown here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"latex-set-inline-simple": {
+		"prefix": "seti",
+		"body": "\\lbrace ${1}\\rbrace",
+		"description": "{ #1 }"
+	},
+	"latex-set-inline-comprehensive": {
+		"prefix": "setm",
+		"body": "\\lbrace ${1}\\,\\mid\\,${2}\\rbrace",
+		"description": "{ #1 | #2 }"
+	},
+	"latex-set-display": {
+		"prefix": "setd",
+		"body": "\\{${1}\\,|\\,${2}\\}",
+		"description": "{ #1 | #2 }"
+	},
+	"latex-set-display-tall": {
+		"prefix": "Setd",
+		"body": "\\!\\left\\{\\left. ${1} \\right| \\left. ${2} \\right.\\right\\}\\!",
+		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\}"
+	},
+	"latex-parens": {
+		"prefix": "lrp",
+		"body": "\\left(${1}\\right)",
+		"description": "(#1)"
+	},
+	"latex-abs": {
+		"prefix": "abs",
+		"body": "\\lvert ${1}\\rvert",
+		"description": "\\lvert #1\\rvert"
+	},
+	"latex-Abs": {
+		"prefix": "Abs",
+		"body": "\\left\\lvert ${1}\\right\\rvert",
+		"description": "\\left\\lvert #1\\right\\rvert"
+	},
+	"latex-acosh": {
+		"prefix": "acosh",
+		"body": "\\operatorname{arccosh}",
+		"description": "\\operatorname{arccosh}"
+	},
+	"latex-asinh": {
+		"prefix": "asinh",
+		"body": "\\operatorname{arcsinh}",
+		"description": "\\operatorname{arcsinh}"
+	},
+	"latex-atanh": {
+		"prefix": "atanh",
+		"body": "\\operatorname{arctanh}",
+		"description": "\\operatorname{arctanh}"
+	},
+	"latex-fn": {
+		"prefix": "fn",
+		"body": "${1} \\colon ${2} \\longrightarrow ${3}",
+		"description": "#1 \\colon #2 \\longto #3"
+	},
+	"latex-dd": {
+		"prefix": "dd",
+		"body": "\\mathrm d$1",
+		"description": "\\mathrm d#1"
+	},
+	"latex-diag": {
+		"prefix": "diag",
+		"body": "\\operatorname{diag}",
+		"description": "\\operatorname{diag}"
+	},
+	"latex-diff": {
+		"prefix": "diff",
+		"body": "\\frac{\\mathrm{d}$1}{\\mathrm{d}$2}",
+		"description": "\\frac{\\mathrm{d} {#1}{\\mathrm{d} {#2}}"
+	},
+	"latex-pdiff": {
+		"prefix": "pdiff",
+		"body": "\\frac{\\partial $1}{\\partial $2}",
+		"description": "\\frac{\\partial {#1}{\\partial {#2}}"
+	},
+	"latex-eu": {
+		"prefix": "eu",
+		"body": "\\mathrm{e}",
+		"description": "\\mathrm e"
+	},
+	"latex-inv": {
+		"prefix": "inv",
+		"body": "^{-1}",
+		"description": "^{-1}"
+	},
+	"latex-prime":{
+		"prefix": "prime",
+		"body": "^{\\prime}",
+		"description": "^{\\prime}"
+	},
+	"latex-prime-double":{
+		"prefix": "prpr",
+		"body": "^{\\prime\\prime}",
+		"description": "^{\\prime}"
+	},
+	"latex-operatorname":{
+		"prefix": "oper",
+		"body": "\\operatorname{${1}}",
+		"description": "\\operatorname"
+	},
+	"latex-aut": {
+		"prefix": "Aut",
+		"body": "\\operatorname{Aut}${2}(${1})",
+		"description": "Automorphism"
+	},
+	"latex-gal": {
+		"prefix": "Gal",
+		"body": "\\operatorname{Gal}(${1})",
+		"description": "Galois group"
+	},
+}
