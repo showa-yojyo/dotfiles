@@ -118,6 +118,11 @@
 		"body": "\\operatorname{Aut}${2}(${1})",
 		"description": "Automorphism"
 	},
+	"latex-hom": {
+		"prefix": "Hom",
+		"body": "\\operatorname{Hom}${3}(${1}, ${2})",
+		"description": "Homomorphism"
+	},
 	"latex-gal": {
 		"prefix": "Gal",
 		"body": "\\operatorname{Gal}(${1})",
