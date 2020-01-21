@@ -13,53 +13,73 @@
 	// 	"description": "Log output to console"
 	// }
 
+	"latex-QQ": {
+		"prefix": "\\QQ",
+		"body": "\\mathbb Q",
+		"description": "Rational numbers"
+	},
+	"latex-CC": {
+		"prefix": "\\CC",
+		"body": "\\mathbb C",
+		"description": "Complex numbers"
+	},
+	"latex-FF": {
+		"prefix": "\\FF",
+		"body": "\\mathbb F",
+		"description": "Finite body"
+	},
 	"latex-set-inline-simple": {
-		"prefix": "seti",
+		"prefix": "\\seti",
 		"body": "\\lbrace ${1}\\rbrace",
 		"description": "{ #1 }"
 	},
 	"latex-set-inline-comprehensive": {
-		"prefix": "setm",
-		"body": "\\lbrace ${1}\\,\\mid\\,${2}\\rbrace",
+		"prefix": "\\setm",
+		"body": "\\lbrace ${1}\\,\\mid\\,${2}\\rbrace${0}",
 		"description": "{ #1 | #2 }"
 	},
 	"latex-set-display": {
-		"prefix": "setd",
-		"body": "\\{${1}\\,|\\,${2}\\}",
+		"prefix": "\\setd",
+		"body": "\\{${1}\\,|\\,${2}\\}${0}",
 		"description": "{ #1 | #2 }"
 	},
 	"latex-set-display-tall": {
-		"prefix": "Setd",
-		"body": "\\!\\left\\{\\left. ${1} \\right| \\left. ${2} \\right.\\right\\}\\!",
+		"prefix": "\\Setd",
+		"body": "\\!\\left\\{\\left. ${1} \\right| \\left. ${2} \\right.\\right\\}\\!${0}",
 		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\}"
 	},
 	"latex-parens": {
-		"prefix": "lrp",
-		"body": "\\left(${1}\\right)",
+		"prefix": "\\lrp",
+		"body": "\\left(${1}\\right)${0}",
 		"description": "(#1)"
 	},
+	"latex-base": {
+		"prefix": ["\\base", "\\basis"],
+		"body": "\\langle ${1} \\rangle${0}",
+		"description": "\\langle ... \\rangle"
+	},
 	"latex-abs": {
-		"prefix": "abs",
-		"body": "\\lvert ${1}\\rvert",
+		"prefix": "\\abs",
+		"body": "\\lvert ${1}\\rvert${0}",
 		"description": "\\lvert #1\\rvert"
 	},
 	"latex-Abs": {
-		"prefix": "Abs",
-		"body": "\\left\\lvert ${1}\\right\\rvert",
+		"prefix": "\\Abs",
+		"body": "\\left\\lvert ${1}\\right\\rvert${0}",
 		"description": "\\left\\lvert #1\\right\\rvert"
 	},
 	"latex-acosh": {
-		"prefix": "acosh",
+		"prefix": "\\acosh",
 		"body": "\\operatorname{arccosh}",
 		"description": "\\operatorname{arccosh}"
 	},
 	"latex-asinh": {
-		"prefix": "asinh",
+		"prefix": "\\asinh",
 		"body": "\\operatorname{arcsinh}",
 		"description": "\\operatorname{arcsinh}"
 	},
 	"latex-atanh": {
-		"prefix": "atanh",
+		"prefix": "\\atanh",
 		"body": "\\operatorname{arctanh}",
 		"description": "\\operatorname{arctanh}"
 	},
@@ -69,32 +89,32 @@
 		"description": "#1 \\colon #2 \\longto #3"
 	},
 	"latex-dd": {
-		"prefix": "dd",
+		"prefix": "\\dd",
 		"body": "\\mathrm d$1",
 		"description": "\\mathrm d#1"
 	},
 	"latex-diag": {
-		"prefix": "diag",
+		"prefix": "\\diag",
 		"body": "\\operatorname{diag}",
 		"description": "\\operatorname{diag}"
 	},
 	"latex-diff": {
-		"prefix": "diff",
+		"prefix": "\\diff",
 		"body": "\\frac{\\mathrm{d}$1}{\\mathrm{d}$2}",
 		"description": "\\frac{\\mathrm{d} {#1}{\\mathrm{d} {#2}}"
 	},
 	"latex-pdiff": {
-		"prefix": "pdiff",
+		"prefix": "\\pdiff",
 		"body": "\\frac{\\partial $1}{\\partial $2}",
 		"description": "\\frac{\\partial {#1}{\\partial {#2}}"
 	},
 	"latex-eu": {
-		"prefix": "eu",
+		"prefix": "\\eu",
 		"body": "\\mathrm{e}",
 		"description": "\\mathrm e"
 	},
 	"latex-inv": {
-		"prefix": "inv",
+		"prefix": "\\inv",
 		"body": "^{-1}",
 		"description": "^{-1}"
 	},
@@ -109,23 +129,48 @@
 		"description": "^{\\prime}"
 	},
 	"latex-operatorname":{
-		"prefix": "oper",
-		"body": "\\operatorname{${1}}",
+		"prefix": "\\oper",
+		"body": "\\operatorname{$1}$0",
 		"description": "\\operatorname"
 	},
 	"latex-aut": {
-		"prefix": "Aut",
-		"body": "\\operatorname{Aut}${2}(${1})",
+		"prefix": "\\Aut",
+		"body": "\\operatorname{Aut}${2}(${1})${0}",
 		"description": "Automorphism"
 	},
 	"latex-hom": {
-		"prefix": "Hom",
-		"body": "\\operatorname{Hom}${3}(${1}, ${2})",
+		"prefix": "\\Hom",
+		"body": "\\operatorname{Hom}${3}(${1}, ${2})${0}",
 		"description": "Homomorphism"
 	},
+	"latex-id": {
+		"prefix": "\\id",
+		"body": "\\operatorname{id}{$0}",
+		"description": "Identity map"
+	},
+	"latex-Im": {
+		"prefix": "\\Im",
+		"body": "\\operatorname{Im}{$0}",
+		"description": "Imaginary part"
+	},
+	"latex-im": {
+		"prefix": "\\im",
+		"body": "\\operatorname{im}{$0}",
+		"description": "Image of linear map"
+	},
 	"latex-gal": {
-		"prefix": "Gal",
-		"body": "\\operatorname{Gal}(${1})",
+		"prefix": "\\Gal",
+		"body": "\\operatorname{Gal}(${1})${0}",
 		"description": "Galois group"
 	},
+	"latex-sgn": {
+		"prefix": ["\\sgn", "\\sign"],
+		"body": "\\operatorname{sgn}${0}",
+		"description": "Signature of permutation/substitution"
+	},
+	"latex-sequence":{
+		"prefix": ["array", "enumeration", "sequence"],
+		"body": "${1:a}_1, \\dotsc, ${1:a}_${2:n}$0",
+		"description": "A sequence"
+	}
 }
