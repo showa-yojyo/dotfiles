@@ -30,42 +30,47 @@
 	},
 	"latex-set-inline-simple": {
 		"prefix": "\\seti",
-		"body": "\\lbrace ${1}\\rbrace",
-		"description": "{ #1 }"
+		"body": "\\lbrace ${1}\\rbrace$0",
+		"description": "{ #1 } for inline"
 	},
 	"latex-set-inline-comprehensive": {
 		"prefix": "\\setm",
-		"body": "\\lbrace ${1}\\,\\mid\\,${2}\\rbrace${0}",
-		"description": "{ #1 | #2 }"
+		"body": "\\lbrace ${1}\\,\\mid\\,${2}\\rbrace$0",
+		"description": "{ #1 | #2 } for inline"
+	},
+	"latex-set-display-simple": {
+		"prefix": "\\setds",
+		"body": "\\{$1\\\\}$0",
+		"description": "{ #1 } for display"
 	},
 	"latex-set-display": {
 		"prefix": "\\setd",
-		"body": "\\{${1}\\,|\\,${2}\\}${0}",
-		"description": "{ #1 | #2 }"
+		"body": "\\{${1}\\,|\\,${2}\\\\}$0",
+		"description": "{ #1 | #2 } for display"
 	},
 	"latex-set-display-tall": {
 		"prefix": "\\Setd",
-		"body": "\\!\\left\\{\\left. ${1} \\right| \\left. ${2} \\right.\\right\\}\\!${0}",
-		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\}"
+		"body": "\\!\\left\\{\\left. ${1} \\right| \\left. ${2} \\right.\\right\\\\}\\!$0",
+		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\\\} for block"
 	},
 	"latex-parens": {
 		"prefix": "\\lrp",
-		"body": "\\left(${1}\\right)${0}",
+		"body": "\\left(${1}\\right)$0",
 		"description": "(#1)"
 	},
 	"latex-base": {
 		"prefix": ["\\base", "\\basis"],
-		"body": "\\langle ${1} \\rangle${0}",
+		"body": "\\langle ${1} \\rangle$0",
 		"description": "\\langle ... \\rangle"
 	},
 	"latex-abs": {
 		"prefix": "\\abs",
-		"body": "\\lvert ${1}\\rvert${0}",
+		"body": "\\lvert ${1}\\rvert$0",
 		"description": "\\lvert #1\\rvert"
 	},
 	"latex-Abs": {
 		"prefix": "\\Abs",
-		"body": "\\left\\lvert ${1}\\right\\rvert${0}",
+		"body": "\\left\\lvert ${1}\\right\\rvert$0",
 		"description": "\\left\\lvert #1\\right\\rvert"
 	},
 	"latex-acosh": {
@@ -135,13 +140,13 @@
 	},
 	"latex-aut": {
 		"prefix": "\\Aut",
-		"body": "\\operatorname{Aut}${2}(${1})${0}",
-		"description": "Automorphism"
+		"body": "\\operatorname{Aut}${2}(${1})$0",
+		"description": "Automorphism group"
 	},
 	"latex-hom": {
 		"prefix": "\\Hom",
-		"body": "\\operatorname{Hom}${3}(${1}, ${2})${0}",
-		"description": "Homomorphism"
+		"body": "\\operatorname{Hom}${3}(${1}, ${2})$0",
+		"description": "Homomorphism group"
 	},
 	"latex-id": {
 		"prefix": "\\id",
@@ -151,7 +156,7 @@
 	"latex-Im": {
 		"prefix": "\\Im",
 		"body": "\\operatorname{Im}{$0}",
-		"description": "Imaginary part"
+		"description": "Imaginary part of a complex number"
 	},
 	"latex-im": {
 		"prefix": "\\im",
@@ -160,17 +165,22 @@
 	},
 	"latex-gal": {
 		"prefix": "\\Gal",
-		"body": "\\operatorname{Gal}(${1})${0}",
+		"body": "\\operatorname{Gal}(${1})$0",
 		"description": "Galois group"
 	},
 	"latex-sgn": {
 		"prefix": ["\\sgn", "\\sign"],
-		"body": "\\operatorname{sgn}${0}",
+		"body": "\\operatorname{sgn}$0",
 		"description": "Signature of permutation/substitution"
 	},
 	"latex-sequence":{
 		"prefix": ["array", "enumeration", "sequence"],
 		"body": "${1:a}_1, \\dotsc, ${1:a}_${2:n}$0",
 		"description": "A sequence"
+	},
+	"latex-spade":{
+		"prefix": "spade",
+		"body": "\\tag*{$\\spadesuit${1}$}$0",
+		"description": "A tag for display block"
 	}
 }
