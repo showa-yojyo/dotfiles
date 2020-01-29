@@ -120,8 +120,8 @@
 	},
 	"latex-inv": {
 		"prefix": "\\inv",
-		"body": "^{-1}",
-		"description": "^{-1}"
+		"body": "^{-${1:1}}$0",
+		"description": "^{-a}"
 	},
 	"latex-prime":{
 		"prefix": "prime",
@@ -174,9 +174,9 @@
 		"description": "Signature of permutation/substitution"
 	},
 	"latex-sequence":{
-		"prefix": ["array", "enumeration", "sequence"],
-		"body": "${1:a}_1, \\dotsc, ${1:a}_${2:n}$0",
-		"description": "A sequence"
+		"prefix": ["array", "sequence", "series"],
+		"body": "${1:a}_${2:1}, \\dotsc, ${1:a}_${3:n}$0",
+		"description": "A sequence with indices"
 	},
 	"latex-spade":{
 		"prefix": "spade",
