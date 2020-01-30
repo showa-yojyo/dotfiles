@@ -127,5 +127,7 @@
             ]
         }
     ],
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "markdown-preview-enhanced.enableEmojiSyntax": false,
+    "markdown-preview-enhanced.breakOnSingleNewLine": false
 }
