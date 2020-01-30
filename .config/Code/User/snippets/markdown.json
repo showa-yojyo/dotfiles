@@ -54,9 +54,14 @@
 		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\\\} for block"
 	},
 	"latex-parens": {
-		"prefix": "\\lrp",
+		"prefix": "\\(",
 		"body": "\\left(${1}\\right)$0",
-		"description": "(#1)"
+		"description": "\\left(#1\\right)"
+	},
+	"latex-brackets": {
+		"prefix": "\\[",
+		"body": "\\left[$1\\right]$0",
+		"description": "\\left[#1\\right]"
 	},
 	"latex-base": {
 		"prefix": ["\\base", "\\basis"],
