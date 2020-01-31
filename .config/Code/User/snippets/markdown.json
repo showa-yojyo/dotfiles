@@ -54,7 +54,7 @@
 		"description": "\\left\\{\\left. #1 \\right| \\left. #2 \\right.\\right\\\\} for block"
 	},
 	"latex-parens": {
-		"prefix": "\\(",
+		"prefix": ["\\paren", "\\("],
 		"body": "\\left(${1}\\right)$0",
 		"description": "\\left(#1\\right)"
 	},
