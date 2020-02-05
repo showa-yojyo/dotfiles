@@ -43,18 +43,20 @@ function append_path()
 }
 
 # Python stuffs
-MINICONDA_PATH="${CYGDRIVE_PREFIX}/c/ProgramData/Miniconda3"
+MINICONDA_PATH="${ALLUSERSPROFILE}/Miniconda3"
 append_path "${MINICONDA_PATH}"
 append_path "${MINICONDA_PATH}/Scripts"
 append_path "${MINICONDA_PATH}/Library/bin"
 unset MINICONDA_PATH
 
 append_path "${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32"
-append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Graphviz/bin)"
-append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Pandoc)"
+append_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
+append_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
 append_path "${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin"
-append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Git/cmd)"
-append_path "$(cygpath ${CYGDRIVE_PREFIX}/c/Program\ Files/Microsoft\ VS\ Code)/bin"
+append_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
+append_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
+append_path "$(cygpath "${PROGRAMFILES}/nodejs")"
+append_path "$(cygpath ${APPDATA}/npm)"
 append_path "${CYGDRIVE_PREFIX}/c/WINDOWS/System32"
 
 # Java stuff
