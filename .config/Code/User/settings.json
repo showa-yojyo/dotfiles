@@ -129,5 +129,6 @@
     ],
     "latex-workshop.view.pdf.viewer": "tab",
     "markdown-preview-enhanced.enableEmojiSyntax": false,
-    "markdown-preview-enhanced.breakOnSingleNewLine": false
+    "markdown-preview-enhanced.breakOnSingleNewLine": false,
+    "markdown-preview-enhanced.frontMatterRenderingOption": "code block"
 }
