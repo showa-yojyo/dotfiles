@@ -98,7 +98,8 @@
     "workbench.startupEditor": "none",
     "[markdown]": {
         "editor.wordWrap": "off",
-        "editor.quickSuggestions": false
+        "editor.quickSuggestions": false,
+        "files.trimTrailingWhitespace": false
     },
     "latex-workshop.latex.recipes": [
         {
