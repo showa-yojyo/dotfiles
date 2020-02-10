@@ -13,6 +13,16 @@
 	// 	"description": "Log output to console"
 	// }
 
+	"latex-display": {
+		"prefix": "$$",
+		"body":[
+			"$$",
+			"\\begin{${1:aligned}}",
+			"$0",
+			"\\end{${1:aligned}}",
+			"$$"
+		]
+	},
 	"latex-QQ": {
 		"prefix": "\\QQ",
 		"body": "\\mathbb Q",
@@ -155,7 +165,7 @@
 	},
 	"latex-id": {
 		"prefix": "\\id",
-		"body": "\\operatorname{id}{$0}",
+		"body": "\\operatorname{id}_{$0}",
 		"description": "Identity map"
 	},
 	"latex-Im": {
