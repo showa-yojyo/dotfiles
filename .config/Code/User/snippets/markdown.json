@@ -103,6 +103,16 @@
 		"body": "${1} \\colon ${2} \\longrightarrow ${3}",
 		"description": "#1 \\colon #2 \\longto #3"
 	},
+	"latex-mapsfrom":{
+		"prefix": "\\mapsfrom",
+		"body": "\\leftarrow\\!\\shortmid",
+		"description": "\\mapsfrom"
+	},
+	"latex-longmapsfrom":{
+		"prefix": "\\longmapsfrom",
+		"body": "\\longleftarrow\\!\\shortmid",
+		"description": "\\longmapsfrom"
+	},
 	"latex-dd": {
 		"prefix": "\\dd",
 		"body": "\\mathrm d$1",
