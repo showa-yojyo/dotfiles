@@ -58,11 +58,11 @@
         },
         {
             "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\ipython3.exe",
-            "label": "IPython",
+            "label": "IPython"
         },
         {
             "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\jupyter.exe",
-            "label": "Jupyter notebook",
+            "label": "Jupyter notebook"
         },
         {
             "shell": "C:\\Ruby26-x64\\bin\\irb.cmd",
@@ -71,18 +71,19 @@
                 "-r",
                 "irb/completion",
                 "--simple-prompt"
-            ],
+            ]
         },
         {
             "shell": "cmd.exe",
             "label": "cmd",
-            "args": [],
+            "args": []
         },
         {
             "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "label": "PowerShell"
-        },
+        }
     ],
+    "window.enableMenuBarMnemonics": false,
     "window.newWindowDimensions": "maximized",
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
     "window.zoomLevel": -1,
