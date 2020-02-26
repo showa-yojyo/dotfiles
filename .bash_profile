@@ -43,7 +43,7 @@ function append_path()
 }
 
 # Python stuffs
-MINICONDA_PATH="${ALLUSERSPROFILE}/Miniconda3"
+MINICONDA_PATH="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
 append_path "${MINICONDA_PATH}"
 append_path "${MINICONDA_PATH}/Scripts"
 append_path "${MINICONDA_PATH}/Library/bin"
