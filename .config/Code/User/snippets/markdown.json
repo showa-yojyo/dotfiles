@@ -3,6 +3,10 @@
 		"prefix": ["Bezout", "bezout"],
 		"body": "Bézout"
 	},
+	"Poincaré":{
+		"prefix": ["Poincare", "poincare"],
+		"body": "Poincaré"
+	},
 	"latex-display": {
 		"prefix": "$$",
 		"body":[
