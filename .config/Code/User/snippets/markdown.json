@@ -187,6 +187,21 @@
 		"body": "\\operatorname{im}{$0}",
 		"description": "Image of linear map"
 	},
+	"latex-grad": {
+		"prefix": "\\grad",
+		"body": "\\operatorname{grad}$0",
+		"description": "Operator grad"
+	},
+	"latex-div": {
+		"prefix": "\\div",
+		"body": "\\operatorname{div}$0",
+		"description": "Operator div"
+	},
+	"latex-rot": {
+		"prefix": ["\\rot", "\\curl"],
+		"body": "\\operatorname{rot}$0",
+		"description": "Operator rot"
+	},
 	"latex-gal": {
 		"prefix": "\\Gal",
 		"body": "\\operatorname{Gal}(${1})$0",
@@ -202,9 +217,24 @@
 		"body": "${1:a}_${2:1}, \\dotsc, ${1:a}_${3:n}$0",
 		"description": "A sequence with indices"
 	},
-	"latex-spade":{
+	"latex-spade": {
 		"prefix": "spade",
 		"body": "\\tag*{$\\spadesuit${1}$}$0",
 		"description": "A tag for display block"
+	},
+	"latex-diffgeom-formindices": {
+		"prefix": "\\formindices",
+		"body": "${1:i}_${2:1} \\dotso ${1:i}_${3:n}",
+		"description": "i_1 i_2 ... i_n"
+	},
+	"latex-diffgeom-ww": {
+		"prefix": "\\ww",
+		"body": "\\mathrm d${1:x} \\wedge \\mathrm d${2:y}",
+		"description": "dx \\wedge dy"
+	},
+	"latex-diffgeom-formbase": {
+		"prefix": "\\formbase",
+		"body": "\\mathrm d${1:x}_${2:1} \\wedge \\dotsb \\wedge \\mathrm d${1:x}_${3:n}$0",
+		"description": "wedge ... wedge"
 	}
 }
