@@ -1,0 +1,18 @@
+{
+	"date":{
+		"prefix": ["date", "today"],
+		"body": "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} (${CURRENT_DAY_NAME_SHORT})"
+	},
+	"now":{
+		"prefix": "now",
+		"body": "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} (${CURRENT_DAY_NAME_SHORT}) ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"
+	},
+	"Bézout":{
+		"prefix": ["Bezout", "bezout"],
+		"body": "Bézout"
+	},
+	"Poincaré":{
+		"prefix": ["Poincare", "poincare"],
+		"body": "Poincaré"
+	}
+}
