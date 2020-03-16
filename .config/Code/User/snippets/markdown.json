@@ -1,4 +1,9 @@
 {
+	"unix-style path": {
+		"prefix": "unix",
+		"body": "${TM_SELECTED_TEXT/[\\\\]/\\//g}",
+		"description": "Replace all backslashes in selection with slashes"
+	},
 	"latex-display": {
 		"prefix": "$$",
 		"body":[
