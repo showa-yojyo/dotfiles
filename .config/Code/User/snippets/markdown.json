@@ -84,6 +84,16 @@
 		"body": "\\left\\lvert ${1}\\right\\rvert$0",
 		"description": "\\left\\lvert #1\\right\\rvert"
 	},
+	"latex-norm": {
+		"prefix": "\\norm",
+		"body": "\\lVert ${1}\\rVert$0",
+		"description": "\\lVert #1\\rVert"
+	},
+	"latex-Norm": {
+		"prefix": "\\Norm",
+		"body": "\\left\\lVert ${1}\\right\\rVert$0",
+		"description": "\\left\\lVert #1\\right\\rVert"
+	},
 	"latex-acosh": {
 		"prefix": "\\acosh",
 		"body": "\\operatorname{arccosh}",
