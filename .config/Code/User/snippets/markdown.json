@@ -243,5 +243,15 @@
 		"prefix": "\\formbase",
 		"body": "\\mathrm d${1:x}_${2:1} \\wedge \\dotsb \\wedge \\mathrm d${1:x}_${3:n}$0",
 		"description": "wedge ... wedge"
+	},
+	"latex-vector-row": {
+		"prefix": "\\rowvector",
+		"body": "\\begin{pmatrix}$1 & $2 & $3\\end{pmatrix}$0",
+		"description": "A row vector by using pmatrix"
+	},
+	"latex-vector-column": {
+		"prefix": "\\colvector",
+		"body": "\\begin{pmatrix}$1 \\\\\\\\ $2 \\\\\\\\ $3\\end{pmatrix}$0",
+		"description": "A column vector by using pmatrix"
 	}
 }
