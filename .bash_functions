@@ -148,6 +148,7 @@ function backup()
         ~/devel/fluent-python \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \
+        ~/devel/showa-yojyo.github.io \
         ~/devel/wandering)
 
     for repo in "${repos[@]}" ; do
