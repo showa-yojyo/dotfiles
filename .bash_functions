@@ -140,12 +140,12 @@ function backup()
     # ~/devel/all-note/jupyter-notebooks
     # ~/devel/dqutils
     # ~/devel/sketchbook
-    # ~/devel/Software-Architecture-with-Python
     local repos=(\
         ~/devel/bin \
         ~/devel/deep-learning-from-scratch \
         ~/devel/dotfiles \
         ~/devel/fluent-python \
+        ~/devel/Software-Architecture-with-Python \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \
         ~/devel/showa-yojyo.github.io \
