@@ -211,3 +211,10 @@ function backup-bookmark()
     mv "$target" $USERPROFILE/Dropbox/locked
     rm -f "$source"
 }
+
+function extinct()
+{
+    for filename in "$@" ; do
+        dd if=/dev/zero of="$filename" status=none count=1 bs="$(stat -c %s $filename)"
+    done
+}
