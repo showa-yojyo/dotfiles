@@ -148,8 +148,9 @@ function backup()
         ~/devel/Software-Architecture-with-Python \
         ~/devel/all-note/notebook \
         ~/devel/all-note/notebook/gh-pages \
-        ~/devel/showa-yojyo.github.io \
-        ~/devel/wandering)
+        ~/Documents/showa-yojyo.github.io \
+        ~/Documents/wandering \
+        ~/Documents/sunset)
 
     for repo in "${repos[@]}" ; do
         if [[ -x "$(command -v cygpath)" ]] ; then
