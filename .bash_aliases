@@ -52,7 +52,9 @@ if [[ "$(uname -o)" == "Cygwin" ]] ; then
     # Scripts
     a dlmp4='python $(cygpath -aw ~/devel/bin/dlmp4.py)'
     a gendiary='python $(cygpath -aw ~/devel/bin/gendiary.py)'
+    a portrait='python $(cygpath -aw ~/devel/bin/portrait.py)'
     a wselect='python $(cygpath -aw ~/devel/bin/wselect.py)'
+    a resizeimg='python $(cygpath -aw ~/devel/bin/resizeimg.py)'
     a bundle='ruby $(cygpath -aw $(which bundle))'
     a gem='ruby $(cygpath -aw $(which gem))'
     a wifirobot='python $(cygpath -aw ~/devel/bin/wifirobot.py)'
