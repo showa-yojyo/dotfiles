@@ -45,6 +45,9 @@ a wget='wget --continue --wait=1 --random-wait --limit-rate=200k'
 
 # Cygwin exclusive
 if [[ "$(uname -o)" == "Cygwin" ]] ; then
+    # ShellExecute
+    a s='cygstart'
+
     # Clipboard
     a ge='getclip'
     a pu='putclip'
