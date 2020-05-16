@@ -32,6 +32,8 @@ a jekyll='bundle exec jekyll serve'
 
 a h='history 16'
 
+a killpython='/bin/kill $(ps -u $USER | grep python | awk '\''{ print $1 }'\'')'
+
 a path='echo -e ${PATH//:/\\n}'
 
 a mount='mount | column -t'
