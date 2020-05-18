@@ -219,3 +219,9 @@ function extinct()
         dd if=/dev/zero of="$filename" status=none count=1 bs="$(stat -c %s $filename)"
     done
 }
+
+function zip-by-pattern()
+{
+    local pattern="${1:-*.extension}"
+    find . -type f -name "$pattern" | zip -e -v -@ X
+}
