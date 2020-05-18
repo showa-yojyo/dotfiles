@@ -43,7 +43,7 @@ alias today='LC_ALL=C date +"%F (%a)"'
 alias now='LC_ALL=C date +"%F (%a) %T"'
 
 # wget
-a wget='wget --continue --wait=1 --random-wait --limit-rate=200k'
+a wget='wget --continue --wait=1 --random-wait --limit-rate=200k --quiet --show-progress'
 
 # Cygwin exclusive
 if [[ "$(uname -o)" == "Cygwin" ]] ; then
