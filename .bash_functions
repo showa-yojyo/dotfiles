@@ -213,6 +213,9 @@ function backup-bookmark()
     rm -f "$source"
 }
 
+# usage example:
+# bash$ extinct *.tmp
+# bash$ extinct $(find . -type f -name "*.tmp")
 function extinct()
 {
     for filename in "$@" ; do
