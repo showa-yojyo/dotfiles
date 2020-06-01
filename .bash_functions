@@ -228,3 +228,12 @@ function zip-by-pattern()
     local pattern="${1:-*.extension}"
     find . -type f -name "$pattern" | zip -e -v -@ X
 }
+
+# Reference: Bash Beginner's Guide
+function pskill()
+{
+    local pid=$(ps -a -u $USER -W | grep $1 | awk '{ print $1 }')
+    echo -n "killing $1 (process $pid)..."
+    /bin/kill $pid
+    echo "slaughtered."
+}
