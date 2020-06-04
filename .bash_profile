@@ -20,70 +20,62 @@
 # User dependent .bash_profile file
 
 # source the users bashrc if it exists
-if [ -e "${HOME}/.bashrc" ] ; then
-  source "${HOME}/.bashrc"
-fi
+test -e "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
-CYGDRIVE_PREFIX=
-if [[ "$OSTYPE" == "cygwin" ]] ; then
-  # See also /etc/fstab.
-  CYGDRIVE_PREFIX=
-fi
+_cygdrive_prefix=
 
 PATH=/bin:/usr/local/bin:/usr/bin
 
-function append_path()
+# Code by Bash Guide for Beginners
+function _munge_path
 {
-  local one_path="$1"
-  if [[ -d "$one_path" ]] ; then
-    PATH=${PATH}:"$one_path"
-  else
-    echo Warning: $one_path is not directory. >&2
+  local a_path="$1"
+
+  test ! -d "$a_path" && echo Warning: $a_path is not directory. >&2
+
+  if ! echo $PATH | command egrep -q "(^|:)$a_path($|:)" ; then
+    if [[ "$2" == "before" ]] ; then
+      PATH=$a_path:$PATH
+    else
+      PATH=$PATH:$a_path
+    fi
   fi
 }
 
 # Python stuffs
-MINICONDA_PATH="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-append_path "${MINICONDA_PATH}"
-append_path "${MINICONDA_PATH}/Scripts"
-append_path "${MINICONDA_PATH}/Library/bin"
-unset MINICONDA_PATH
+_miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
+_munge_path "${_miniconda_path}"
+_munge_path "${_miniconda_path}/Scripts"
+_munge_path "${_miniconda_path}/Library/bin"
+unset _miniconda_path
 
-append_path "${CYGDRIVE_PREFIX}/c/texlive/2015/bin/win32"
-append_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
-append_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
-append_path "${CYGDRIVE_PREFIX}/c/Ruby26-x64/bin"
-append_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
-append_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
-append_path "$(cygpath "${PROGRAMFILES}/nodejs")"
-append_path "$(cygpath ${APPDATA}/npm)"
-append_path "${CYGDRIVE_PREFIX}/c/WINDOWS/System32"
+_munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
+_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
+_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
+_munge_path "${_cygdrive_prefix}/c/Ruby26-x64/bin"
+_munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
+_munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
+_munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
+_munge_path "$(cygpath ${APPDATA}/npm)"
+_munge_path "${_cygdrive_prefix}/c/WINDOWS/System32"
+unset _cygdrive_prefix
 
 # Java stuff
 if [[ -n "$JAVA_HOME" ]] ; then
   JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
-  append_path "$JAVA_HOME/bin"
+  _munge_path "$JAVA_HOME/bin"
 fi
-
-unset -f append_path
 
 # Set PATH so it includes user's private bin if it exists
-HOME_BIN="${HOME}/devel/bin"
-if [ -d "${HOME_BIN}" ] ; then
-  PATH=${HOME_BIN}:${PATH}
-
-  if [[ -d "${HOME_BIN}/ffmpeg" ]] ; then
-    PATH=${HOME_BIN}/ffmpeg:${PATH}
-  fi
-fi
-unset HOME_BIN
+_home_bin="${HOME}/devel/bin"
+test -d "${_home_bin}" && _munge_path $_home_bin before
+test -d "${_home_bin}/ffmpeg" && _munge_path "${_home_bin}/ffmpeg" before
+unset _home_bin
 
 # Set MANPATH so it includes users' private man if it exists
-# if [ -d "${HOME}/man" ]; then
-#   MANPATH=${HOME}/man:${MANPATH}
-# fi
+test -d "${HOME}/man" && _munge_path ${HOME}/man before
 
 # Set INFOPATH so it includes users' private info if it exists
-# if [ -d "${HOME}/info" ]; then
-#   INFOPATH=${HOME}/info:${INFOPATH}
-# fi
+test -d "${HOME}/info" && _munge_path ${HOME}/info before
+
+unset -f _munge_path

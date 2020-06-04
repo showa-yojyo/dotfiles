@@ -94,9 +94,7 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
-if [ -f "${HOME}/.git-prompt.sh" ] ; then
-  source "${HOME}/.git-prompt.sh"
-fi
+test -f "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
 
 # Enable the official completion script by Git.
 # Some examples:
@@ -108,9 +106,7 @@ fi
 # --simplify-by-decoration  --src-prefix=
 # --simplify-merges         --stat
 # --since=                  --summary
-if [ -f "${HOME}/.git-completion.sh" ] ; then
-  source "${HOME}/.git-completion.sh"
-fi
+test -f "${HOME}/.git-completion.sh" && . "${HOME}/.git-completion.sh"
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
@@ -186,9 +182,7 @@ export TZ=JST-09
 # Aliases
 #
 # Some people use a different file for aliases
-if [ -f "${HOME}/.bash_aliases" ]; then
-  source "${HOME}/.bash_aliases"
-fi
+test -f "${HOME}/.bash_aliases" && . "${HOME}/.bash_aliases"
 
 # Umask
 #
@@ -201,6 +195,4 @@ fi
 # Functions
 #
 # Some people use a different file for functions
-if [ -f "${HOME}/.bash_functions" ]; then
-  source "${HOME}/.bash_functions"
-fi
+test -f "${HOME}/.bash_functions" && . "${HOME}/.bash_functions"

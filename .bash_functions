@@ -62,15 +62,7 @@
 #
 # alias cd=cd_func
 
-function xyzzycli()
-{
-    local prog='C:/Program Files/xyzzy/xyzzycli.exe'
-    for name in "$@"; do
-        echo \"$(cygpath -m "$name")\"
-    done | xargs "$prog"
-}
-
-function optimize-dropbox()
+function optimize-dropbox
 {
     # Examples:
     # bash$ optimize-dropbox
@@ -79,33 +71,26 @@ function optimize-dropbox()
     optipng -quiet ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
 }
 
-function update-local-copy()
+function update-local-copy
 {
     if [[ -x "$(command -v cygpath)" ]] ; then
-        local REPOS_PATH="$(cygpath -aw $1)"
+        local repos_path="$(cygpath -aw $1)"
     else
-        local REPOS_PATH="$1"
+        local repos_path="$1"
     fi
 
-    if [[ ! -d "$REPOS_PATH" ]] ; then
-        return
-    fi
+    test ! -d "$repos_path" && return
 
-    git -C "$REPOS_PATH" checkout master
-    git -C "$REPOS_PATH" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
+    git -C "$repos_path" checkout master
+    git -C "$repos_path" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
     if [[ $? -eq 0 ]]; then
         # Your branch is up-to-date with 'origin/master'.
-        git -C "$REPOS_PATH" checkout -
+        git -C "$repos_path" checkout -
         return
     fi
 
-    git -C "$REPOS_PATH" merge
-
-    if [ $# -gt 1 ]; then
-        make -C "$REPOS_PATH" html
-    fi
-
-    git -C "$REPOS_PATH" checkout -
+    git -C "$repos_path" merge
+    git -C "$repos_path" checkout -
 }
 
 if [[ -x "$(command -v dot)" ]] ; then
@@ -118,23 +103,23 @@ if [[ -x "$(command -v dot)" ]] ; then
     fi
 fi
 
-function plantuml()
+function plantuml
 {
     java -jar "$PLANTUML_PATH" -charset UTF-8 $@
 }
 
-function sympydoc()
+function sympydoc
 {
     update-local-copy ~/devel/sympy/doc dummy
 }
 
-function update-all-repos()
+function update-all-repos
 {
     update-local-copy ~/devel/gitignore &
     update-local-copy ~/devel/sympy/doc &
 }
 
-function backup()
+function backup
 {
     # ~/devel/all-dq/dqbook
     # ~/devel/all-note/jupyter-notebooks
@@ -153,27 +138,26 @@ function backup()
         ~/Documents/sunset)
 
     for repo in "${repos[@]}" ; do
-        if [[ -x "$(command -v cygpath)" ]] ; then
-            repo=$(cygpath -aw "$repo")
-        fi
+        test -x "$(command -v cygpath)" && repo=$(cygpath -aw "$repo")
+
         # Push the current branch to the same name on the remote
         git -C "$repo" push origin HEAD &
     done
 }
 
-function sync-all()
+function sync-all
 {
     backup &
     update-all-repos &
     #conda update --all --yes &
 }
 
-function homeless-anniversary()
+function homeless-anniversary
 {
     LC_ALL=C date -d "2018-05-31 $1 days" +"%Y-%m-%d (%a)"
 }
 
-function convert_mp3()
+function convert_mp3
 {
     if [[ ! -x "$(command -v ffmpeg)" ]]; then
         echo 'Error: ffmpeg is not installed.' >&2
@@ -192,7 +176,7 @@ function convert_mp3()
     done
 }
 
-function backup-bookmark()
+function backup-bookmark
 {
     local source="Sleipnir ブックマーク.html"
     if [[ ! -f "$source" ]] ; then
@@ -216,24 +200,25 @@ function backup-bookmark()
 # usage example:
 # bash$ extinct *.tmp
 # bash$ extinct $(find . -type f -name "*.tmp")
-function extinct()
+function extinct
 {
     for filename in "$@" ; do
         dd if=/dev/zero of="$filename" status=none count=1 bs="$(stat -c %s $filename)"
     done
 }
 
-function zip-by-pattern()
+function zip-by-pattern
 {
     local pattern="${1:-*.extension}"
     find . -type f -name "$pattern" | zip -e -v -@ X
 }
 
-# Reference: Bash Beginner's Guide
-function pskill()
+# Reference: Bash Guide for Beginners
+function pskill
 {
+    # XXX: for suspended processes, 'S' will come to $1 of awk.
     local pid=$(ps -a -u $USER -W | grep $1 | awk '{ print $1 }')
     echo -n "killing $1 (process $pid)..."
-    /bin/kill $pid
+    /bin/kill -9 $pid
     echo "slaughtered."
 }
