@@ -18,6 +18,9 @@
     "editor.tabCompletion": "onlySnippets",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        ".bash*": "shellscript"
+    },
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
