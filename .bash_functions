@@ -155,7 +155,7 @@ function sync-all
 function _anniversary_helper
 {
     if [[ -z $1 ]] ; then
-        echo Usage: _anniversary_helper \"date\(YYYY, mm, dd\)\" >&2
+        echo Usage: $FUNCNAME \"date\(YYYY, mm, dd\)\" >&2
         return 1
     fi
 
