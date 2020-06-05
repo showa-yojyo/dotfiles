@@ -152,9 +152,28 @@ function sync-all
     #conda update --all --yes &
 }
 
+function _anniversary_helper
+{
+    if [[ -z $1 ]] ; then
+        echo Usage: _anniversary_helper \"date\(YYYY, mm, dd\)\" >&2
+        return 1
+    fi
+
+    python << EOL -
+from datetime import date
+
+print((date.today() - $1).days + 1)
+EOL
+}
+
 function homeless-anniversary
 {
-    LC_ALL=C date -d "2018-05-31 $1 days" +"%Y-%m-%d (%a)"
+    _anniversary_helper "date(2018, 5, 31)"
+}
+
+function sunset-anniversary
+{
+    _anniversary_helper "date(2020, 4, 27)"
 }
 
 function convert_mp3
