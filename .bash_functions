@@ -241,3 +241,10 @@ function pskill
     /bin/kill -9 $pid
     echo "slaughtered."
 }
+
+# Reference: info which
+function which
+{
+    { alias ; declare -f ; } | command which \
+        --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
