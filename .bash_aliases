@@ -28,7 +28,6 @@ a la='ls -A'  # all but . and ..
 # a l='ls -CF'
 
 a j='jobs -l'
-a jekyll='bundle exec jekyll serve'
 
 a h='history 16'
 
@@ -37,8 +36,8 @@ a path='echo -e ${PATH//:/\\n}'
 a mount='mount | column -t'
 
 # Calendar
-alias today='LC_ALL=C date +"%F (%a)"'
-alias now='LC_ALL=C date +"%F (%a) %T"'
+a today='LC_ALL=C date +"%F (%a)"'
+a now='LC_ALL=C date +"%F (%a) %T"'
 
 # wget
 a wget='wget --continue --wait=1 --random-wait --limit-rate=200k --quiet --show-progress'
@@ -58,8 +57,12 @@ if [[ "$(uname -o)" == "Cygwin" ]] ; then
     a portrait='python $(cygpath -aw ~/devel/bin/portrait.py)'
     a wselect='python $(cygpath -aw ~/devel/bin/wselect.py)'
     a resizeimg='python $(cygpath -aw ~/devel/bin/resizeimg.py)'
-    a bundle='ruby $(cygpath -aw $(which bundle))'
-    a gem='ruby $(cygpath -aw $(which gem))'
+
+    # Assume that Ruby is built for x64-mingw32
+    a bundle=bundle.bat
+    a gem=gem.bat
+    a jekyll=jekyll.bat
+
     a wifirobot='python $(cygpath -aw ~/devel/bin/wifirobot.py)'
     a wifikoto="wifirobot koto"
     a wifishinagawa='wifirobot shinagawa'
