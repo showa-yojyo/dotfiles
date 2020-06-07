@@ -96,10 +96,10 @@ function update-local-copy
 if [[ -x "$(command -v dot)" ]] ; then
     if [[ -x "$(command -v cygpath)" ]] ; then
         export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
-        export GRAPHVIZ_DOT="$(cygpath -aw "$(which dot)")"
+        export GRAPHVIZ_DOT="$(cygpath -aw "$(command which dot)")"
     else
         export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
-        export GRAPHVIZ_DOT=$(which dot)
+        export GRAPHVIZ_DOT=$(command which dot)
     fi
 fi
 
