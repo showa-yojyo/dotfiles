@@ -43,7 +43,7 @@ a now='LC_ALL=C date +"%F (%a) %T"'
 a wget='wget --continue --wait=1 --random-wait --limit-rate=200k --quiet --show-progress'
 
 # Cygwin exclusive
-if [[ "$(uname -o)" == "Cygwin" ]] ; then
+if [[ "$(uname -o)" == "Cygwin" ]]; then
     # ShellExecute
     a s='cygstart'
 

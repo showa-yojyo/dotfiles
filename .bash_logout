@@ -2,7 +2,7 @@
 
 if (( SHLVL == 1 )); then
     # WSL, i.e. Ubuntu?
-    if [ -x /usr/bin/clear_console ] ; then
+    if [ -x /usr/bin/clear_console ]; then
         /usr/bin/clear_console -q
     else
         clear

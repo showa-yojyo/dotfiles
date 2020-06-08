@@ -34,7 +34,7 @@ function _munge_path
   test ! -d "$a_path" && echo Warning: $a_path is not directory. >&2
 
   if ! echo $PATH | command egrep -q "(^|:)$a_path($|:)" ; then
-    if [[ "$2" == "before" ]] ; then
+    if [[ "$2" == "before" ]]; then
       PATH=$a_path:$PATH
     else
       PATH=$PATH:$a_path
@@ -61,7 +61,7 @@ _munge_path "${_cygdrive_prefix}/c/WINDOWS/System32"
 unset _cygdrive_prefix
 
 # Java stuff
-if [[ -n "$JAVA_HOME" ]] ; then
+if [[ -n "$JAVA_HOME" ]]; then
   JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
   _munge_path "$JAVA_HOME/bin"
 fi

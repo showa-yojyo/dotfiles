@@ -73,7 +73,7 @@ function optimize-dropbox
 
 function update-local-copy
 {
-    if [[ -x "$(command -v cygpath)" ]] ; then
+    if [[ -x "$(command -v cygpath)" ]]; then
         local repos_path="$(cygpath -aw $1)"
     else
         local repos_path="$1"
@@ -93,8 +93,8 @@ function update-local-copy
     git -C "$repos_path" checkout -
 }
 
-if [[ -x "$(command -v dot)" ]] ; then
-    if [[ -x "$(command -v cygpath)" ]] ; then
+if [[ -x "$(command -v dot)" ]]; then
+    if [[ -x "$(command -v cygpath)" ]]; then
         export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
         export GRAPHVIZ_DOT="$(cygpath -aw "$(command which dot)")"
     else
@@ -154,7 +154,7 @@ function sync-all
 
 function _anniversary_helper
 {
-    if [[ -z $1 ]] ; then
+    if [[ -z $1 ]]; then
         echo Usage: $FUNCNAME \"date\(YYYY, mm, dd\)\" >&2
         return 1
     fi
@@ -187,7 +187,7 @@ function convert_mp3
         local source_mp4="$i"
         local dest_mp3="${source_mp4%.mp4}.mp3"
         ffmpeg -loglevel fatal -i "${source_mp4}" "${dest_mp3}"
-        if [[ $? != 0 ]] ; then
+        if [[ $? != 0 ]]; then
             echo 'Error: '${dest_mp3} 'is not generated' >&2
         else
             rm -f "${source_mp4}"
@@ -198,13 +198,13 @@ function convert_mp3
 function backup-bookmark
 {
     local source="Sleipnir ブックマーク.html"
-    if [[ ! -f "$source" ]] ; then
+    if [[ ! -f "$source" ]]; then
         echo File $source not found >&2
         return 1
     fi
 
     local password="$1"
-    if [[ -z $1 ]] ; then
+    if [[ -z $1 ]]; then
         read -sp "Password: " password
         tty -s && echo
     fi
