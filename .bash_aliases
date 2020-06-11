@@ -47,6 +47,8 @@ if [[ "$(uname -o)" == "Cygwin" ]]; then
     # ShellExecute
     a s='cygstart'
 
+    a cygwin-setup='s $(cygpath -m ~/Downloads/setup-x86_64.exe)'
+
     # Clipboard
     a ge='getclip'
     a pu='putclip'
