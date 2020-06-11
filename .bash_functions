@@ -229,9 +229,7 @@ function backup-bookmark
 # bash$ extinct $(find . -type f -name "*.tmp")
 function extinct
 {
-    for filename in "$@" ; do
-        dd if=/dev/zero of="$filename" status=none count=1 bs="$(stat -c %s $filename)"
-    done
+    shred --iterations=0 --zero --exact "$@"
 }
 
 function zip-by-pattern
