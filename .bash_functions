@@ -74,14 +74,22 @@ function optimize-dropbox
 function update-local-copy
 {
     if [[ -x "$(command -v cygpath)" ]]; then
-        local repos_path="$(cygpath -aw $1)"
+        local repos_path="$(cygpath -m $1)"
     else
         local repos_path="$1"
     fi
 
-    test ! -d "$repos_path" && return
+    if [[ ! -d "$repos_path" ]]; then
+        echo "Error: $repos_path not a directory" >&2
+        return 1
+    fi
 
     git -C "$repos_path" checkout master
+    if [[ $? -ne 0 ]]; then
+        echo "Abort $FUNCNAME for $repos_path" >&2
+        return 1
+    fi
+
     git -C "$repos_path" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
     if [[ $? -eq 0 ]]; then
         # Your branch is up-to-date with 'origin/master'.
@@ -138,7 +146,7 @@ function backup
         ~/Documents/sunset)
 
     for repo in "${repos[@]}" ; do
-        test -x "$(command -v cygpath)" && repo=$(cygpath -aw "$repo")
+        test -x "$(command -v cygpath)" && repo=$(cygpath -m "$repo")
 
         # Push the current branch to the same name on the remote
         git -C "$repo" push origin HEAD &
