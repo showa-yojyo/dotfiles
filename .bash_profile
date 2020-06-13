@@ -37,7 +37,7 @@ function _munge_path
     if [[ "$2" == "before" ]]; then
       PATH=$a_path:$PATH
     else
-      PATH=$PATH:$a_path
+      PATH+=":$a_path"
     fi
   fi
 }
