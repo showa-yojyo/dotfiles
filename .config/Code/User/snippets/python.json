@@ -53,6 +53,14 @@
         ],
         "description": "main for standard scripts"
     },
+    "if __main__ == ...": {
+        "prefix": "__main__",
+        "body": [
+            "if __name__ == '__main__':",
+            "    main()",
+            ""
+        ]
+    },
     "add_argument":{
         "prefix": "add_argument",
         "body":[
