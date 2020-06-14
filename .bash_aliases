@@ -20,12 +20,9 @@ a egrep='egrep --color=auto' # show differences in colour
 a fgrep='fgrep --color=auto' # show differences in colour
 
 # Some shortcuts for different directory listings
-a ls='ls -hF --show-control-chars --color=tty' # classify files in colour
-# a dir='ls --color=auto --format=vertical'
-# a vdir='ls --color=auto --format=long'
-a ll='ls -l'  # long list
-a la='ls -A'  # all but . and ..
-# a l='ls -CF'
+a ls='ls -hF --show-control-chars --color=tty --time-style=long-iso'
+a ll='ls -l' # long list
+a la='ls -A' # all but . and ..
 
 a j='jobs -l'
 
