@@ -1,4 +1,9 @@
 {
+	"backticks": {
+		"prefix": "`",
+		"body": "`$1`$0",
+		"description": "Markdown inline code"
+	},
 	"unix-style path": {
 		"prefix": "unix",
 		"body": "${TM_SELECTED_TEXT/[\\\\]/\\//g}",
