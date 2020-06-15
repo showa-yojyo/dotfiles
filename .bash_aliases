@@ -20,7 +20,7 @@ a egrep='egrep --color=auto' # show differences in colour
 a fgrep='fgrep --color=auto' # show differences in colour
 
 # Some shortcuts for different directory listings
-a ls='ls -hF --show-control-chars --color=tty --time-style=long-iso'
+a ls='ls -hF --show-control-chars --color=tty --time-style=long-iso --group-directories-first'
 a ll='ls -l' # long list
 a la='ls -A' # all but . and ..
 
