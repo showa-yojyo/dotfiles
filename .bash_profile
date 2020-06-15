@@ -1,8 +1,3 @@
-# .bash_profile
-# When Bash is invoked as an interactive login shell, it reads this file.
-
-# base-files version 3.9-3
-
 # ~/.bash_profile: executed by bash(1) for login shells.
 
 # The latest version as installed by the Cygwin Setup program can
@@ -20,7 +15,7 @@
 # User dependent .bash_profile file
 
 # source the users bashrc if it exists
-test -e "${HOME}/.bashrc" && . "${HOME}/.bashrc"
+test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
 _cygdrive_prefix=
 

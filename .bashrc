@@ -1,11 +1,7 @@
-# .bashrc
-# When Bash is invoked as an interactive shell that is not a login shell,
-# it reads and executes commands from this file.
+# ~/.bashrc: executed by bash(1) for interactive shells.
 
-# base-files version 3.9-3
-
-# To pick up the latest recommended .bashrc content,
-# look in /etc/defaults/etc/skel/.bashrc
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.bashrc
 
 # Modifying /etc/skel/.bashrc directly will prevent
 # setup from updating it.
@@ -20,9 +16,6 @@
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
-
-# Environment Variables
-# #####################
 
 # Shell Options
 #
