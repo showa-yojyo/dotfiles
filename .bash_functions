@@ -232,6 +232,45 @@ function extinct
     shred --iterations=0 --zero --exact "$@"
 }
 
+# Taken from Advanced Bash-Scripting Guide Appendix M with a small fix
+function extract
+{
+    local archive="$1"
+    case $archive in
+    *.tar.bz2|*.tbz2)
+        tar xvjf "$archive"
+        ;;
+    *.tar.gz|*.tgz)
+        tar xvzf "$archive"
+        ;;
+    *.bz2)
+        bunzip2 "$archive"
+        ;;
+    *.rar)
+        unrar x "$archive"
+        ;;
+    *.gz)
+        gunzip "$archive"
+        ;;
+    *.tar)
+        tar xvf "$archive"
+        ;;
+    *.zip)
+        unzip "$archive"
+        ;;
+    *.Z)
+        uncompress "$archive"
+        ;;
+    *.7z)
+        7z x "$archive"
+        ;;
+    *)
+        echo $archive cannot be extracted via $FUNCNAME
+        return 1
+        ;;
+    esac
+}
+
 function zip-by-pattern
 {
     local pattern="${1:-*.extension}"
