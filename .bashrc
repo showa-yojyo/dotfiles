@@ -126,7 +126,7 @@ export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 # The maximum number of lines contained in the history file
 export HISTFILESIZE=200
 export HISTSIZE=$HISTFILESIZE
-export HISTTIMEFORMAT="%F (%a) %T "
+export HISTTIMEFORMAT="%F %T "
 
 # Locale
 #
@@ -160,7 +160,7 @@ export PS2='> '
 # export PS3
 
 # PS4: the value is printed before each command bash displays during
-# an execution trace.
+# an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
 # export PS4
 
 # TMP and TEMP are defined in the Windows environment.  Leaving
