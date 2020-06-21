@@ -129,27 +129,21 @@ function update-all-repos
 
 function backup
 {
-    # ~/devel/all-dq/dqbook
-    # ~/devel/all-note/jupyter-notebooks
-    # ~/devel/dqutils
-    # ~/devel/sketchbook
-    local repos=(\
-        ~/devel/bin \
-        ~/devel/deep-learning-from-scratch \
-        ~/devel/dotfiles \
-        ~/devel/fluent-python \
-        ~/devel/Software-Architecture-with-Python \
-        ~/devel/all-note/notebook \
-        ~/devel/all-note/notebook/gh-pages \
-        ~/Documents/showa-yojyo.github.io \
-        ~/Documents/wandering \
-        ~/Documents/sunset)
+    local list=~/.remote_repos
+    if [[ ! -f $list ]]; then
+        echo File $list not found. >&2
+        return 1
+    fi
 
-    for repo in "${repos[@]}" ; do
-        test -x "$(command -v cygpath)" && repo=$(cygpath -m "$repo")
+    test -x $(command -v cygpath)
+    local use_cygpath=$?
+
+    for repo in $(sed -e 's/ *#.\+$//g' $list) ; do
+        # In order to expand tilde, use a dangerous command eval.
+        test $use_cygpath && repo=$(cygpath -m $(eval echo $repo))
 
         # Push the current branch to the same name on the remote
-        git -C "$repo" push origin HEAD &
+        test -d "$repo" && { git -C "$repo" push origin HEAD & }
     done
 }
 
