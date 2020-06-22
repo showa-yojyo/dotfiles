@@ -139,10 +139,12 @@ function backup
     local use_cygpath=$?
 
     for repo in $(sed -e 's/ *#.\+$//g' $list) ; do
-        # In order to expand tilde, use a dangerous command eval.
-        test $use_cygpath && repo=$(cygpath -m $(eval echo $repo))
+        # Expand tildes in $repo
+        repo=$(eval echo "$repo")
 
-        # Push the current branch to the same name on the remote
+        test $use_cygpath && repo=$(cygpath -m "$repo")
+
+        # Push the current branch to the remote repository
         test -d "$repo" && { git -C "$repo" push origin HEAD & }
     done
 }
@@ -205,17 +207,21 @@ function backup-bookmark
         return 1
     fi
 
+    local dest="$USERPROFILE/Dropbox/locked"
+    if [[ ! -d "$dest" ]]; then
+        echo $dest not a directory >&2
+        return 1
+    fi
+
     local password="$1"
     if [[ -z $1 ]]; then
         read -sp "Password: " password
         tty -s && echo
     fi
 
-    # 手抜き
     local target=${source%.html}.zip
     zip -e --password "$password" "$target" "$source"
-    mv "$target" $USERPROFILE/Dropbox/locked
-    rm -f "$source"
+    mv "$target" "$dest" && rm -f "$source"
 }
 
 # usage example:
