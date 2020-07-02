@@ -77,4 +77,6 @@ else
     a mjnet='mjnet.py'
 fi
 
+a doctest='python -m doctest'
+
 unalias a
