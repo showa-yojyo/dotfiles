@@ -1,5 +1,6 @@
 {
     "breadcrumbs.enabled": false,
+    "editor.columnSelection": false,
     "editor.cursorBlinking": "solid",
     "editor.folding": false,
     "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
