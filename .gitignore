@@ -4,7 +4,6 @@
 .ipython/README
 .ipython/*/db/
 .ipython/*/history.sqlite
-.ipython/*/startup/
 
 # .jupyter
 .jupyter/migrated
