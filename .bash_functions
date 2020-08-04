@@ -153,6 +153,7 @@ function sync-all
 {
     backup &
     update-all-repos &
+    git update-git-for-windows -y &
     #conda update --all --yes &
 }
 
