@@ -10,7 +10,7 @@
 			"$0"
 		],
 		"description": "Insert title header"
-	}
+	},
 	"unix-style path": {
 		"prefix": "unix",
 		"body": "${TM_SELECTED_TEXT/[\\\\]/\\//g}",
@@ -265,5 +265,10 @@
 		"prefix": "\\colvector",
 		"body": "\\begin{pmatrix}$1 \\\\\\\\ $2 \\\\\\\\ $3\\end{pmatrix}$0",
 		"description": "A column vector by using pmatrix"
+	},
+	"youtube": {
+		"prefix": "youtubewatch",
+		"body": "[![$1](http://img.youtube.com/vi/$2/0.jpg)](https://www.youtube.com/watch?v=$2)",
+		"description": "Put an image and a URL"
 	}
 }
