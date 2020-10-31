@@ -37,13 +37,6 @@ function _munge_path
   fi
 }
 
-# Python stuffs
-_miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-_munge_path "${_miniconda_path}"
-_munge_path "${_miniconda_path}/Scripts"
-_munge_path "${_miniconda_path}/Library/bin"
-unset _miniconda_path
-
 _munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
 _munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
 _munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
@@ -72,5 +65,12 @@ test -d "${HOME}/man" && _munge_path ${HOME}/man before
 
 # Set INFOPATH so it includes users' private info if it exists
 test -d "${HOME}/info" && _munge_path ${HOME}/info before
+
+# Python stuffs
+_miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
+_munge_path "${_miniconda_path}/Library/bin" before
+_munge_path "${_miniconda_path}/Scripts" before
+_munge_path "${_miniconda_path}" before
+unset _miniconda_path
 
 unset -f _munge_path
