@@ -23,6 +23,23 @@
         ".bash*": "shellscript"
     },
     "files.eol": "\n",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/bin": true,
+        "**/*.exe": true,
+        "**/*.o": true,
+        "**/*.obj": true,
+        "**/*.ilk": true,
+        "**/*.pdb": true,
+        "**/*.tlog": true,
+        "**/*.idb": true,
+        "**/*.dll": true,
+        "**.vs": true
+    },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
@@ -32,12 +49,19 @@
     "python.terminal.activateEnvironment": false,
     "search.showLineNumbers": true,
     "search.followSymlinks": false,
-    "terminal.external.windowsExec": "C:\\cygwin64\\Cygwin.bat",
+    "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.env.windows": {
+        "CHERE_INVOKING": "1"
+    },
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
-    "terminal.integrated.shell.windows": "C:\\cygwin64\\Cygwin.bat",
+    "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "--login",
+        "-i"
+    ],
     "shellLauncher.shells.windows": [
         {
             "shell": "C:\\cygwin64\\bin\\bash.exe",
@@ -136,5 +160,7 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "markdown-preview-enhanced.enableEmojiSyntax": false,
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
-    "markdown-preview-enhanced.frontMatterRenderingOption": "code block"
+    "markdown-preview-enhanced.frontMatterRenderingOption": "code block",
+    "C_Cpp.updateChannel": "Insiders",
+
 }
