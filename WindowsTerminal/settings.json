@@ -21,6 +21,10 @@
     "profiles": {
         "defaults": {
             // Put settings here that you want to apply to all profiles.
+            //"backgroundImage": "/Pictures/deathmiff-test.jpg",
+            //"backgroundImageAlignment": "right",
+            //"backgroundImageOpacity": 0.7,
+            //"backgroundImageStretchMode": "uniform"
         },
         "list": [
             {
@@ -29,6 +33,12 @@
                 "commandline": "c:/cygwin64/bin/bash --login -i",
                 "hidden": false,
                 "icon": "c:/cygwin64/Cygwin.ico"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "bash (WSL2)",
+                "source": "Windows.Terminal.Wsl"
             },
             {
                 "name": "bash (MSYS32)",
