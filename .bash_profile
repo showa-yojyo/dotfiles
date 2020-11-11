@@ -17,7 +17,7 @@
 # source the users bashrc if it exists
 test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
-_cygdrive_prefix=
+_is_cygpath_available=$(test -x $(command -v cygpath))
 
 PATH=/bin:/usr/local/bin:/usr/bin
 
@@ -37,21 +37,24 @@ function _munge_path
   fi
 }
 
-_munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
-_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
-_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
-_munge_path "${_cygdrive_prefix}/c/Ruby26-x64/bin"
-_munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
-_munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
-_munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
-_munge_path "$(cygpath ${APPDATA}/npm)"
-_munge_path "${_cygdrive_prefix}/c/WINDOWS/System32"
-unset _cygdrive_prefix
+if [[ _is_cygpath_available ]]; then
+  _cygdrive_prefix=
+  _munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
+  _munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
+  _munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
+  _munge_path "${_cygdrive_prefix}/c/Ruby26-x64/bin"
+  _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
+  _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
+  _munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
+  _munge_path "$(cygpath ${APPDATA}/npm)"
+  _munge_path "${_cygdrive_prefix}/c/WINDOWS/System32"
+  unset _cygdrive_prefix
 
-# Java stuff
-if [[ -n "$JAVA_HOME" ]]; then
-  JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
-  _munge_path "$JAVA_HOME/bin"
+  # Java stuff
+  if [[ -n "$JAVA_HOME" ]]; then
+    JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
+    _munge_path "$JAVA_HOME/bin"
+  fi
 fi
 
 # Set PATH so it includes user's private bin if it exists
@@ -67,10 +70,12 @@ test -d "${HOME}/man" && _munge_path ${HOME}/man before
 test -d "${HOME}/info" && _munge_path ${HOME}/info before
 
 # Python stuffs
-_miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-_munge_path "${_miniconda_path}/Library/bin" before
-_munge_path "${_miniconda_path}/Scripts" before
-_munge_path "${_miniconda_path}" before
-unset _miniconda_path
+if [[ _is_cygpath_available ]]; then
+  _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
+  _munge_path "${_miniconda_path}/Library/bin" before
+  _munge_path "${_miniconda_path}/Scripts" before
+  _munge_path "${_miniconda_path}" before
+  unset _miniconda_path
+fi
 
 unset -f _munge_path
