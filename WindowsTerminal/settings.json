@@ -38,29 +38,34 @@
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "bash (WSL2)",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Ubuntu/home/work"
             },
             {
+                "guid": "{83b1928e-f431-48eb-b017-eff023bfe9a8}",
                 "name": "bash (MSYS32)",
-                "shell": "C:/msys64/usr/bin/bash.exe --login -i",
+                "commandline": "C:/msys64/usr/bin/bash.exe --login -i",
                 "hidden": false,
                 "icon": "C:/msys64/msys2.ico"
             },
             {
+                "guid": "{404ea39c-6582-426f-9684-31feead3c1f4}",
                 "name": "bash (git)",
-                "shell": "C:/Program Files/Git/bin/bash.exe --login -i",
+                "commandline": "C:/Program Files/Git/bin/bash.exe --login -i",
                 "hidden": false,
                 "icon": "C:/Program Files/Git/mingw64/share/git/git-for-windows.ico"
             },
             {
+                "guid": "{665a407d-24ae-4b44-8c12-96855e640c47}",
                 "name": "IPython",
-                "shell": "C:/ProgramData/Miniconda3/Scripts/ipython3.exe",
+                "commandline": "C:/ProgramData/Miniconda3/Scripts/ipython3.exe",
                 "hidden": false,
                 "icon": "C:/ProgramData/Miniconda3/Scripts/ipython.ico"
             },
             {
+                "guid": "{c96c123c-11f2-4fce-a753-5b92ad1d2ea0}",
                 "name": "irb",
-                "shell": "C:/Ruby26-x64/bin/irb.cmd",
+                "commandline": "C:/Ruby26-x64/bin/irb.cmd",
                 "hidden": false,
                 "icon": "C:/Ruby26-x64/bin/vit-ruby.ico"
             },
