@@ -29,7 +29,7 @@
         "list": [
             {
                 "guid": "{379bd4d8-dc40-409a-abd4-3ff1712c12f7}",
-                "name": "bash (Cygwin)",
+                "name": "Bash (Cygwin)",
                 "commandline": "c:/cygwin64/bin/bash --login -i",
                 "hidden": false,
                 "icon": "c:/cygwin64/Cygwin.ico"
@@ -37,23 +37,24 @@
             {
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
-                "name": "bash (WSL2)",
+                "name": "Bash (WSL2)",
                 "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "//wsl$/Ubuntu/home/work"
+                "startingDirectory": "//wsl$/Ubuntu/home/%USER%"
             },
             {
                 "guid": "{83b1928e-f431-48eb-b017-eff023bfe9a8}",
-                "name": "bash (MSYS32)",
+                "name": "Bash (MSYS32)",
                 "commandline": "C:/msys64/usr/bin/bash.exe --login -i",
                 "hidden": false,
                 "icon": "C:/msys64/msys2.ico"
             },
             {
                 "guid": "{404ea39c-6582-426f-9684-31feead3c1f4}",
-                "name": "bash (git)",
-                "commandline": "C:/Program Files/Git/bin/bash.exe --login -i",
+                "name": "Bash (Git)",
+                "commandline": "%PROGRAMFILES%/Git/bin/bash.exe --login -i",
+                "startingDirectory": "%USERPROFILE%",
                 "hidden": false,
-                "icon": "C:/Program Files/Git/mingw64/share/git/git-for-windows.ico"
+                "icon": "%PROGRAMFILES%/Git/mingw64/share/git/git-for-windows.ico"
             },
             {
                 "guid": "{665a407d-24ae-4b44-8c12-96855e640c47}",
