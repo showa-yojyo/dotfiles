@@ -5,8 +5,8 @@ function optimize-dropbox
     # Examples:
     # bash$ optimize-dropbox
     # bash$ optimize-dropbox 201910*
-    local target_dir=$(cygpath $USERPROFILE)/Dropbox
-    optipng -quiet ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
+    local target_dir=~/Dropbox
+    optipng ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
 }
 
 function update-local-copy
@@ -73,14 +73,16 @@ function backup
         return 1
     fi
 
-    test -x $(command -v cygpath)
+    test -x "$(command -v cygpath)"
     local use_cygpath=$?
 
     for repo in $(sed -e 's/ *#.\+$//g' $list) ; do
         # Expand tildes in $repo
         repo=$(eval echo "$repo")
 
-        test $use_cygpath && repo=$(cygpath -m "$repo")
+        if [[ $use_cygpath -eq 0 ]]; then
+            repo=$(cygpath -m "$repo")
+        fi
 
         # Push the current branch to the remote repository
         test -d "$repo" && { git -C "$repo" push origin HEAD & }
@@ -146,7 +148,7 @@ function backup-bookmark
         return 1
     fi
 
-    local dest="$USERPROFILE/Dropbox/locked"
+    local dest="~/Dropbox/locked"
     if [[ ! -d "$dest" ]]; then
         echo $dest not a directory >&2
         return 1
@@ -229,6 +231,10 @@ function pskill
 # Reference: info which
 function which
 {
-    { alias ; declare -f ; } | command which \
-        --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+    if [[ -n "$WSL_DISTRO_NAME" ]]; then
+        command which $@
+    else
+        { alias ; declare -f ; } | command which \
+            --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+    fi
 }
