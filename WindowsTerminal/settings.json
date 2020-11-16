@@ -18,6 +18,7 @@
     // Each one of them will appear in the 'New Tab' dropdown,
     //   and can be invoked from the commandline with `wt.exe -p xxx`
     // To learn more about profiles, visit https://aka.ms/terminal-profile-settings
+
     "profiles": {
         "defaults": {
             // Put settings here that you want to apply to all profiles.
@@ -39,7 +40,8 @@
                 "hidden": false,
                 "name": "Bash (WSL2)",
                 "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "//wsl$/Ubuntu/home/%USER%"
+                //"startingDirectory": "//wsl$/Ubuntu-20.04/home/%USER%",
+                "commandline": "wsl.exe ~ -d Ubuntu"
             },
             {
                 "guid": "{83b1928e-f431-48eb-b017-eff023bfe9a8}",
@@ -88,7 +90,7 @@
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
             }
-        ]
+        ],
     },
     // Add custom color schemes to this array.
     // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes
@@ -128,5 +130,11 @@
             },
             "keys": "alt+shift+d"
         }
-    ]
+    ],
+    "theme": "light",
+    "alwaysShowTabs": true,
+    //"tabWidthMode": "compact",
+    "confirmCloseAllTabs": false,
+    "launchMode": "maximized",
+
 }
