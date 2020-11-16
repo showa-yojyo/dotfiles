@@ -21,6 +21,10 @@
 #
 # See man bash for more options...
 
+# Check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # Don't wait for job termination notification
 # set -o notify
 
@@ -45,10 +49,8 @@ shopt -s histverify
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 # shopt -s cdspell
 
-# Programmable completion enhancements are enabled via
-# /etc/profile.d/bash_completion.sh when the package bash_completetion
-# is installed.  Any completions you add in ~/.bash_completion are
-# sourced last.
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 DEFAULT_EDITOR='code --wait' # --new-window
 export EDITOR=$DEFAULT_EDITOR
@@ -106,8 +108,9 @@ test -f "${HOME}/.git-completion.sh" && . "${HOME}/.git-completion.sh"
 
 # History Options
 #
-# ignoredups: lines matching the previous history entry to not be saved.
-export HISTCONTROL="ignoredups"
+# Don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+export HISTCONTROL="ignoreboth"
 
 # Ignore some controlling instructions
 # The '&' is a special pattern which suppresses duplicate entries.
@@ -117,8 +120,8 @@ export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 # export PROMPT_COMMAND="history -a"
 
 # The maximum number of lines contained in the history file
-export HISTFILESIZE=200
-export HISTSIZE=$HISTFILESIZE
+export HISTFILESIZE=2200
+export HISTSIZE=1000
 export HISTTIMEFORMAT="%F %T "
 
 # Locale
@@ -172,18 +175,11 @@ export TMPDIR=/tmp
 
 export TZ=JST-09
 
-# Aliases
-#
-# Some people use a different file for aliases
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 test -f "${HOME}/.bash_aliases" && . "${HOME}/.bash_aliases"
-
-# Umask
-#
-# /etc/profile sets 022, removing write perms to group + others.
-# Set a more restrictive umask: i.e. no exec perms for others:
-# umask 027
-# Paranoid: neither group nor others have any perms:
-# umask 077
 
 # Functions
 #
