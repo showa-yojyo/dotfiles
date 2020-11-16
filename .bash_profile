@@ -17,7 +17,11 @@
 # source the users bashrc if it exists
 test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
-_is_cygpath_available=$(test -x $(command -v cygpath))
+if [ -x "$(command -v cygpath)" ]; then
+    _is_cygpath_available=1
+else
+    _is_cygpath_available=
+fi
 
 PATH=/bin:/usr/local/bin:/usr/bin
 
@@ -26,7 +30,10 @@ function _munge_path
 {
   local a_path="$1"
 
-  test ! -d "$a_path" && echo Warning: $a_path is not directory. >&2
+  if [[ ! -d "$a_path" ]]; then
+      echo Warning: $a_path is not directory. >&2
+      return
+  fi
 
   if ! echo $PATH | command egrep -q "(^|:)$a_path($|:)" ; then
     if [[ "$2" == "before" ]]; then
@@ -37,24 +44,31 @@ function _munge_path
   fi
 }
 
-if [[ -z $_is_cygpath_available ]]; then
-  _cygdrive_prefix=
-  _munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
+if [[ -n $_is_cygpath_available ]]; then
+  _prefix=
+  _munge_path "${_prefix}/c/texlive/2015/bin/win32"
   _munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
   _munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
-  _munge_path "${_cygdrive_prefix}/c/Ruby26-x64/bin"
+  _munge_path "${_prefix}/c/Ruby26-x64/bin"
   _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
   _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
   _munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
   _munge_path "$(cygpath ${APPDATA}/npm)"
-  _munge_path "${_cygdrive_prefix}/c/WINDOWS/System32"
-  unset _cygdrive_prefix
+  _munge_path "${_prefix}/c/WINDOWS/System32"
+  unset _prefix
 
   # Java stuff
   if [[ -n "$JAVA_HOME" ]]; then
     JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
     _munge_path "$JAVA_HOME/bin"
   fi
+elif [[ -n $WSL_DISTRO_NAME ]]; then
+  _prefix=/mnt/c
+  _munge_path "$_prefix/Ruby26-x64/bin"
+  _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
+  _munge_path "$_prefix/Program Files/nodejs"
+  _munge_path "$_prefix/WINDOWS/System32"
+  unset _prefix
 fi
 
 # Set PATH so it includes user's private bin if it exists
@@ -70,8 +84,13 @@ test -d "${HOME}/man" && _munge_path ${HOME}/man before
 test -d "${HOME}/info" && _munge_path ${HOME}/info before
 
 # Python stuffs
-if [[ -z $_is_cygpath_available ]]; then
+if [[ -n $_is_cygpath_available ]]; then
   _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
+elif [[ -n $WSL_DISTRO_NAME ]]; then
+  _miniconda_path="/mnt/c/ProgramData/Miniconda3"
+fi
+
+if [[ -n $_miniconda_path ]]; then
   _munge_path "${_miniconda_path}/Library/bin" before
   _munge_path "${_miniconda_path}/Scripts" before
   _munge_path "${_miniconda_path}" before
