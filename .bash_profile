@@ -37,7 +37,7 @@ function _munge_path
   fi
 }
 
-if [[ _is_cygpath_available ]]; then
+if [[ -z $_is_cygpath_available ]]; then
   _cygdrive_prefix=
   _munge_path "${_cygdrive_prefix}/c/texlive/2015/bin/win32"
   _munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
@@ -70,7 +70,7 @@ test -d "${HOME}/man" && _munge_path ${HOME}/man before
 test -d "${HOME}/info" && _munge_path ${HOME}/info before
 
 # Python stuffs
-if [[ _is_cygpath_available ]]; then
+if [[ -z $_is_cygpath_available ]]; then
   _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
   _munge_path "${_miniconda_path}/Library/bin" before
   _munge_path "${_miniconda_path}/Scripts" before
