@@ -73,7 +73,6 @@ fi
 # Set PATH so it includes user's private bin if it exists
 _home_bin="${HOME}/devel/bin"
 test -d "${_home_bin}" && _munge_path $_home_bin before
-test -d "${_home_bin}/ffmpeg" && _munge_path "${_home_bin}/ffmpeg" before
 unset _home_bin
 
 # Set MANPATH so it includes users' private man if it exists
