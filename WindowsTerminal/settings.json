@@ -40,7 +40,7 @@
                 "hidden": false,
                 "name": "Bash (WSL2)",
                 "source": "Windows.Terminal.Wsl",
-                //"startingDirectory": "//wsl$/Ubuntu-20.04/home/%USER%",
+                //"startingDirectory": "//wsl$/Ubuntu-20.04/home/",
                 "commandline": "wsl.exe ~ -d Ubuntu"
             },
             {
@@ -135,6 +135,5 @@
     "alwaysShowTabs": true,
     //"tabWidthMode": "compact",
     "confirmCloseAllTabs": false,
-    "launchMode": "maximized",
-
+    "launchMode": "maximized"
 }
