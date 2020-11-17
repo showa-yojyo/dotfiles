@@ -46,9 +46,9 @@ function _munge_path
 
 if [[ -n $_is_cygpath_available ]]; then
   _prefix=
-  _munge_path "${_prefix}/c/texlive/2015/bin/win32"
-  _munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
-  _munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
+  #_munge_path "${_prefix}/c/texlive/2015/bin/win32"
+  #_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
+  #_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
   _munge_path "${_prefix}/c/Ruby26-x64/bin"
   _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
   _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
@@ -66,7 +66,6 @@ elif [[ -n $WSL_DISTRO_NAME ]]; then
   _prefix=/mnt/c
   _munge_path "$_prefix/Ruby26-x64/bin"
   _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
-  _munge_path "$_prefix/Program Files/nodejs"
   _munge_path "$_prefix/WINDOWS/System32"
   unset _prefix
 fi
@@ -86,8 +85,8 @@ test -d "${HOME}/info" && _munge_path ${HOME}/info before
 # Python stuffs
 if [[ -n $_is_cygpath_available ]]; then
   _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-elif [[ -n $WSL_DISTRO_NAME ]]; then
-  _miniconda_path="/mnt/c/ProgramData/Miniconda3"
+#elif [[ -n $WSL_DISTRO_NAME ]]; then
+#  _miniconda_path="/mnt/c/ProgramData/Miniconda3"
 fi
 
 if [[ -n $_miniconda_path ]]; then
@@ -98,3 +97,20 @@ if [[ -n $_miniconda_path ]]; then
 fi
 
 unset -f _munge_path
+
+# Homebrew
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# NVM stuffs
+export NVM_DIR="~/.nvm"
+
+# Load nvm
+_nvm_sh=/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh
+test -s $_nvm_sh && . $_nvm_sh
+unset _nvm_sh
+
+# Load nvm bash_completion
+_nvm_completion=/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm
+test -s $_nvm_completion && . $_nvm_completion
+unset _nvm_completion
