@@ -14,17 +14,6 @@
 
 # User dependent .bash_profile file
 
-# source the users bashrc if it exists
-test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
-
-if [ -x "$(command -v cygpath)" ]; then
-    _is_cygpath_available=1
-else
-    _is_cygpath_available=
-fi
-
-PATH=/bin:/usr/local/bin:/usr/bin
-
 # Code by Bash Guide for Beginners
 function _munge_path
 {
@@ -43,6 +32,32 @@ function _munge_path
     fi
   fi
 }
+
+# source the users bashrc if it exists
+test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
+
+if [ -x "$(command -v cygpath)" ]; then
+    _is_cygpath_available=1
+else
+    _is_cygpath_available=
+fi
+
+PATH=/bin:/usr/local/bin:/usr/bin
+
+# Set PATH so it includes user's private bin if it exists
+_home_bin="${HOME}/bin"
+test -d "${_home_bin}" && _munge_path ${_home_bin} before
+unset _home_bin
+
+# Set MANPATH so it includes users' private man if it exists
+if [ -d "${HOME}/man" ]; then
+  MANPATH="${HOME}/man:${MANPATH}"
+fi
+
+# Set INFOPATH so it includes users' private info if it exists
+if [ -d "${HOME}/info" ]; then
+  INFOPATH="${HOME}/info:${INFOPATH}"
+fi
 
 if [[ -n $_is_cygpath_available ]]; then
   _prefix=
@@ -69,17 +84,6 @@ elif [[ -n $WSL_DISTRO_NAME ]]; then
   _munge_path "$_prefix/WINDOWS/System32"
   unset _prefix
 fi
-
-# Set PATH so it includes user's private bin if it exists
-_home_bin="${HOME}/devel/bin"
-test -d "${_home_bin}" && _munge_path $_home_bin before
-unset _home_bin
-
-# Set MANPATH so it includes users' private man if it exists
-test -d "${HOME}/man" && _munge_path ${HOME}/man before
-
-# Set INFOPATH so it includes users' private info if it exists
-test -d "${HOME}/info" && _munge_path ${HOME}/info before
 
 # Python stuffs
 if [[ -n $_is_cygpath_available ]]; then
