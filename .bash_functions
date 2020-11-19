@@ -238,3 +238,26 @@ function which
             --tty-only --read-alias --read-functions --show-tilde --show-dot $@
     fi
 }
+
+function _g++base
+{
+    local CPPFLAG="-g -Werror -Wall -Wextra -ansi -pedantic -std=$1"
+    local INFILE=$2
+    local OUTFILE=${INFILE/.cpp/}
+    g++ $CPPFLAG $INFILE -o $OUTFILE
+}
+
+function g++11
+{
+    _g++base c++11 $1
+}
+
+function g++14
+{
+    _g++base c++14 $1
+}
+
+function g++17
+{
+    _g++base c++17 $1
+}
