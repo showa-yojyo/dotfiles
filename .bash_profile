@@ -79,7 +79,6 @@ if [[ -n $_is_cygpath_available ]]; then
   fi
 elif [[ -n $WSL_DISTRO_NAME ]]; then
   _prefix=/mnt/c
-  _munge_path "$_prefix/Ruby26-x64/bin"
   _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
   _munge_path "$_prefix/WINDOWS/System32"
   unset _prefix
@@ -90,6 +89,12 @@ if [[ -n $_is_cygpath_available ]]; then
   _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
 #elif [[ -n $WSL_DISTRO_NAME ]]; then
 #  _miniconda_path="/mnt/c/ProgramData/Miniconda3"
+fi
+
+# Install Ruby Gems to ~/gems
+if [[ -d "$HOME/gems" ]]; then
+  export GEM_HOME="$HOME/gems"
+  _munge_path "$HOME/gems/bin" before
 fi
 
 if [[ -n $_miniconda_path ]]; then
