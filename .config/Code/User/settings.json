@@ -50,19 +50,23 @@
     "search.showLineNumbers": true,
     "search.followSymlinks": false,
     "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe",
-    "terminal.integrated.env.windows": {
-        "CHERE_INVOKING": "1"
-    },
+    "terminal.integrated.automationShell.windows": "wsl.exe",
     "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
-    "terminal.integrated.shell.windows": "C:\\cygwin64\\bin\\bash.exe",
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
     "terminal.integrated.shellArgs.windows": [
-        "--login",
-        "-i"
+        "~", "-d", "Ubuntu"
     ],
     "shellLauncher.shells.windows": [
+        {
+            "shell": "wsl.exe",
+            "label": "bash (WSL2 Ubuntu)",
+            "args": [
+                "~", "-d", "Ubuntu"
+            ]
+        },
         {
             "shell": "C:\\cygwin64\\bin\\bash.exe",
             "label": "bash (Cygwin)",
@@ -162,5 +166,7 @@
     "markdown-preview-enhanced.breakOnSingleNewLine": false,
     "markdown-preview-enhanced.frontMatterRenderingOption": "code block",
     "C_Cpp.updateChannel": "Insiders",
-
+    "restructuredtext.confPath": "",
+    "restructuredtext.linter.disabled": false,
+    "restructuredtext.sphinxBuildPath": "${worksoaceFolder}/build"
 }
