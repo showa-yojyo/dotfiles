@@ -1,0 +1,11 @@
+{
+	"case statement":{
+		"prefix": "case",
+		"body": [
+			"case $1 in",
+			"  *)",
+			"    ;;",
+			"esac"
+		]
+	}
+}
