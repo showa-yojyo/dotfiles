@@ -81,6 +81,10 @@ case "$OSTYPE" in
     unset _miniconda_path
     ;;
   linux*)
+    if [[ -d "$HOME/miniconda3/bin" ]]; then
+        eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
+    fi
+
     if [[ -n "$WSL_DISTRO_NAME" ]]; then
       _prefix=/mnt/c
       _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
