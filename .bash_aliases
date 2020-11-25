@@ -50,29 +50,36 @@ a now='LC_ALL=C date +"%F (%a) %T"'
 a wget='wget --continue --wait=1 --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
 
 # Cygwin exclusive
-if [[ "$OSTYPE" == "cygwin" ]]; then
-    # ShellExecute
-    a s='cygstart'
 
-    a cygwin-setup='s $(cygpath -m ~/Downloads/setup-x86_64.exe)'
+case "$OSTYPE" in
+    cygwin | msys)
+        # Cygwin, Bash for Windows, MSYS.
+        a s=cygstart
+        a cygwin-setup='s $(cygpath -m ~/Downloads/setup-x86_64.exe)'
 
-    # Clipboard
-    a ge='getclip'
-    a pu='putclip'
+        # Clipboard
+        a ge='getclip'
+        a pu='putclip'
 
-    # Scripts
-    a dlmp4='python $(cygpath -aw ~/devel/bin/dlmp4.py)'
-    a portrait='python $(cygpath -aw ~/devel/bin/portrait.py)'
+        # Scripts
+        a dlmp4='python $(cygpath -aw ~/devel/bin/dlmp4.py)'
+        a mjnet='python $(cygpath -aw ~/devel/bin/mjnet.py)'
+        a portrait='python $(cygpath -aw ~/devel/bin/portrait.py)'
 
-    # Assume that Ruby is built for x64-mingw32
-    a bundle=bundle.bat
-    a gem=gem.bat
-    a jekyll=jekyll.bat
-    a mjnet='python $(cygpath -aw ~/devel/bin/mjnet.py)'
-else
-    a dlmp4='dlmp4.py'
-    a mjnet='mjnet.py'
-fi
+        # Assume that Ruby is built for x64-mingw32
+        a bundle=bundle.bat
+        a gem=gem.bat
+        a jekyll=jekyll.bat
+        ;;
+    *)
+        if [[ -n "$WSL_DISTRO_NAME" ]]; then
+            a s='cmd.exe /c start'
+        fi
+        a dlmp4='dlmp4.py'
+        a mjnet='mjnet.py'
+        a portrait='portrait.py'
+        ;;
+esac
 
 a doctest='python -m doctest'
 

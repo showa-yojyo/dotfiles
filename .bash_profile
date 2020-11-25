@@ -36,12 +36,6 @@ function _munge_path
 # source the users bashrc if it exists
 test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
-if [ -x "$(command -v cygpath)" ]; then
-    _is_cygpath_available=1
-else
-    _is_cygpath_available=
-fi
-
 PATH=/bin:/usr/local/bin:/usr/bin
 
 # Set PATH so it includes user's private bin if it exists
@@ -59,49 +53,49 @@ if [ -d "${HOME}/info" ]; then
   INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
-if [[ -n $_is_cygpath_available ]]; then
-  _prefix=
-  #_munge_path "${_prefix}/c/texlive/2015/bin/win32"
-  #_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
-  #_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
-  _munge_path "${_prefix}/c/Ruby26-x64/bin"
-  _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
-  _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
-  _munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
-  _munge_path "$(cygpath ${APPDATA}/npm)"
-  _munge_path "${_prefix}/c/WINDOWS/System32"
-  unset _prefix
+case "$OSTYPE" in
+  cygwin | msys)
+    _prefix=
+    #_munge_path "${_prefix}/c/texlive/2015/bin/win32"
+    #_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
+    #_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
+    _munge_path "${_prefix}/c/Ruby26-x64/bin"
+    _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
+    _munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
+    _munge_path "$(cygpath ${APPDATA}/npm)"
+    _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
+    _munge_path "${_prefix}/c/WINDOWS/System32"
+    unset _prefix
 
-  # Java stuff
-  if [[ -n "$JAVA_HOME" ]]; then
-    JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
-    _munge_path "$JAVA_HOME/bin"
-  fi
-elif [[ -n $WSL_DISTRO_NAME ]]; then
-  _prefix=/mnt/c
-  _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
-  _munge_path "$_prefix/WINDOWS/System32"
-  unset _prefix
-fi
+    # Java stuff
+    if [[ -n "$JAVA_HOME" ]]; then
+      JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
+      _munge_path "$JAVA_HOME/bin"
+    fi
 
-# Python stuffs
-if [[ -n $_is_cygpath_available ]]; then
-  _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-#elif [[ -n $WSL_DISTRO_NAME ]]; then
-#  _miniconda_path="/mnt/c/ProgramData/Miniconda3"
-fi
+    # Python stuffs
+    _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
+    _munge_path "${_miniconda_path}/Library/bin" before
+    _munge_path "${_miniconda_path}/Scripts" before
+    _munge_path "${_miniconda_path}" before
+    unset _miniconda_path
+    ;;
+  linux*)
+    if [[ -n "$WSL_DISTRO_NAME" ]]; then
+      _prefix=/mnt/c
+      _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
+      _munge_path "$_prefix/WINDOWS/System32"
+    fi
+    unset _prefix
+    ;;
+  *)
+    ;;
+esac
 
 # Install Ruby Gems to ~/gems
 if [[ -d "$HOME/gems" ]]; then
   export GEM_HOME="$HOME/gems"
   _munge_path "$HOME/gems/bin" before
-fi
-
-if [[ -n $_miniconda_path ]]; then
-  _munge_path "${_miniconda_path}/Library/bin" before
-  _munge_path "${_miniconda_path}/Scripts" before
-  _munge_path "${_miniconda_path}" before
-  unset _miniconda_path
 fi
 
 unset -f _munge_path
@@ -122,3 +116,7 @@ unset _nvm_sh
 _nvm_completion=/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm
 test -s $_nvm_completion && . $_nvm_completion
 unset _nvm_completion
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+umask 022

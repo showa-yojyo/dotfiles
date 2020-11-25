@@ -39,24 +39,21 @@ function update-local-copy
     git -C "$repos_path" checkout -
 }
 
-if [[ -x "$(command -v dot)" ]]; then
-    if [[ -x "$(command -v cygpath)" ]]; then
-        export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
-        export GRAPHVIZ_DOT="$(cygpath -aw "$(command which dot)")"
-    else
-        export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
-        export GRAPHVIZ_DOT=$(command which dot)
-    fi
-fi
-
 function plantuml
 {
+    if [[ -x "$(command -v cygpath)" ]]; then
+        export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
+    else
+        export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
+    fi
+
     java -jar "$PLANTUML_PATH" -charset UTF-8 $@
 }
 
 function sympydoc
 {
-    update-local-copy ~/devel/sympy/doc dummy
+    local target=~/devel/sympy/doc
+    test -d $target && update-local-copy $target
 }
 
 function update-all-repos
@@ -97,7 +94,6 @@ function sync-all
     if git --version | grep -q windows; then
         git update-git-for-windows -y &
     fi
-    #conda update --all --yes &
 }
 
 function _anniversary_helper
@@ -145,7 +141,7 @@ function convert_mp3
 
 function backup-bookmark
 {
-    local source="Sleipnir ブックマーク.html"
+    local source="~/Sleipnir ブックマーク.html"
     if [[ ! -f "$source" ]]; then
         echo File $source not found >&2
         return 1
