@@ -5,7 +5,7 @@ function optimize-dropbox
     # Examples:
     # bash$ optimize-dropbox
     # bash$ optimize-dropbox 201910*
-    local target_dir=~/Dropbox
+    local target_dir="$HOME/Dropbox"
     optipng ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
 }
 
@@ -52,20 +52,20 @@ function plantuml
 
 function sympydoc
 {
-    local target=~/devel/sympy/doc
-    test -d $target && update-local-copy $target
+    local target="$HOME/devel/sympy/doc"
+    test -d "$target" && update-local-copy "$target"
 }
 
 function update-all-repos
 {
-    update-local-copy ~/devel/gitignore &
-    update-local-copy ~/devel/sympy/doc &
+    update-local-copy "$HOME/devel/gitignore" &
+    update-local-copy "$HOME/devel/sympy/doc" &
 }
 
 function backup
 {
-    local list=~/.remote_repos
-    if [[ ! -f $list ]]; then
+    local list="$HOME/.remote_repos"
+    if [[ ! -f "$list" ]]; then
         echo File $list not found. >&2
         return 1
     fi
@@ -141,13 +141,13 @@ function convert_mp3
 
 function backup-bookmark
 {
-    local source="~/Sleipnir ブックマーク.html"
+    local source="$HOME/Sleipnir ブックマーク.html"
     if [[ ! -f "$source" ]]; then
         echo File $source not found >&2
         return 1
     fi
 
-    local dest="~/Dropbox/locked"
+    local dest="$HOME/Dropbox/locked"
     if [[ ! -d "$dest" ]]; then
         echo $dest not a directory >&2
         return 1
