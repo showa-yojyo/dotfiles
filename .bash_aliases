@@ -73,7 +73,7 @@ case "$OSTYPE" in
         ;;
     *)
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            a s='cmd.exe /c start'
+            a s='wslview'
         fi
         a dlmp4='dlmp4.py'
         a mjnet='mjnet.py'
