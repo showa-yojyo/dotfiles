@@ -19,6 +19,7 @@
     "editor.tabCompletion": "onlySnippets",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "extensions.autoUpdate": false,
     "files.associations": {
         ".bash*": "shellscript"
     },
@@ -168,5 +169,5 @@
     "C_Cpp.updateChannel": "Insiders",
     "restructuredtext.confPath": "",
     "restructuredtext.linter.disabled": false,
-    "restructuredtext.sphinxBuildPath": "${worksoaceFolder}/build"
+    "restructuredtext.sphinxBuildPath": "${workspaceFolder}/build"
 }
