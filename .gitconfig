@@ -1,8 +1,11 @@
 # .gitconfig
+[include]
+    path = ~/.gitconfig.user
 
 [core]
     autocrlf = input
-	editor = 'C:\\Program Files\\Microsoft VS Code\\Code.exe' --wait
+    editor = code --wait
+    fileMode = true
 
 [alias]
     br = branch
@@ -84,7 +87,7 @@
 
 [help]
     browser = default-browser
-    format = html
+    format = man
 
 [merge]
     ff = false
@@ -102,11 +105,6 @@
 
 [push]
     default = current
-
-[user]
-    email = yojyo@hotmail.com
-    name = showa_yojyo
-    signingKey = 6ED8D1B3
 
 [web]
     browser = default-browser
