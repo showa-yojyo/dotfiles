@@ -52,6 +52,9 @@ shopt -s histverify
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# ImageMagick
+export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+
 DEFAULT_EDITOR='code --wait' # --new-window
 export EDITOR=$DEFAULT_EDITOR
 
