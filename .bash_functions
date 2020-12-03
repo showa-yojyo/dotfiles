@@ -260,3 +260,12 @@ function g++17
 {
     _g++base c++17 $1
 }
+
+function hibernate
+{
+    if [[ -n "$WSL_DISTRO_NAME" ]]; then
+        shutdown.exe /h $@
+    else
+        command hibernate $@
+    fi
+}
