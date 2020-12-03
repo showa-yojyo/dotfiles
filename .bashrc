@@ -53,7 +53,7 @@ shopt -s histverify
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ImageMagick
-export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+[ -f /etc/resolv.conf ] && export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
 
 DEFAULT_EDITOR='code --wait' # --new-window
 export EDITOR=$DEFAULT_EDITOR
