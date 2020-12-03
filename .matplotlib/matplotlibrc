@@ -140,7 +140,7 @@ patch.facecolor        : deeppink
 # The font.size property is the default font size for text, given in pts.
 # 12pt is the standard value.
 #
-#font.family         : sans-serif
+font.family : IPAexGothic
 #font.style          : normal
 #font.variant        : normal
 #font.weight         : medium
@@ -152,7 +152,7 @@ patch.facecolor        : deeppink
 # small, medium, large, x-large, xx-large, larger, or smaller
 #font.size           : 12.0
 #font.serif          : Bitstream Vera Serif, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
-#font.sans-serif     : Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
+font.sans-serif : IPAexGothic, Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
 #font.cursive        : Apple Chancery, Textile, Zapf Chancery, Sand, cursive
 #font.fantasy        : Comic Sans MS, Chicago, Charcoal, Impact, Western, fantasy
 #font.monospace      : Bitstream Vera Sans Mono, Andale Mono, Nimbus Mono L, Courier New, Courier, Fixed, Terminal, monospace
@@ -358,9 +358,9 @@ axes.prop_cycle : cycler('color', ['deeppink', 'pink', 'b', 'g', 'r', 'c', 'm', 
 #image.lut    : 256               # the size of the colormap lookup table
 #image.origin : upper             # lower | upper
 #image.resample  : False
-#image.composite_image : True     # When True, all the images on a set of axes are 
-                                  # combined into a single composite image before 
-                                  # saving a figure as a vector graphics file, 
+#image.composite_image : True     # When True, all the images on a set of axes are
+                                  # combined into a single composite image before
+                                  # saving a figure as a vector graphics file,
                                   # such as a PDF.
 
 ### CONTOUR PLOTS
