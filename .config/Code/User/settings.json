@@ -1,14 +1,17 @@
 {
     "breadcrumbs.enabled": false,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
     "editor.columnSelection": false,
+    "editor.copyWithSyntaxHighlighting": false,
     "editor.cursorBlinking": "solid",
+    "editor.dragAndDrop": false,
     "editor.folding": false,
     "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
     "editor.fontSize": 14,
     "editor.fontWeight": "500",
-    "editor.letterSpacing": 1,
+    "editor.letterSpacing": 0,
     "editor.minimap.enabled": false,
-    "editor.mouseWheelZoom": true,
     "editor.renderControlCharacters": true,
     "editor.renderLineHighlight": "none",
     "editor.renderWhitespace": "boundary",
@@ -24,6 +27,7 @@
         ".bash*": "shellscript"
     },
     "files.eol": "\n",
+    "files.enableTrash": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -46,6 +50,7 @@
     "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
     "git.promptToSaveFilesBeforeCommit": "always",
     "git.suggestSmartCommit": false,
+    "python.pythonPath": "~/miniconda3/bin/python",
     "python.dataScience.sendSelectionToInteractiveWindow": false,
     "python.terminal.activateEnvironment": false,
     "search.showLineNumbers": true,
@@ -168,6 +173,5 @@
     "markdown-preview-enhanced.frontMatterRenderingOption": "code block",
     "C_Cpp.updateChannel": "Insiders",
     "restructuredtext.confPath": "",
-    "restructuredtext.linter.disabled": false,
-    "restructuredtext.sphinxBuildPath": "${workspaceFolder}/build"
+    "restructuredtext.linter.disabled": false
 }
