@@ -5,15 +5,23 @@
         "command": "-editor.action.toggleTabFocusMode"
     },
     {
-        "key": "ctrl+oem_minus",
+        "key": "ctrl+x s",
+        "command": "workbench.action.files.saveAll"
+    },
+    {
+        "key": "ctrl+numpad_add",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+oem_plus",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+numpad_subtract",
         "command": "-workbench.action.zoomOut"
     },
     {
-        "key": "ctrl+shift+t",
-        "command": "shellLauncher.launch"
-    },
-    {
-        "key": "ctrl+x s",
-        "command": "workbench.action.files.saveAll"
+        "key": "ctrl+oem_minus",
+        "command": "-workbench.action.zoomOut"
     }
 ]
