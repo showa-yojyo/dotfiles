@@ -11,12 +11,7 @@ function optimize-dropbox
 
 function update-local-copy
 {
-    if [[ -x "$(command -v cygpath)" ]]; then
-        local repos_path="$(cygpath -m $1)"
-    else
-        local repos_path="$1"
-    fi
-
+    local repos_path="$1"
     if [[ ! -d "$repos_path" ]]; then
         echo "Error: $repos_path not a directory" >&2
         return 1
