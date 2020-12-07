@@ -53,7 +53,11 @@ shopt -s histverify
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # ImageMagick
-[ -f /etc/resolv.conf ] && export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+if [[ -f /etc/resolv.conf ]]; then
+    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+    export XDG_RUNTIME_DIR=/tmp/xdg-runtime
+    export RUNLEVEL=3
+fi
 
 DEFAULT_EDITOR='code --wait' # --new-window
 export EDITOR=$DEFAULT_EDITOR
