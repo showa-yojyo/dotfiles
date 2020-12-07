@@ -120,14 +120,21 @@ function convert_mp3
         return
     fi
 
-    for i in "$@" ; do
-        local source_mp4="$i"
-        local dest_mp3="${source_mp4%.mp4}.mp3"
-        ffmpeg -loglevel fatal -i "${source_mp4}" "${dest_mp3}"
+    local ffmpeg_global_options="-loglevel error -y"
+    local ffmpeg_input_options=""
+    local ffmpeg_output_options=""
+
+    for i in "$@";
+    do
+        local input_url="$i"
+        local output_url="${input_url%.mp4}.mp3"
+        ffmpeg $ffmpeg_global_options \
+            $ffmpeg_input_options -i "$input_url" \
+            $ffmpeg_output_options "$output_url"
         if [[ $? != 0 ]]; then
-            echo 'Error: '${dest_mp3} 'is not generated' >&2
+            echo 'Error: ' $output_url 'is not generated' >&2
         else
-            rm -f "${source_mp4}"
+            rm -f "$input_url"
         fi
     done
 }
