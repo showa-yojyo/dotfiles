@@ -50,16 +50,9 @@ function plantuml
     java -jar "$PLANTUML_PATH" -charset UTF-8 $@
 }
 
-function sympydoc
-{
-    local target="$HOME/devel/sympy/doc"
-    test -d "$target" && update-local-copy "$target"
-}
-
 function update-all-repos
 {
     update-local-copy "$HOME/devel/gitignore" &
-    update-local-copy "$HOME/devel/sympy/doc" &
 }
 
 function backup
