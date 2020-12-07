@@ -65,62 +65,6 @@
     "terminal.integrated.shellArgs.windows": [
         "~", "-d", "Ubuntu"
     ],
-    "shellLauncher.shells.windows": [
-        {
-            "shell": "wsl.exe",
-            "label": "bash (WSL2 Ubuntu)",
-            "args": [
-                "~", "-d", "Ubuntu"
-            ]
-        },
-        {
-            "shell": "C:\\cygwin64\\bin\\bash.exe",
-            "label": "bash (Cygwin)",
-            "args": [
-                "--login"
-            ]
-        },
-        {
-            "shell": "C:\\msys64\\usr\\bin\\bash.exe",
-            "label": "bash (MSYS2)",
-            "args": [
-                "--login"
-            ]
-        },
-        {
-            "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
-            "label": "bash (Git)",
-            "args": [
-                "--login"
-            ]
-        },
-        {
-            "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\ipython3.exe",
-            "label": "IPython"
-        },
-        {
-            "shell": "C:\\ProgramData\\Miniconda3\\Scripts\\jupyter.exe",
-            "label": "Jupyter notebook"
-        },
-        {
-            "shell": "C:\\Ruby26-x64\\bin\\irb.cmd",
-            "label": "irb",
-            "args": [
-                "-r",
-                "irb/completion",
-                "--simple-prompt"
-            ]
-        },
-        {
-            "shell": "cmd.exe",
-            "label": "cmd",
-            "args": []
-        },
-        {
-            "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-            "label": "PowerShell"
-        }
-    ],
     "window.enableMenuBarMnemonics": false,
     "window.newWindowDimensions": "maximized",
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
