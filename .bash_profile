@@ -36,7 +36,7 @@ function _munge_path
 # source the users bashrc if it exists
 test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
 
-PATH=/bin:/usr/local/bin:/usr/bin
+PATH=/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Set PATH so it includes user's private bin if it exists
 _home_bin="${HOME}/bin"
