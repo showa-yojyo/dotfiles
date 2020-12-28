@@ -47,7 +47,7 @@ a today='LC_ALL=C date +"%F (%a)"'
 a now='LC_ALL=C date +"%F (%a) %T"'
 
 # wget
-a wget='wget --continue --wait=1 --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
+a wget='wget --continue --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
 
 # Cygwin exclusive
 
