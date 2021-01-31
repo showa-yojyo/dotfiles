@@ -90,7 +90,6 @@
     format = man
 
 [merge]
-    ff = false
     tool = vscode
 
 [mergetool]
