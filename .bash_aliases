@@ -49,6 +49,11 @@ a now='LC_ALL=C date +"%F (%a) %T"'
 # wget
 a wget='wget --continue --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
 
+# FFmpeg
+a ffmpeg='ffmpeg -hide_banner'
+a ffplay='ffplay -hide_banner'
+a ffprobe='ffprobe -hide_banner'
+
 # Cygwin exclusive
 
 case "$OSTYPE" in
