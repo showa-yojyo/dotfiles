@@ -108,29 +108,31 @@ function sunset-anniversary
     _anniversary_helper "date(2020, 4, 27)"
 }
 
+# Convert MP4 video to MP3 audio
 function convert_mp3
 {
-    if [[ ! -x "$(command -v ffmpeg)" ]]; then
-        echo 'Error: ffmpeg is not installed.' >&2
+    if ! command -v ffmpeg &> /dev/null; then
+        echo 'Error: ffmpeg is not available.' >&2
         return
     fi
 
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
-    local ffmpeg_output_options=""
+    local ffmpeg_output_options="-qscale:a 0 -map a"
 
     for i in "$@";
     do
         local input_url="$i"
         local output_url="${input_url%.mp4}.mp3"
+        echo "Processing ${input_url}..." >&2
         ffmpeg $ffmpeg_global_options \
             $ffmpeg_input_options -i "$input_url" \
             $ffmpeg_output_options "$output_url"
         if [[ $? != 0 ]]; then
-            echo 'Error: ' $output_url 'is not generated' >&2
-        else
-            rm -f "$input_url"
+            echo "Error: $output_url is not generated" >&2
+            continue
         fi
+        rm -f "$input_url"
     done
 }
 
