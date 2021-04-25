@@ -59,6 +59,17 @@ if [[ -f /etc/resolv.conf ]]; then
     export RUNLEVEL=3
 fi
 
+case "$OSTYPE" in
+    cygwin | msys)
+        export BROWSER=cygstart
+        ;;
+    linux-gnu)
+        if [[ -n "$WSL_DISTRO_NAME" ]]; then
+            export BROWSER=wslview
+        fi
+        ;;
+esac
+
 DEFAULT_EDITOR='code --wait' # --new-window
 export EDITOR=$DEFAULT_EDITOR
 
