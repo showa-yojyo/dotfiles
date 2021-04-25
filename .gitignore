@@ -3,6 +3,10 @@
 # .ipython
 .ipython/README
 .ipython/*/db/
+.ipython/*/log/
+.ipython/*/pid/
+.ipython/*/security/
+.ipython/*/startup/README
 .ipython/*/history.sqlite
 
 # .jupyter
