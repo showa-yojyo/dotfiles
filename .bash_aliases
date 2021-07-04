@@ -66,26 +66,21 @@ case "$OSTYPE" in
         a ge='getclip'
         a pu='putclip'
 
-        # Scripts
-        a dlmp4='python $(cygpath -aw ~/devel/bin/dlmp4.py)'
-        a mjnet='python $(cygpath -aw ~/devel/bin/mjnet.py)'
-        a portrait='python $(cygpath -aw ~/devel/bin/portrait.py)'
-
         # Assume that Ruby is built for x64-mingw32
         a bundle=bundle.bat
         a gem=gem.bat
         a jekyll=jekyll.bat
         ;;
-    *)
+    linux*)
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
             a s='wslview'
         fi
-        a dlmp4='dlmp4.py'
-        a mjnet='mjnet.py'
-        a portrait='portrait.py'
         ;;
 esac
 
 a doctest='python -m doctest'
+a http-server='python -m http.server'
+a json-tool='python -m json.tool'
+a pdb='python -m pdb'
 
 unalias a
