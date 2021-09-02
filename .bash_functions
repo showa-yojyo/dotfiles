@@ -136,6 +136,29 @@ function convert_mp3
     done
 }
 
+# For uploading to Twitter
+function optimize-video
+{
+    if [[ -z $1 ]]; then
+        echo Usage: $FUNCNAME input_mp4_path >&2
+        return 2
+    fi
+
+    local ffmpeg_global_options="-loglevel error -y"
+    local ffmpeg_input_options=""
+    local ffmpeg_output_options="-vcodec h264 -crf 28"
+    local input="$1"
+    local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
+    ffmpeg $ffmpeg_global_options -i $input $ffmpeg_output_options $output
+    if [[ $? != 0 ]]; then
+        echo "Error: $output is not generated" >&2
+        return 1
+    fi
+
+    rm -f $input
+    mv $output $input
+}
+
 function backup-bookmark
 {
     local source="$HOME/Sleipnir ブックマーク.html"
