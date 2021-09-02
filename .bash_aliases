@@ -79,7 +79,7 @@ case "$OSTYPE" in
 esac
 
 a doctest='python -m doctest'
-a http-server='python -m http.server'
+a http-server='python -m http.server 8000 --bind 127.0.0.1'
 a json-tool='python -m json.tool'
 a pdb='python -m pdb'
 
