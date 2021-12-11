@@ -54,10 +54,12 @@ a ffmpeg='ffmpeg -hide_banner'
 a ffplay='ffplay -hide_banner'
 a ffprobe='ffprobe -hide_banner'
 
-# Cygwin exclusive
+# Pandoc
+a pandoc='pandoc --strip-comments --shift-heading-level-by=-2 --columns=80 --wrap=preserve --to rst'
 
 case "$OSTYPE" in
     cygwin | msys)
+        # Cygwin exclusive
         # Cygwin, Bash for Windows, MSYS.
         a s=cygstart
         a cygwin-setup='s $(cygpath -m ~/Downloads/setup-x86_64.exe)'
