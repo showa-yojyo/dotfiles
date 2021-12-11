@@ -47,28 +47,38 @@
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "git.path": "C:\\Program Files\\Git\\cmd\\git.exe",
     "git.promptToSaveFilesBeforeCommit": "always",
     "git.suggestSmartCommit": false,
-    "python.pythonPath": "~/miniconda3/bin/python",
-    "python.dataScience.sendSelectionToInteractiveWindow": false,
-    "python.terminal.activateEnvironment": false,
+    "html.autoClosingTags": false,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "_site": true
+    },
     "search.showLineNumbers": true,
     "search.followSymlinks": false,
     "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe",
     "terminal.integrated.automationShell.windows": "wsl.exe",
     "terminal.integrated.fontFamily": "monospace",
-    "terminal.integrated.rendererType": "dom",
     "terminal.integrated.rightClickBehavior": "default",
     "terminal.integrated.scrollback": 5000,
-    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\wsl.exe",
-    "terminal.integrated.shellArgs.windows": [
-        "~", "-d", "Ubuntu"
-    ],
+    "terminal.integrated.defaultProfile.windows": "WSL",
+    "terminal.integrated.profiles.windows": {
+        "WSL": {
+            "path": [
+              "C:\\WINDOWS\\System32\\wsl.exe"
+            ],
+            "args": ["~", "-d", "Ubuntu"],
+            "icon": "terminal-ubuntu"
+        }
+    },
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "manual",
     "window.enableMenuBarMnemonics": false,
     "window.newWindowDimensions": "maximized",
+    "window.restoreWindows": "none",
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
-    "window.zoomLevel": -1,
     "workbench.colorCustomizations": {
         "activityBar.activeBorder": "#ff1493",
         "activityBarBadge.background": "#ff1493",
@@ -84,38 +94,13 @@
         "editor.quickSuggestions": false,
         "files.trimTrailingWhitespace": false
     },
-    "latex-workshop.latex.recipes": [
-        {
-            "name": "ptex2pdf",
-            "tools": [
-                "ptex2pdf"
-            ]
-        }
-    ],
-    "latex-workshop.latex.tools": [
-        {
-            "name": "ptex2pdf",
-            "command": "ptex2pdf",
-            "args": [
-                "-l",
-                "-ot",
-                "-kanji=utf8 -synctex=1",
-                "%DOC%"
-            ]
-        },
-        {
-            "name": "bibtex",
-            "command": "bibtex",
-            "args": [
-                "%DOCFILE%"
-            ]
-        }
-    ],
-    "latex-workshop.view.pdf.viewer": "tab",
-    "markdown-preview-enhanced.enableEmojiSyntax": false,
-    "markdown-preview-enhanced.breakOnSingleNewLine": false,
-    "markdown-preview-enhanced.frontMatterRenderingOption": "code block",
-    "C_Cpp.updateChannel": "Insiders",
-    "restructuredtext.confPath": "",
-    "restructuredtext.linter.disabled": false
+    "emacs-mcx.strictEmacsMove": true,
+    "emacs-mcx.useMetaPrefixEscape": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sMjU7dW1sXCIsXCJjdXN0b21MaWJyYXJpZXNcIjpbXCJMLnNjcmF0Y2hwYWRcIl0sXCJwbHVnaW5zXCI6W10sXCJyZWNlbnRDb2xvcnNcIjpbXSxcImZvcm1hdFdpZHRoXCI6XCIyNDBcIixcImNyZWF0ZVRhcmdldFwiOmZhbHNlLFwicGFnZUZvcm1hdFwiOntcInhcIjowLFwieVwiOjAsXCJ3aWR0aFwiOjgyNyxcImhlaWdodFwiOjExNjl9LFwic2VhcmNoXCI6dHJ1ZSxcInNob3dTdGFydFNjcmVlblwiOnRydWUsXCJncmlkQ29sb3JcIjpcIiNkMGQwZDBcIixcImRhcmtHcmlkQ29sb3JcIjpcIiM2ZTZlNmVcIixcImF1dG9zYXZlXCI6dHJ1ZSxcInJlc2l6ZUltYWdlc1wiOm51bGwsXCJvcGVuQ291bnRlclwiOjAsXCJ2ZXJzaW9uXCI6MTgsXCJ1bml0XCI6MSxcImlzUnVsZXJPblwiOmZhbHNlLFwidWlcIjpcIlwifSJ9",
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.ignoreMissingGitWarning": true,
+    "window.zoomLevel": -1
 }
