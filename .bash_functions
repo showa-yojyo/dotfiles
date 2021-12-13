@@ -108,6 +108,15 @@ function sunset-anniversary
     _anniversary_helper "date(2020, 4, 27)"
 }
 
+# Convert Markdown to reStructuredText
+function convert_md_to_rst
+{
+    local input="$1"
+    local output="${1/.md/.rst}"
+    local pandoc_opts="--strip-comments --shift-heading-level-by=-1 --columns=80 --wrap=preserve --to rst"
+    pandoc $pandoc_opts -o "$output" "$input"
+}
+
 # Convert MP4 video to MP3 audio
 function convert_mp3
 {
