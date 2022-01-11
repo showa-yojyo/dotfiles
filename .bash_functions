@@ -298,3 +298,20 @@ function hibernate
         command hibernate $@
     fi
 }
+
+if [[ -n "$WSL_DISTRO_NAME" ]]; then
+    # WSL exclusive
+    function getclip
+    {
+        local ps=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+        $ps Get-Clipboard | sed 's/\r//'
+    }
+
+    function putclip
+    {
+        local clip=/mnt/c/Windows/System32/clip.exe
+        $clip
+    }
+
+fi # WSL
+
