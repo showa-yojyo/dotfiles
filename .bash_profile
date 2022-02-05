@@ -83,7 +83,7 @@ case "$OSTYPE" in
   linux*)
     if [[ -d "$HOME/miniconda3/bin" ]]; then
         eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
-        conda activate python-3.9
+        conda activate python-3.10
     fi
 
     if [[ -n "$WSL_DISTRO_NAME" ]]; then
