@@ -1,33 +1,17 @@
 {
-    "breadcrumbs.enabled": false,
-    "editor.autoClosingBrackets": "never",
-    "editor.autoClosingQuotes": "never",
-    "editor.columnSelection": false,
-    "editor.copyWithSyntaxHighlighting": false,
-    "editor.cursorBlinking": "solid",
-    "editor.dragAndDrop": false,
-    "editor.folding": false,
-    "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
+    // Controls the font size in pixels.
     "editor.fontSize": 14,
-    "editor.fontWeight": "500",
-    "editor.letterSpacing": 0,
-    "editor.minimap.enabled": false,
-    "editor.renderControlCharacters": true,
-    "editor.renderLineHighlight": "none",
+
+    // Controls the font family.
+    "editor.fontFamily": "'ＭＳ ゴシック', Consolas, 'Courier New', monospace",
+
+    // Controls how the editor should render whitespace characters.
     "editor.renderWhitespace": "boundary",
-    "editor.roundedSelection": false,
-    "editor.rulers": [
-        80
-    ],
-    "editor.tabCompletion": "onlySnippets",
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "extensions.autoUpdate": false,
-    "files.associations": {
-        ".bash*": "shellscript"
-    },
-    "files.eol": "\n",
-    "files.enableTrash": false,
+
+    // Configure glob patterns for excluding files and folders. For example,
+    // the file Explorer decides which files and folders to show or hide
+    // based on this setting. Refer to the `search.exclude` setting to define
+    // search specific excludes.
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -45,25 +29,204 @@
         "**/*.dll": true,
         "**.vs": true
     },
+
+    // Configure file associations to languages (e.g. `"*.extension": "html"`).
+    // These have precedence over the default associations of the languages installed.
+    "files.associations": {
+        ".bash*": "shellscript"
+    },
+
+    // Controls whether the editor should automatically close brackets after the
+    // user adds an opening bracket.
+    "editor.autoClosingBrackets": "never",
+
+    // Controls whether the editor should automatically close quotes after the
+    // user adds an opening quote.
+    "editor.autoClosingQuotes": "never",
+
+    // Controls whether syntax highlighting should be copied into the clipboard.
+    "editor.copyWithSyntaxHighlighting": false,
+
+    // Controls whether the editor should allow moving selections via drag and drop.
+    "editor.dragAndDrop": false,
+
+    // Controls whether copying without a selection copies the current line.
+    "editor.emptySelectionClipboard": false,
+
+    // Controls whether the editor has code folding enabled.
+    "editor.folding": false,
+
+    // Controls the font weight. Accepts "normal" and "bold" keywords or numbers
+    // between 1 and 1000.
+    "editor.fontWeight": "500",
+
+    // Controls whether the minimap is shown.
+    "editor.minimap.enabled": false,
+
+    // Control the cursor animation style.
+    "editor.cursorBlinking": "solid",
+
+    // Controls whether the editor should render control characters.
+    "editor.renderControlCharacters": true,
+
+    // Controls how the editor should render the current line highlight.
+    "editor.renderLineHighlight": "all",
+
+    // Controls whether selections should have rounded corners.
+    "editor.roundedSelection": false,
+
+    // Render vertical rulers after a certain number of monospace characters.
+    // Use multiple values for multiple rulers.
+    // No rulers are drawn if array is empty.
+    "editor.rulers": [
+        80
+    ],
+
+    // The width of the vertical scrollbar.
+    "editor.scrollbar.verticalScrollbarSize": 24,
+
+    // Enables tab completions.
+    "editor.tabCompletion": "onlySnippets",
+
+    // Controls how to handle opening untrusted files in a trusted workspace.
+    // This setting also applies to opening files in an empty window which
+    // is trusted via `security.workspace.trust.emptyWindow`.
+    "security.workspace.trust.untrustedFiles": "open",
+
+    // Overrides colors from the currently selected color theme.
+    "workbench.colorCustomizations": {
+        "activityBar.activeBorder": "#ff1493",
+        "activityBarBadge.background": "#ff1493",
+        "statusBar.background": "#ff1493"
+    },
+
+    // Specifies the color theme used in the workbench.
+    "workbench.colorTheme": "Default Light+",
+
+    // Controls the sizing of editor tabs. This value is ignored when
+    // `workbench.editor.showTabs` is disabled.
+    "workbench.editor.tabSizing": "shrink",
+
+    // Configure glob patterns to editors (e.g. `"*.hex": "hexEditor.hexEdit"`).
+    // These have precedence over the default behavior.
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+
+    // Determines which settings editor to use by default.
+    "workbench.settings.editor": "json",
+
+    // Controls whether to use the split JSON editor when editing settings as JSON.
+    "workbench.settings.useSplitJSON": true,
+
+    // Controls which editor is shown at startup, if none are restored from the previous session.
+    "workbench.startupEditor": "none",
+
+    // Controls whether the main menus can be opened via Alt-key shortcuts.
+    // Disabling mnemonics allows to bind these Alt-key shortcuts to editor commands instead.
+    "window.enableMenuBarMnemonics": false,
+
+    // Controls the dimensions of opening a new window when at least one window
+    // is already opened. Note that this setting does not have an impact on the
+    // first window that is opened. The first window will always restore the
+    // size and location as you left it before closing.
+    "window.newWindowDimensions": "maximized",
+
+    // Controls how windows are being reopened after starting for the first time.
+    // This setting has no effect when the application is already running.
+    "window.restoreWindows": "none",
+
+    // Controls the window title based on the active editor. Variables are substituted based on the context.
+    //"window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+
+    // Adjust the appearance of the window title bar.
+    // On Linux and Windows, this setting also affects the application and
+    // context menu appearances. Changes require a full restart to apply.
+    "window.titleBarStyle": "custom",
+
+    // Adjust the zoom level of the window. The original size is 0 and each
+    // increment above (e.g. 1) or below (e.g. -1) represents zooming 20%
+    // larger or smaller. You can also enter decimals to adjust the zoom
+    // level with a finer granularity.
+    "window.zoomLevel": -1,
+
+    // Moves files/folders to the OS trash (recycle bin on Windows) when deleting.
+    // Disabling this will delete files/folders permanently.
+    "files.enableTrash": false,
+
+    // The default end of line character.
+    "files.eol": "\n",
+
+    // When enabled, insert a final new line at the end of the file when saving it.
     "files.insertFinalNewline": true,
+
+    // When enabled, will trim trailing whitespace when saving a file.
     "files.trimTrailingWhitespace": true,
-    "git.promptToSaveFilesBeforeCommit": "always",
-    "git.suggestSmartCommit": false,
-    "html.autoClosingTags": false,
+
+    // Controls whether the explorer should ask for confirmation when
+    // deleting a file via the trash.
+    "explorer.confirmDelete": false,
+
+    // Controls whether the explorer should ask for confirmation to move
+    // files and folders via drag and drop.
+    "explorer.confirmDragAndDrop": false,
+
+    // Configure glob patterns for excluding files and folders in fulltext
+    // searches and quick open. Inherits all glob patterns from the
+    // `files.exclude` setting.
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
         "_site": true
     },
-    "search.showLineNumbers": true,
+
+    // Controls whether to follow symlinks while searching.
     "search.followSymlinks": false,
-    "terminal.external.windowsExec": "C:\\cygwin64\\bin\\bash.exe",
-    "terminal.integrated.automationShell.windows": "wsl.exe",
-    "terminal.integrated.fontFamily": "monospace",
-    "terminal.integrated.rightClickBehavior": "default",
-    "terminal.integrated.scrollback": 5000,
+
+    // Controls whether to show line numbers for search results.
+    "search.showLineNumbers": true,
+
+    // Enable to download and install new VS Code versions in the background
+    // on Windows.
+    "update.enableWindowsBackgroundUpdates": false,
+
+    // Configure whether you receive automatic updates. Requires a restart
+    // after change. The updates are fetched from a Microsoft online service.
+    "update.mode": "manual",
+
+    // Enable/disable autoclosing of HTML tags.
+    "html.autoClosingTags": false,
+
+    // When enabled, automatically checks extensions for updates. If an
+    // extension has an update, it is marked as outdated in the Extensions
+    // view. The updates are fetched from a Microsoft online service.
+    "extensions.autoCheckUpdates": false,
+
+    // Controls the automatic update behavior of extensions. The updates are
+    // fetched from a Microsoft online service.
+    "extensions.autoUpdate": false,
+
+    // The terminal profile to use for automation-related terminal usage like
+    // tasks and debug. This setting will currently be ignored if
+    // terminal.integrated.automationShell.windows is set.
+    "terminal.integrated.automationProfile.windows": null,
+
+    // The default profile used on Windows. This setting will currently be
+    // ignored if either `terminal.integrated.shell.windows` or
+    // `terminal.integrated.shellArgs.windows` are set.
     "terminal.integrated.defaultProfile.windows": "WSL",
+
+    // Controls the font family of the terminal, this defaults to
+    // `editor.fontFamily`'s value.
+    "terminal.integrated.fontFamily": "monospace",
+
+    // The Windows profiles to present when creating a new terminal via the
+    // terminal dropdown. Use the `source` property to automatically detect
+    // the shell's location. Or set the `path` property manually with an
+    // optional `args`.
+    // Set an existing profile to `null` to hide the profile from the list,
+    // for example: `"Ubuntu-20.04 (WSL)": null`.
     "terminal.integrated.profiles.windows": {
         "WSL": {
             "path": [
@@ -73,34 +236,40 @@
             "icon": "terminal-ubuntu"
         }
     },
-    "update.enableWindowsBackgroundUpdates": false,
-    "update.mode": "manual",
-    "window.enableMenuBarMnemonics": false,
-    "window.newWindowDimensions": "maximized",
-    "window.restoreWindows": "none",
-    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
-    "workbench.colorCustomizations": {
-        "activityBar.activeBorder": "#ff1493",
-        "activityBarBadge.background": "#ff1493",
-        "statusBar.background": "#ff1493"
-    },
-    "workbench.colorTheme": "Default Light+",
-    "workbench.editor.tabSizing": "shrink",
-    "workbench.settings.editor": "json",
-    "workbench.settings.useSplitJSON": true,
-    "workbench.startupEditor": "none",
+
+    // Controls how terminal reacts to right click.
+    "terminal.integrated.rightClickBehavior": "default",
+
+    // Controls the maximum amount of lines the terminal keeps in its buffer.
+    "terminal.integrated.scrollback": 2000,
+
+    // Enable/disable navigation breadcrumbs.
+    "breadcrumbs.enabled": false,
+
+    // Configure settings to be overridden for [markdown] language.
     "[markdown]": {
         "editor.wordWrap": "off",
         "editor.quickSuggestions": false,
         "files.trimTrailingWhitespace": false
     },
-    "emacs-mcx.strictEmacsMove": true,
-    "emacs-mcx.useMetaPrefixEscape": true,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
-    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sMjU7dW1sXCIsXCJjdXN0b21MaWJyYXJpZXNcIjpbXCJMLnNjcmF0Y2hwYWRcIl0sXCJwbHVnaW5zXCI6W10sXCJyZWNlbnRDb2xvcnNcIjpbXSxcImZvcm1hdFdpZHRoXCI6XCIyNDBcIixcImNyZWF0ZVRhcmdldFwiOmZhbHNlLFwicGFnZUZvcm1hdFwiOntcInhcIjowLFwieVwiOjAsXCJ3aWR0aFwiOjgyNyxcImhlaWdodFwiOjExNjl9LFwic2VhcmNoXCI6dHJ1ZSxcInNob3dTdGFydFNjcmVlblwiOnRydWUsXCJncmlkQ29sb3JcIjpcIiNkMGQwZDBcIixcImRhcmtHcmlkQ29sb3JcIjpcIiM2ZTZlNmVcIixcImF1dG9zYXZlXCI6dHJ1ZSxcInJlc2l6ZUltYWdlc1wiOm51bGwsXCJvcGVuQ291bnRlclwiOjAsXCJ2ZXJzaW9uXCI6MTgsXCJ1bml0XCI6MSxcImlzUnVsZXJPblwiOmZhbHNlLFwidWlcIjpcIlwifSJ9",
-    "security.workspace.trust.untrustedFiles": "open",
+
+    // Ignores the warning when Git is missing.
     "git.ignoreMissingGitWarning": true,
-    "window.zoomLevel": -1
+
+    // Controls whether Git should check for unsaved files before committing.
+    "git.promptToSaveFilesBeforeCommit": "always",
+
+    // Suggests to enable smart commit (commit all changes when there are no staged changes).
+    "git.suggestSmartCommit": false,
+
+    // Simulate strictly the original emacs's cursor movements or preserve
+    // VSCode's native ones
+    "emacs-mcx.strictEmacsMove": true,
+
+    // If true, Command (⌘) key works as the Meta prefix (macOS only).
+    "emacs-mcx.useMetaPrefixEscape": true,
+
+    // Only change this property if you know what you are doing. Manual changes
+    // to this property are not supported!
+    "hediet.vscode-drawio.local-storage": "eyIuZHJhd2lvLWNvbmZpZyI6IntcImxhbmd1YWdlXCI6XCJcIixcImN1c3RvbUZvbnRzXCI6W10sXCJsaWJyYXJpZXNcIjpcImdlbmVyYWw7dW1sMjU7dW1sXCIsXCJjdXN0b21MaWJyYXJpZXNcIjpbXCJMLnNjcmF0Y2hwYWRcIl0sXCJwbHVnaW5zXCI6W10sXCJyZWNlbnRDb2xvcnNcIjpbXSxcImZvcm1hdFdpZHRoXCI6XCIyNDBcIixcImNyZWF0ZVRhcmdldFwiOmZhbHNlLFwicGFnZUZvcm1hdFwiOntcInhcIjowLFwieVwiOjAsXCJ3aWR0aFwiOjgyNyxcImhlaWdodFwiOjExNjl9LFwic2VhcmNoXCI6dHJ1ZSxcInNob3dTdGFydFNjcmVlblwiOnRydWUsXCJncmlkQ29sb3JcIjpcIiNkMGQwZDBcIixcImRhcmtHcmlkQ29sb3JcIjpcIiM2ZTZlNmVcIixcImF1dG9zYXZlXCI6dHJ1ZSxcInJlc2l6ZUltYWdlc1wiOm51bGwsXCJvcGVuQ291bnRlclwiOjAsXCJ2ZXJzaW9uXCI6MTgsXCJ1bml0XCI6MSxcImlzUnVsZXJPblwiOmZhbHNlLFwidWlcIjpcIlwifSJ9",
 }
