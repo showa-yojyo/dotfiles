@@ -106,21 +106,21 @@ fi
 unset -f _munge_path
 
 # Homebrew
-test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+#test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+#test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# NVM stuffs
-export NVM_DIR="~/.nvm"
-
-# Load nvm
-_nvm_sh=/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh
-test -s $_nvm_sh && . $_nvm_sh
-unset _nvm_sh
-
-# Load nvm bash_completion
-_nvm_completion=/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm
-test -s $_nvm_completion && . $_nvm_completion
-unset _nvm_completion
+## NVM stuffs
+#export NVM_DIR="~/.nvm"
+#
+## Load nvm
+#_nvm_sh=/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh
+#test -s $_nvm_sh && . $_nvm_sh
+#unset _nvm_sh
+#
+## Load nvm bash_completion
+#_nvm_completion=/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm
+#test -s $_nvm_completion && . $_nvm_completion
+#unset _nvm_completion
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
