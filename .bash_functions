@@ -170,9 +170,11 @@ function optimize-video
 
 function backup-bookmark
 {
-    local source="$HOME/Sleipnir ブックマーク.html"
-    if [[ ! -f "$source" ]]; then
-        echo File $source not found >&2
+    local SLEIPNIR_PREFIX=sleipnir-bookmarks
+
+    local source="$HOME/$SLEIPNIR_PREFIX"
+    if [[ ! -d "$source" ]]; then
+        echo $source not found >&2
         return 1
     fi
 
@@ -188,9 +190,9 @@ function backup-bookmark
         tty -s && echo
     fi
 
-    local target=${source%.html}.zip
-    zip -e --password "$password" "$target" "$source"
-    mv "$target" "$dest" && rm -f "$source"
+    local target=${SLEIPNIR_PREFIX}.zip
+    zip -r -e --password "$password" "$target" "$source"
+    mv -f -v "$target" "$dest"
 }
 
 # usage example:
