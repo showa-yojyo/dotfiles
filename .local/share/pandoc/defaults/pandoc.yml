@@ -3,8 +3,8 @@
 
 # General options
 verbosity: INFO # ERROR | WARNING | INFO
-from: markdown
-to: rst-smart+east_asian_line_breaks
+from: markdown-smart-ignore_line_breaks+east_asian_line_breaks
+to: rst-smart
 
 # Reader options
 shift-heading-level-by: -1
@@ -12,10 +12,11 @@ shift-heading-level-by: -1
 # General writer options (for reStructuredText)
 standalone: true
 eol: lf
-columns: 80
+#columns: 80
 toc: true
 toc-depth: 2
 strip-comments: false
+wrap: preserve
 
 # Options affecting specific writers
 # n/a
