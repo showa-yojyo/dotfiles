@@ -170,7 +170,7 @@ function optimize-video
 
 function optimize-video-for-twitter
 {
-    if [[ -z $1 ]]; then
+    if [[ -z "$1" ]]; then
         echo Usage: $FUNCNAME input_mp4_path >&2
         return 2
     fi
@@ -178,21 +178,21 @@ function optimize-video-for-twitter
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
     local ffmpeg_output_options="""
-        -vcodec libx264 -vf scale=480:852 -pix_fmt yuv420p
+        -vcodec libx264 -vf scale=480:854 -pix_fmt yuv420p
         -strict experimental -r 30 -t 2:20 -acodec aac
         -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
         -ar 44100 -ac 2
         """
     local input="$1"
     local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
-    ffmpeg $ffmpeg_global_options -i $input $ffmpeg_output_options $output
+    ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     if [[ $? != 0 ]]; then
         echo "Error: $output is not generated" >&2
         return 1
     fi
 
-    rm -f $input
-    mv $output $input
+    rm -f "$input"
+    mv "$output" "$input"
 }
 
 function backup-bookmark
