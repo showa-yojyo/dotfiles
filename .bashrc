@@ -163,11 +163,12 @@ export LESSHISTFILE=-
 #export PATH
 
 # Prompt
-# See .git-priompt.sh
-export PROMPT_COMMAND='__git_ps1 "[$OSTYPE \\s \\W" " \\!]\\\$ "'
+# See .git-prompt.sh
+export PROMPT_COMMAND="__git_ps1; $PROMPT_COMMAND"
 
 # PS1: the primary prompt string.
 #export PS1='[$OSTYPE \s \W \!]\\$ '
+#export PS1='\u@\h \w> '
 export PS2='> '
 
 # PS3: the prompt for the select command
