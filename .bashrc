@@ -164,7 +164,7 @@ export LESSHISTFILE=-
 
 # Prompt
 # See .git-prompt.sh
-export PROMPT_COMMAND="__git_ps1; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="__git_ps1; $PROMPT_COMMAND"
 
 # PS1: the primary prompt string.
 #export PS1='[$OSTYPE \s \W \!]\\$ '
