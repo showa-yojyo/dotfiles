@@ -327,3 +327,9 @@ function hibernate
         command hibernate $@
     fi
 }
+
+# Set the title of the terminal window (or current terminal tab)
+function settitle
+{
+     echo -ne '\033]0;'"$1"'\a'
+}
