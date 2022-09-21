@@ -122,8 +122,8 @@ unset -f _munge_path
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# Oh My Posh overrides PS1 and PS2. So this line should be put in .bashrc
-eval "$(oh-my-posh --init --shell bash --config ~/paradox.omp.json)"
+# Enable Oh My Posh
+eval "$(oh-my-posh init bash --config ~/paradox.omp.json)"
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
