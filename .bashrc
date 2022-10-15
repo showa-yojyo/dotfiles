@@ -70,15 +70,14 @@ case "$OSTYPE" in
         ;;
 esac
 
-DEFAULT_EDITOR='code --wait' # --new-window
-export EDITOR=$DEFAULT_EDITOR
+export EDITOR='code --wait' # --new-window
 
 # FCEDIT: the default editor for the fc builtin command.
-export FCEDIT=$DEFAULT_EDITOR
+export FCEDIT=$EDITOR
 
 # Git
 
-export GIT_EDITOR=$DEFAULT_EDITOR
+export GIT_EDITOR=$EDITOR
 
 # See .git-prompt.sh
 # Show unstaged (*) and staged (+) changes.
