@@ -195,6 +195,53 @@ function optimize-video-for-twitter
     mv "$output" "$input"
 }
 
+function video-duration
+{
+    if [[ -z "$1" ]]; then
+        echo Usage: $FUNCNAME input_video_path >&2
+        return 2
+    fi
+
+    local ffprobe_options="""
+        -v error -show_entries format=duration
+        -of default=noprint_wrappers=1:nokey=1
+        """
+    local input="$1"
+    ffprobe $ffprobe_options "$input"
+}
+
+# Fade out the last second of the video.
+function naive-fadeout
+{
+    if [[ -z "$1" ]]; then
+        echo Usage: $FUNCNAME input_mp4_path >&2
+        return 2
+    fi
+
+    # duration of fade out
+    local fade_duration=1
+
+    local ffmpeg_global_options="-loglevel error -y"
+    local input="$1"
+    local output=${input%.mp4}-faded.mp4
+    local video_duration=$(video-duration ${input})
+
+    # from where to fade out
+    local st=$(echo "$video_duration - $fade_duration" | bc)
+
+    local ffmpeg_input_options=""
+    local ffmpeg_output_options="""
+        -vf "fade=t=out:st=$st:d=$fade_duration"
+        -af "afade=t=out:st=$st:d=$fade_duration"
+        """
+
+    ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
+    if [[ $? != 0 ]]; then
+        echo "Error: $output is not generated" >&2
+        return 1
+    fi
+}
+
 function backup-bookmark
 {
     local SLEIPNIR_PREFIX=sleipnir-bookmarks
