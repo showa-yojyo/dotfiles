@@ -20,15 +20,15 @@ function _munge_path
   local a_path="$1"
 
   if [[ ! -d "$a_path" ]]; then
-      echo Warning: $a_path is not directory. >&2
-      return
+    echo Warning: $a_path is not directory. >&2
+    return
   fi
 
   if ! echo $PATH | command egrep -q "(^|:)$a_path($|:)" ; then
     if [[ "$2" == "before" ]]; then
-      PATH=$a_path:$PATH
+      PATH="$a_path${PATH:+:${PATH}}"
     else
-      PATH+=":$a_path"
+      PATH="${PATH:+${PATH}:$a_path}"
     fi
   fi
 }
