@@ -210,6 +210,24 @@ function video-duration
     ffprobe $ffprobe_options "$input"
 }
 
+# Concatenate video files with exactly the same codec and codec parameters.
+function video-concat
+{
+    if [[ $# -le 2 ]] ; then
+        echo Usage: $FUNCNAME INPUT_VIDEO_PATH... OUTPUT_VIDEO_PATH >&2
+        return 2
+    fi
+
+    local ffmpeg_global_options="-loglevel error -y"
+    local ffmpeg_input_options="-f concat -safe 0"
+    local ffmpeg_output_options="-c copy"
+    local output_path="${@: -1}"
+
+    ffmpeg $ffmpeg_global_options $ffmpeg_input_options -i \
+        <(for f in "${@: 1:$#-1}"; do echo "file '$PWD/$f'" ; done) \
+        $ffmpeg_output_options "$output_path"
+}
+
 # Fade out the last second of the video.
 function naive-fadeout
 {
