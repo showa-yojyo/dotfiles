@@ -2,11 +2,6 @@
 [include]
     path = ~/.gitconfig.user
 
-[core]
-    autocrlf = input
-    editor = code --wait
-    fileMode = true
-
 [alias]
     br = branch
 
@@ -50,12 +45,7 @@
     autoSetupRebase = always
 
 [browser "default-browser"]
-    # In Cygwin, git-web--browse script, which eventually executes
-    #     cygstart "$@",
-    # fails if the argument includes white space characters.
-    # To avoid this, replace cygstart to a real browser path.
-    cmd = 'C:\\Program Files (x86)\\Fenrir Inc\\Sleipnir5\\bin\\Sleipnir.exe'
-    #cmd = cygstart
+    cmd = wslview
 
 [color "branch"]
     current = yellow reverse
@@ -76,6 +66,11 @@
 [color]
     ui = auto
 
+[core]
+    autocrlf = input
+    editor = code --wait
+    fileMode = true
+
 [diff]
     tool = vscode
 
@@ -85,9 +80,16 @@
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
 
+[gui]
+    encoding = utf-8
+    tabsize = 4
+
 [help]
     browser = default-browser
     format = man
+
+[init]
+    defaultBranch = main
 
 [merge]
     tool = vscode
@@ -107,8 +109,6 @@
 
 [web]
     browser = default-browser
+
 [winUpdater]
     recentlySeenVersion = 2.17.0.windows.1
-[gui]
-    encoding = utf-8
-    tabsize = 4
