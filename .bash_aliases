@@ -49,6 +49,10 @@ a now='LC_ALL=C date +"%F (%a) %T"'
 # wget
 a wget='wget --continue --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
 
+# HTTP server
+a http-server='python -m http.server 8000 --bind 127.0.0.1'
+a http-server-php='php -S 127.0.0.1:8000'
+
 # FFmpeg
 a ffmpeg='ffmpeg -hide_banner'
 a ffplay='ffplay -hide_banner'
@@ -80,7 +84,6 @@ case "$OSTYPE" in
 esac
 
 a doctest='python -m doctest'
-a http-server='python -m http.server 8000 --bind 127.0.0.1'
 a json-tool='python -m json.tool'
 a pdb='python -m pdb'
 
