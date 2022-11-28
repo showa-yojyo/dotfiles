@@ -52,12 +52,12 @@ shopt -s histverify
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# ImageMagick
-if [[ -f /etc/resolv.conf ]]; then
-    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
-    export XDG_RUNTIME_DIR=/tmp/xdg-runtime
-    export RUNLEVEL=3
-fi
+# Comment out so that WSLg works fine
+#if [[ -f /etc/resolv.conf ]]; then
+#    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
+#    export XDG_RUNTIME_DIR=/tmp/xdg-runtime
+#    export RUNLEVEL=3
+#fi
 
 case "$OSTYPE" in
     cygwin | msys)
