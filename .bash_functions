@@ -86,15 +86,12 @@ function sync-all
 
 function _anniversary_helper
 {
-    if [[ -z $1 ]]; then
-        echo Usage: $FUNCNAME \"date\(YYYY, mm, dd\)\" >&2
-        return 1
-    fi
+    local basedate=${1:?Usage: $FUNCNAME \'date(YYYY, mm, dd)\'}
 
     python << EOL -
 from datetime import date
 
-print((date.today() - $1).days + 1)
+print((date.today() - $basedate).days + 1)
 EOL
 }
 
@@ -111,9 +108,15 @@ function sunset-anniversary
 # Convert Markdown to reStructuredText
 function convert_md_to_rst
 {
-    local input="$1"
-    local output="${1/.md/.rst}"
-    local pandoc_opts="--strip-comments --shift-heading-level-by=-1 --columns=80 --wrap=preserve --to rst"
+    local input="${1:?Usage: $FUNCNAME MARKDOWN_PATH}"
+    local output="${input%.md}.rst"
+    local pandoc_opts="""
+        --strip-comments
+        --shift-heading-level-by=-1
+        --columns=80
+        --wrap=preserve
+        --to rst
+        """
     pandoc $pandoc_opts -o "$output" "$input"
 }
 
@@ -148,19 +151,17 @@ function convert_mp3
 # For uploading to Twitter
 function optimize-video
 {
-    if [[ -z "$1" ]]; then
-        echo Usage: $FUNCNAME input_mp4_path >&2
-        return 2
-    fi
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
     local ffmpeg_output_options="-vcodec h264 -crf 28"
-    local input="$1"
+
     local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options $output
     if [[ $? != 0 ]]; then
         echo "Error: $input conversion failed" >&2
+        rm -f $output
         return 1
     fi
 
@@ -170,10 +171,7 @@ function optimize-video
 
 function optimize-video-for-twitter
 {
-    if [[ -z "$1" ]]; then
-        echo Usage: $FUNCNAME input_mp4_path >&2
-        return 2
-    fi
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
@@ -183,11 +181,12 @@ function optimize-video-for-twitter
         -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
         -ar 44100 -ac 2
         """
-    local input="$1"
+
     local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     if [[ $? != 0 ]]; then
         echo "Error: $output is not generated" >&2
+        rm -f $output
         return 1
     fi
 
@@ -197,16 +196,13 @@ function optimize-video-for-twitter
 
 function video-duration
 {
-    if [[ -z "$1" ]]; then
-        echo Usage: $FUNCNAME input_video_path >&2
-        return 2
-    fi
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
     local ffprobe_options="""
         -v error -show_entries format=duration
         -of default=noprint_wrappers=1:nokey=1
         """
-    local input="$1"
+
     ffprobe $ffprobe_options "$input"
 }
 
@@ -231,16 +227,13 @@ function video-concat
 # Fade out the last second of the video.
 function naive-fadeout
 {
-    if [[ -z "$1" ]]; then
-        echo Usage: $FUNCNAME input_mp4_path >&2
-        return 2
-    fi
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
     # duration of fade out
-    local fade_duration=1
+    local fade_duration=${2:-1}
 
     local ffmpeg_global_options="-loglevel error -y"
-    local input="$1"
+
     local output=${input%.mp4}-faded.mp4
     local video_duration=$(video-duration ${input})
 
@@ -254,10 +247,6 @@ function naive-fadeout
         """
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
-    if [[ $? != 0 ]]; then
-        echo "Error: $output is not generated" >&2
-        return 1
-    fi
 }
 
 function backup-bookmark
