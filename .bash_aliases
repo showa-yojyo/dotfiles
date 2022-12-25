@@ -33,6 +33,7 @@ fi
 a ll='ls -l' # long list
 a la='ls -A' # all but . and ..
 a l='ls -CF'
+a lsd='\ls -d */'
 
 a j='jobs -l'
 
