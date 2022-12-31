@@ -1,89 +1,5 @@
 # .bash_functions
 
-function optimize-dropbox
-{
-    # Examples:
-    # bash$ optimize-dropbox
-    # bash$ optimize-dropbox 201910*
-    local target_dir="$HOME/Dropbox"
-    optipng ${target_dir}/Photos/twitter/2020/${1:-"*"}.png
-}
-
-function update-local-copy
-{
-    local repos_path="$1"
-    if [[ ! -d "$repos_path" ]]; then
-        echo "Error: $repos_path not a directory" >&2
-        return 1
-    fi
-
-    git -C "$repos_path" checkout master
-    if [[ $? -ne 0 ]]; then
-        echo "Abort $FUNCNAME for $repos_path" >&2
-        return 1
-    fi
-
-    git -C "$repos_path" remote -v update 2>&1 | grep -qE "up to date.+origin/master"
-    if [[ $? -eq 0 ]]; then
-        # Your branch is up-to-date with 'origin/master'.
-        git -C "$repos_path" checkout -
-        return
-    fi
-
-    git -C "$repos_path" merge
-    git -C "$repos_path" checkout -
-}
-
-function plantuml
-{
-    if [[ -x "$(command -v cygpath)" ]]; then
-        export PLANTUML_PATH="$(cygpath -aw /usr/share/plantuml/plantuml.jar)"
-    else
-        export PLANTUML_PATH=/usr/share/plantuml/plantuml.jar
-    fi
-
-    java -jar "$PLANTUML_PATH" -charset UTF-8 $@
-}
-
-function update-all-repos
-{
-    update-local-copy "$HOME/devel/gitignore" &
-}
-
-function backup
-{
-    local list="$HOME/.remote_repos"
-    if [[ ! -f "$list" ]]; then
-        echo File $list not found. >&2
-        return 1
-    fi
-
-    test -x "$(command -v cygpath)"
-    local use_cygpath=$?
-
-    for repo in $(sed -e 's/ *#.\+$//g' $list) ; do
-        # Expand tildes in $repo
-        repo=$(eval echo "$repo")
-
-        if [[ $use_cygpath -eq 0 ]]; then
-            repo=$(cygpath -m "$repo")
-        fi
-
-        # Push the current branch to the remote repository
-        test -d "$repo" && { git -C "$repo" push origin HEAD & }
-    done
-}
-
-function sync-all
-{
-    backup &
-    update-all-repos &
-
-    if git --version | grep -q windows; then
-        git update-git-for-windows -y &
-    fi
-}
-
 function _anniversary_helper
 {
     local basedate=${1:?Usage: $FUNCNAME \'date(YYYY, mm, dd)\'}
@@ -249,41 +165,6 @@ function naive-fadeout
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
 }
 
-function backup-bookmark
-{
-    local SLEIPNIR_PREFIX=sleipnir-bookmarks
-
-    local source="$HOME/$SLEIPNIR_PREFIX"
-    if [[ ! -d "$source" ]]; then
-        echo $source not found >&2
-        return 1
-    fi
-
-    local dest="$HOME/Dropbox/locked"
-    if [[ ! -d "$dest" ]]; then
-        echo $dest not a directory >&2
-        return 1
-    fi
-
-    local password="$1"
-    if [[ -z $1 ]]; then
-        read -sp "Password: " password
-        tty -s && echo
-    fi
-
-    local target=${SLEIPNIR_PREFIX}.zip
-    zip -r -e --password "$password" "$target" "$source"
-    mv -f -v "$target" "$dest"
-}
-
-# usage example:
-# bash$ extinct *.tmp
-# bash$ extinct $(find . -type f -name "*.tmp")
-function extinct
-{
-    shred --iterations=0 --zero --exact "$@"
-}
-
 # Taken from Advanced Bash-Scripting Guide Appendix M with a small fix
 function extract
 {
@@ -321,12 +202,6 @@ function extract
         return 1
         ;;
     esac
-}
-
-function zip-by-pattern
-{
-    local pattern="${1:-*.extension}"
-    find . -type f -name "$pattern" | zip -e -v -@ X
 }
 
 # Reference: Bash Guide for Beginners
@@ -371,15 +246,6 @@ function g++14
 function g++17
 {
     _g++base c++17 $1
-}
-
-function hibernate
-{
-    if [[ -n "$WSL_DISTRO_NAME" ]]; then
-        shutdown.exe /h $@
-    else
-        command hibernate $@
-    fi
 }
 
 # Set the title of the terminal window (or current terminal tab)
