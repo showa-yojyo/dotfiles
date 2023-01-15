@@ -51,7 +51,7 @@ function convert_mp3
     for i in "$@";
     do
         local input_url="$i"
-        local output_url="${input_url%.mp4}.mp3"
+        local output_url="${input_url%.*}.mp3"
         echo "Processing ${input_url}..." >&2
         ffmpeg $ffmpeg_global_options \
             $ffmpeg_input_options -i "$input_url" \
@@ -73,7 +73,7 @@ function optimize-video
     local ffmpeg_input_options=""
     local ffmpeg_output_options="-vcodec h264 -crf 28"
 
-    local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
+    local output="$(mktemp --tmpdir -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options $output
     if [[ $? != 0 ]]; then
         echo "Error: $input conversion failed" >&2
@@ -98,7 +98,7 @@ function optimize-video-for-twitter
         -ar 44100 -ac 2
         """
 
-    local output="$(mktemp -u --suffix=.mp4 XXXXXXXXX)"
+    local output="$(mktemp --tmpdir -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     if [[ $? != 0 ]]; then
         echo "Error: $output is not generated" >&2
@@ -150,8 +150,8 @@ function naive-fadeout
 
     local ffmpeg_global_options="-loglevel error -y"
 
-    local output=${input%.mp4}-faded.mp4
     local video_duration=$(video-duration ${input})
+    local output="${input%.*}-faded.${input#*.}"
 
     # from where to fade out
     local st=$(echo "$video_duration - $fade_duration" | bc)
@@ -161,6 +161,17 @@ function naive-fadeout
         -vf "fade=t=out:st=$st:d=$fade_duration"
         -af "afade=t=out:st=$st:d=$fade_duration"
         """
+
+    ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
+}
+
+# https://superuser.com/questions/268985/remove-audio-from-video-file-with-ffmpeg
+function video-mute
+{
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    local output="${input%.*}-mute.${input#*.}"
+    local ffmpeg_global_options="-loglevel error -y"
+    local ffmpeg_output_options="-c copy -an"
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
 }
