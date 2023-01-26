@@ -64,6 +64,27 @@ function convert_mp3
     done
 }
 
+# The core function for image-resize-xxxx family
+function _image-resize
+{
+    local magick_options="-resize $1 -define preserve-timestamp=true"
+    shift
+    # Use ImageMagick 7
+    magick mogrify $magick_options "$@"
+}
+
+# Resize image to fit within 854x480 dots
+function image-resize-small
+{
+    _image-resize 854x480 "$@"
+}
+
+# Resize image to fit within 1366x768 dots
+function image-resize-medium
+{
+    _image-resize 1366x768 "$@"
+}
+
 # For uploading to Twitter
 function optimize-video
 {
