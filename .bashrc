@@ -216,3 +216,6 @@ nvm() {
 
 # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+# Rust
+[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
