@@ -50,17 +50,18 @@ function convert_mp3
 
     for i in "$@";
     do
-        local input_url="$i"
-        local output_url="${input_url%.*}.mp3"
-        echo "Processing ${input_url}..." >&2
+        local input="$i"
+        local output="${input%.*}.mp3"
+        echo "Processing ${input}..." >&2
         ffmpeg $ffmpeg_global_options \
-            $ffmpeg_input_options -i "$input_url" \
-            $ffmpeg_output_options "$output_url"
+            $ffmpeg_input_options -i "$input" \
+            $ffmpeg_output_options "$output"
         if [[ $? != 0 ]]; then
-            echo "Error: $output_url is not generated" >&2
+            echo "Error: $output is not generated" >&2
             continue
         fi
-        rm -f "$input_url"
+        touch -r "$input" "$output"
+        rm -f "$input"
     done
 }
 
@@ -86,7 +87,7 @@ function image-resize-medium
 }
 
 # For uploading to Twitter
-function optimize-video
+function video-optimize
 {
     local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
@@ -98,35 +99,37 @@ function optimize-video
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options $output
     if [[ $? != 0 ]]; then
         echo "Error: $input conversion failed" >&2
-        rm -f $output
+        rm -f "$output"
         return 1
     fi
 
+    touch -r "$input" "$output"
     rm -f "$input"
     mv $output "$input"
 }
 
-function optimize-video-for-twitter
+function video-optimize-for-twitter
 {
     local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
-    local ffmpeg_output_options="""
+    local ffmpeg_output_options="
         -vcodec libx264 -vf scale=480:854 -pix_fmt yuv420p
         -strict experimental -r 30 -t 2:20 -acodec aac
         -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
         -ar 44100 -ac 2
-        """
+        "
 
     local output="$(mktemp --tmpdir -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     if [[ $? != 0 ]]; then
         echo "Error: $output is not generated" >&2
-        rm -f $output
+        rm -f "$output"
         return 1
     fi
 
+    touch -r "$input" "$output"
     rm -f "$input"
     mv "$output" "$input"
 }
@@ -135,10 +138,10 @@ function video-duration
 {
     local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
-    local ffprobe_options="""
+    local ffprobe_options="
         -v error -show_entries format=duration
         -of default=noprint_wrappers=1:nokey=1
-        """
+        "
 
     ffprobe $ffprobe_options "$input"
 }
@@ -154,15 +157,15 @@ function video-concat
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options="-f concat -safe 0"
     local ffmpeg_output_options="-c copy"
-    local output_path="${@: -1}"
+    local output="${@: -1}"
 
     ffmpeg $ffmpeg_global_options $ffmpeg_input_options -i \
         <(for f in "${@: 1:$#-1}"; do echo "file '$PWD/$f'" ; done) \
-        $ffmpeg_output_options "$output_path"
+        $ffmpeg_output_options "$output"
 }
 
 # Fade out the last second of the video.
-function naive-fadeout
+function video-fadeout
 {
     local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
@@ -184,6 +187,7 @@ function naive-fadeout
         """
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
+    touch -r "$input" "$output"
 }
 
 # https://superuser.com/questions/268985/remove-audio-from-video-file-with-ffmpeg
@@ -195,6 +199,7 @@ function video-mute
     local ffmpeg_output_options="-c copy -an"
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
+    touch -r "$input" "$output"
 }
 
 # Taken from Advanced Bash-Scripting Guide Appendix M with a small fix
