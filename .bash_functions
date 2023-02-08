@@ -202,6 +202,35 @@ function video-mute
     touch -r "$input" "$output"
 }
 
+# Download a single MP3 file from YouTube
+function youtube-download-audio
+{
+    local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
+    local options="-q --no-playlist -x --audio-format mp3"
+    youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
+}
+
+# Download a single MP4 file from YouTube
+function youtube-download-video
+{
+    local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
+    local options="
+        -q --no-playlist
+        -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
+        "
+    youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
+}
+
+# Show summary of all items in a play list
+function youtube-playlist-summary
+{
+    local playlist_url="${1:?Usage: $FUNCNAME PLAYLIST_URL}"
+    local options="--flat-playlist --yes-playlist -J"
+
+    youtube-dl $options "$playlist_url" \
+        | jq -r '.entries[] | ["https://www.youtube.com/watch?v=" + .id, .title, .duration] | @tsv'
+}
+
 # Taken from Advanced Bash-Scripting Guide Appendix M with a small fix
 function extract
 {
