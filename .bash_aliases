@@ -56,8 +56,8 @@ a http-server-php='php -S 127.0.0.1:8000'
 
 # FFmpeg
 a ffmpeg='ffmpeg -hide_banner'
-a ffplay='ffplay -hide_banner'
-a ffprobe='ffprobe -hide_banner'
+a ffplay='ffplay -hide_banner -v error'
+a ffprobe='ffprobe -hide_banner -v error'
 
 case "$OSTYPE" in
     cygwin | msys)
