@@ -202,6 +202,12 @@ function video-mute
     touch -r "$input" "$output"
 }
 
+function video-preview
+{
+    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    ffplay -x 240 -y 320 "$input"
+}
+
 # Download a single MP3 file from YouTube
 function youtube-download-audio
 {
