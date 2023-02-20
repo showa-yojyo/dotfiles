@@ -164,6 +164,28 @@ function video-concat
         $ffmpeg_output_options "$output"
 }
 
+# XXX
+# How to fade from one video to another in ffmpeg, both audio and video - Super User
+# https://superuser.com/questions/1739162/how-to-fade-from-one-video-to-another-in-ffmpeg-both-audio-and-video
+function video-xfade-naive
+{
+    local input0="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH0 INPUT_VIDEO_PATH1 [DURATION]}"
+    local input1="${2:?Usage: $FUNCNAME INPUT_VIDEO_PATH0 INPUT_VIDEO_PATH1 [DURATION]}"
+    local duration="${3:-1}"
+    local output=xfade.mp4
+
+    local ffmpeg_global_options="-v error -y -hide_banner"
+    local trim=$(video-duration ${input0})
+    offset=$(echo $trim - $duration | bc)
+
+    ffmpeg $ffmpeg_global_options \
+        -i "${input0}" -i "${input1}" -filter_complex "
+       [0:v][1:v]xfade=transition=fade:duration=${duration}:offset=${offset}[video];
+       [0:a]atrim=0:${trim}[a0];
+       [a0][1:a]acrossfade=d=${duration}[audio]" \
+       -map "[video]" -map "[audio]" "$output"
+}
+
 # Fade out the last second of the video.
 function video-fadeout
 {
@@ -202,10 +224,18 @@ function video-mute
     touch -r "$input" "$output"
 }
 
+# Preview a video with ffplay
 function video-preview
 {
-    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
-    ffplay -x 240 -y 320 "$input"
+    if [ -t 0 ]; then
+        local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    else
+        local input="-"
+    fi
+
+    local ffplay_global_options="-v error -hide_banner"
+    local ffplay_input_options="-autoexit -x 240 -y 320"
+    ffplay $ffplay_global_options $ffplay_input_options "$input"
 }
 
 # Download a single MP3 file from YouTube
