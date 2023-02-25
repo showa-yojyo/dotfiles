@@ -93,7 +93,10 @@ function video-optimize
 
     local ffmpeg_global_options="-loglevel error -y"
     local ffmpeg_input_options=""
-    local ffmpeg_output_options="-vcodec h264 -crf 28"
+    local ffmpeg_output_options="
+        -c:v libx264 -pix_fmt yuv420p -strict -2
+        -c:a aac -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
+        -ar 44100 -ac 2 -r 30"
 
     local output="$(mktemp --tmpdir -u --suffix=.mp4 XXXXXXXXX)"
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options $output
@@ -106,32 +109,6 @@ function video-optimize
     touch -r "$input" "$output"
     rm -f "$input"
     mv $output "$input"
-}
-
-function video-optimize-for-twitter
-{
-    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
-
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_input_options=""
-    local ffmpeg_output_options="
-        -vcodec libx264 -vf scale=480:854 -pix_fmt yuv420p
-        -strict experimental -r 30 -t 2:20 -acodec aac
-        -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
-        -ar 44100 -ac 2
-        "
-
-    local output="$(mktemp --tmpdir -u --suffix=.mp4 XXXXXXXXX)"
-    ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
-    if [[ $? != 0 ]]; then
-        echo "Error: $output is not generated" >&2
-        rm -f "$output"
-        return 1
-    fi
-
-    touch -r "$input" "$output"
-    rm -f "$input"
-    mv "$output" "$input"
 }
 
 function video-duration
@@ -163,6 +140,16 @@ function video-concat
         <(for f in "${@: 1:$#-1}"; do echo "file '$PWD/$f'" ; done) \
         $ffmpeg_output_options "$output"
 }
+
+# TODO: wrap drawtext
+#function video-text
+#{
+#    ffmpeg -i "$input" -vf "drawtext=text='xxxxx':fontfile=/path/to/xxxxx:
+#        box=0:boxcolor=white@0.5:
+#        x=20:y=20:
+#        shadowx=1:shadowy=1:shadowcolor=xxxxx@0.9:
+#        fontcolor=xxxxx:fontsize=48:line_spacing=8" -c:a copy "$output"
+#}
 
 # XXX
 # How to fade from one video to another in ffmpeg, both audio and video - Super User
