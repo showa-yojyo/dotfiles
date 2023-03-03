@@ -317,8 +317,8 @@ function which
 function _g++base
 {
     local CPPFLAG="-g -Werror -Wall -Wextra -ansi -pedantic -std=$1"
-    local INFILE=$2
-    local OUTFILE=${INFILE/.cpp/}
+    local INFILE="${2:?Usage: $FUNCNAME ${1} CPPFILE}"
+    local OUTFILE=${INFILE%.cpp}
     g++ $CPPFLAG $INFILE -o $OUTFILE
 }
 
