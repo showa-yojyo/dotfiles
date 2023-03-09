@@ -225,15 +225,15 @@ function video-preview
     ffplay $ffplay_global_options $ffplay_input_options "$input"
 }
 
-# Download a single MP3 file from YouTube
+# Download an audio file (m4a) from YouTube
 function youtube-download-audio
 {
     local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
-    local options="-q --no-playlist -x --audio-format mp3"
+    local options="-q --no-playlist -x --audio-format m4a"
     youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
 }
 
-# Download a single MP4 file from YouTube
+# Download a video file (mp4) from YouTube
 function youtube-download-video
 {
     local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
