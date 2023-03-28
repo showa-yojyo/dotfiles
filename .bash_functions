@@ -319,7 +319,7 @@ function _g++base
     local CPPFLAG="-g -Werror -Wall -Wextra -ansi -pedantic -std=$1"
     local INFILE="${2:?Usage: $FUNCNAME ${1} CPPFILE}"
     local OUTFILE=${INFILE%.cpp}
-    g++ $CPPFLAG $INFILE -o $OUTFILE
+    g++ $CPPFLAG $INFILE -latomic -o $OUTFILE
 }
 
 function g++11
@@ -335,6 +335,11 @@ function g++14
 function g++17
 {
     _g++base c++17 $1
+}
+
+function g++20
+{
+    _g++base c++20 $1
 }
 
 # Set the title of the terminal window (or current terminal tab)
