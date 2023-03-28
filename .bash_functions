@@ -225,6 +225,25 @@ function video-preview
     ffplay $ffplay_global_options $ffplay_input_options "$input"
 }
 
+# A variant of video-optimize
+function twitter-merge-video-audio
+{
+    local usage="Usage: $FUNCNAME VIDEO_PATH AUDIO_PATH OUTPUT_PATH"
+    local input_video="${1:?$usage}"
+    local input_audio="${2:?$usage}"
+    local output="${3:?$usage}"
+
+    local ffmpeg_global_options="-loglevel error -y"
+    local ffmpeg_output_options="
+        -c:v libx264 -pix_fmt yuv420p -strict -2
+        -c:a aac -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
+        -ar 44100 -ac 2 -r 30"
+
+    ffmpeg $ffmpeg_global_options \
+        -i "$input_video" -i "$input_audio" \
+        -map 0:v -map 1:a $ffmpeg_output_options "$output"
+}
+
 # Download an audio file (m4a) from YouTube
 function youtube-download-audio
 {
