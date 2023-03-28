@@ -2,7 +2,7 @@
 
 function _anniversary_helper
 {
-    local basedate=${1:?Usage: $FUNCNAME \'date(YYYY, mm, dd)\'}
+    local -r basedate=${1:?Usage: $FUNCNAME \'date(YYYY, mm, dd)\'}
 
     python << EOL -
 from datetime import date
@@ -24,15 +24,15 @@ function sunset-anniversary
 # Convert Markdown to reStructuredText
 function convert_md_to_rst
 {
-    local input="${1:?Usage: $FUNCNAME MARKDOWN_PATH}"
-    local output="${input%.md}.rst"
-    local pandoc_opts="""
+    local -r input="${1:?Usage: $FUNCNAME MARKDOWN_PATH}"
+    local -r output="${input%.md}.rst"
+    local -r pandoc_opts="
         --strip-comments
         --shift-heading-level-by=-1
         --columns=80
         --wrap=preserve
         --to rst
-        """
+        "
     pandoc $pandoc_opts -o "$output" "$input"
 }
 
@@ -44,14 +44,14 @@ function convert_mp3
         return
     fi
 
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_input_options=""
-    local ffmpeg_output_options="-qscale:a 0 -map a"
+    local -r ffmpeg_global_options="-loglevel error -y"
+    local -r ffmpeg_input_options=""
+    local -r ffmpeg_output_options="-qscale:a 0 -map a"
 
     for i in "$@";
     do
-        local input="$i"
-        local output="${input%.*}.mp3"
+        local -r input="$i"
+        local -r output="${input%.*}.mp3"
         echo "Processing ${input}..." >&2
         ffmpeg $ffmpeg_global_options \
             $ffmpeg_input_options -i "$input" \
@@ -68,7 +68,7 @@ function convert_mp3
 # The core function for image-resize-xxxx family
 function _image-resize
 {
-    local magick_options="-resize $1 -define preserve-timestamp=true"
+    local -r magick_options="-resize $1 -define preserve-timestamp=true"
     shift
     # Use ImageMagick 7
     magick mogrify $magick_options "$@"
@@ -89,11 +89,11 @@ function image-resize-medium
 # For uploading to Twitter
 function video-optimize
 {
-    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    local -r input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_input_options=""
-    local ffmpeg_output_options="
+    local -r ffmpeg_global_options="-loglevel error -y"
+    local -r ffmpeg_input_options=""
+    local -r ffmpeg_output_options="
         -c:v libx264 -pix_fmt yuv420p -strict -2
         -c:a aac -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
         -ar 44100 -ac 2 -r 30"
@@ -113,9 +113,9 @@ function video-optimize
 
 function video-duration
 {
-    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    local -r input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
 
-    local ffprobe_options="
+    local -r ffprobe_options="
         -v error -show_entries format=duration
         -of default=noprint_wrappers=1:nokey=1
         "
@@ -131,10 +131,10 @@ function video-concat
         return 2
     fi
 
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_input_options="-f concat -safe 0"
-    local ffmpeg_output_options="-c copy"
-    local output="${@: -1}"
+    local -r ffmpeg_global_options="-loglevel error -y"
+    local -r ffmpeg_input_options="-f concat -safe 0"
+    local -r ffmpeg_output_options="-c copy"
+    local -r output="${@: -1}"
 
     ffmpeg $ffmpeg_global_options $ffmpeg_input_options -i \
         <(for f in "${@: 1:$#-1}"; do echo "file '$PWD/$f'" ; done) \
@@ -222,10 +222,10 @@ function video-fadeout
 # https://superuser.com/questions/268985/remove-audio-from-video-file-with-ffmpeg
 function video-mute
 {
-    local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
-    local output="${input%.*}-mute.${input#*.}"
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_output_options="-c copy -an"
+    local -r input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+    local -r output="${input%.*}-mute.${input#*.}"
+    local -r ffmpeg_global_options="-loglevel error -y"
+    local -r ffmpeg_output_options="-c copy -an"
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     touch -r "$input" "$output"
@@ -235,26 +235,26 @@ function video-mute
 function video-preview
 {
     if [ -t 0 ]; then
-        local input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
+        local -r input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
     else
-        local input="-"
+        local -r input="-"
     fi
 
-    local ffplay_global_options="-v error -hide_banner"
-    local ffplay_input_options="-autoexit -x 240 -y 320"
+    local -r ffplay_global_options="-v error -hide_banner"
+    local -r ffplay_input_options="-autoexit -x 240 -y 320"
     ffplay $ffplay_global_options $ffplay_input_options "$input"
 }
 
 # A variant of video-optimize
 function twitter-merge-video-audio
 {
-    local usage="Usage: $FUNCNAME VIDEO_PATH AUDIO_PATH OUTPUT_PATH"
-    local input_video="${1:?$usage}"
-    local input_audio="${2:?$usage}"
-    local output="${3:?$usage}"
+    local -r usage="Usage: $FUNCNAME VIDEO_PATH AUDIO_PATH OUTPUT_PATH"
+    local -r input_video="${1:?$usage}"
+    local -r input_audio="${2:?$usage}"
+    local -r output="${3:?$usage}"
 
-    local ffmpeg_global_options="-loglevel error -y"
-    local ffmpeg_output_options="
+    local -r ffmpeg_global_options="-loglevel error -y"
+    local -r ffmpeg_output_options="
         -c:v libx264 -pix_fmt yuv420p -strict -2
         -c:a aac -vb 1024k -minrate 1024k -maxrate 1024k -bufsize 1024k
         -ar 44100 -ac 2 -r 30"
@@ -267,16 +267,16 @@ function twitter-merge-video-audio
 # Download an audio file (m4a) from YouTube
 function youtube-download-audio
 {
-    local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
-    local options="-q --no-playlist -x --audio-format m4a"
+    local -r video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
+    local -r options="-q --no-playlist -x --audio-format m4a"
     youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
 }
 
 # Download a video file (mp4) from YouTube
 function youtube-download-video
 {
-    local video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
-    local options="
+    local -r video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
+    local -r options="
         -q --no-playlist
         -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
         "
@@ -286,8 +286,8 @@ function youtube-download-video
 # Show summary of all items in a play list
 function youtube-playlist-summary
 {
-    local playlist_url="${1:?Usage: $FUNCNAME PLAYLIST_URL}"
-    local options="--flat-playlist --yes-playlist -J"
+    local -r playlist_url="${1:?Usage: $FUNCNAME PLAYLIST_URL}"
+    local -r options="--flat-playlist --yes-playlist -J"
 
     youtube-dl $options "$playlist_url" \
         | jq -r '.entries[] | ["https://www.youtube.com/watch?v=" + .id, .title, .duration] | @tsv'
@@ -355,9 +355,9 @@ function which
 
 function _g++base
 {
-    local CPPFLAG="-g -Werror -Wall -Wextra -ansi -pedantic -std=$1"
-    local INFILE="${2:?Usage: $FUNCNAME ${1} CPPFILE}"
-    local OUTFILE=${INFILE%.cpp}
+    local -r CPPFLAG="-g -Werror -Wall -Wextra -ansi -pedantic -std=$1"
+    local -r INFILE="${2:?Usage: $FUNCNAME ${1} CPPFILE}"
+    local -r OUTFILE=${INFILE%.cpp}
     g++ $CPPFLAG $INFILE -latomic -o $OUTFILE
 }
 
