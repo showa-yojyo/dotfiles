@@ -156,21 +156,41 @@ function video-concat
 # https://superuser.com/questions/1739162/how-to-fade-from-one-video-to-another-in-ffmpeg-both-audio-and-video
 function video-xfade-naive
 {
-    local input0="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH0 INPUT_VIDEO_PATH1 [DURATION]}"
-    local input1="${2:?Usage: $FUNCNAME INPUT_VIDEO_PATH0 INPUT_VIDEO_PATH1 [DURATION]}"
-    local duration="${3:-1}"
-    local output=xfade.mp4
+    local -r usage="Usage: $FUNCNAME [-d DURATION] INPUT_VIDEO_PATH0 INPUT_VIDEO_PATH1"
 
-    local ffmpeg_global_options="-v error -y -hide_banner"
-    local trim=$(video-duration ${input0})
-    offset=$(echo $trim - $duration | bc)
+    local duration=1
+    local OPTIND
+    local opt
+
+    while getopts ":d" opt; do
+      case $opt in
+         d)
+           duration="${OPTARG}"
+           ;;
+         *)
+           echo $usage
+           return 1
+           ;;
+      esac
+    done
+    shift $((OPTIND-1))
+
+    local -r input0="${1:?${usage}}"
+    local -r input1="${2:?${usage}}"
+    local -r output=xfade.mp4
+
+    local -r ffmpeg_global_options="-v error -y -hide_banner"
+    local -r trim=$(video-duration ${input0})
+    local -r offset=$(echo $trim - $duration | bc)
 
     ffmpeg $ffmpeg_global_options \
         -i "${input0}" -i "${input1}" -filter_complex "
-       [0:v][1:v]xfade=transition=fade:duration=${duration}:offset=${offset}[video];
-       [0:a]atrim=0:${trim}[a0];
-       [a0][1:a]acrossfade=d=${duration}[audio]" \
-       -map "[video]" -map "[audio]" "$output"
+        [0:v]setpts=PTS,settb=AVTB,fps=30[0v];
+        [1:v]setpts=PTS,settb=AVTB,fps=30[1v];
+        [0v][1v]xfade=transition=fade:duration=${duration}:offset=${offset}[video];
+        [0:a]asetpts=PTS,asettb=AVTB,atrim=0:${trim}[a0];
+        [a0][1:a]acrossfade=d=${duration}[audio]" \
+        -map "[video]" -map "[audio]" "$output"
 }
 
 # Fade out the last second of the video.
@@ -189,11 +209,11 @@ function video-fadeout
     # from where to fade out
     local st=$(echo "$video_duration - $fade_duration" | bc)
 
-    local ffmpeg_input_options=""
-    local ffmpeg_output_options="""
+    local -r ffmpeg_input_options=""
+    local -r ffmpeg_output_options="
         -vf "fade=t=out:st=$st:d=$fade_duration"
         -af "afade=t=out:st=$st:d=$fade_duration"
-        """
+        "
 
     ffmpeg $ffmpeg_global_options -i "$input" $ffmpeg_output_options "$output"
     touch -r "$input" "$output"
