@@ -8,6 +8,12 @@ a ln='ln -i'
 a mv='mv -i'
 a rm='rm -i'
 
+a ..='cd ..'
+a ..2='cd ../..'
+a ..3='cd ../../..'
+a ..4='cd ../../../..'
+a ..5='cd ../../../../..'
+
 # Default to human readable figures
 a df='df -h'
 a du='du -h'
