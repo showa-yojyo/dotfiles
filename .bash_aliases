@@ -84,7 +84,7 @@ case "$OSTYPE" in
     linux*)
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
             a s='wslview'
-            a getclip='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe Get-Clipboard'
+            a getclip='/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -noprofile -command Get-Clipboard'
             a putclip='/mnt/c/Windows/System32/clip.exe'
         fi
         ;;
