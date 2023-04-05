@@ -1,29 +1,32 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "background": "#ffc0b0",
-          "foreground": "#000000",
-          "powerline_symbol": "\ue0b0",
+          "type": "root",
           "style": "powerline",
-          "template": " \uf0e7 ",
-          "type": "root"
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#000000",
+          "background": "#ffc0b0",
+          "template": " \uf0e7 "
         },
         {
-          "background": "#ffb6c1",
-          "foreground": "#000000",
+          "type": "path",
+          "style": "powerline",
           "powerline_symbol": "\ue0b0",
+          "foreground": "#000000",
+          "background": "#ffb6c1",
           "properties": {
             "folder_icon": "\uf115",
             "folder_separator_icon": " \ue0b1 ",
             "style": "full"
           },
-          "style": "powerline",
-          "template": " {{ .Path }} ",
-          "type": "path"
+          "template": " {{ .Path }} "
         },
         {
           "background": "#ff69b4",
@@ -35,42 +38,101 @@
           "properties": {
             "fetch_status": true,
             "fetch_stash_count": true,
-            "fetch_upstream_icon": false,
+            "fetch_upstream_icon": true,
             "untracked_modes": {}
           }
         },
         {
-          "background": "#ff1493",
-          "foreground": "#000000",
-          "powerline_symbol": "\ue0b0",
+          "type": "python",
           "style": "powerline",
-          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
-          "type": "python"
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#ff1493",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} | \ue235 {{ end }}{{ .Full }}{{ end }} ",
+          "properties:": {
+            "home_enabled": true,
+            "fetch_virtual_env": true,
+            "display_default": true,
+            "fetch_version": true,
+            "display_mode": "context"
+          }
         },
         {
-          "background": "#ff8080",
+          "type": "node",
+          "style": "powerline",
+          "powerline_symbol": "",
           "foreground": "#ffffff",
+          "background": "#6CA35E",
+          "template": "  {{ .Full }} ",
+          "properties": {
+            "home_enabled": true,
+            "fetch_version": true,
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "ruby",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#ffffff",
+          "background": "#cc342d",
+          "template": "  {{ .Full }}",
+          "properties": {
+            "home_enabled": true,
+            "fetch_version": true,
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "exit",
+          "foreground": "#ffffff",
+          "background": "#ff8080",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "template": " \ue20f ",
-          "type": "exit"
+          "template": " \ue20f "
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
+      "newline": false,
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "invert_powerline": true,
+          "powerline_symbol": "\ue0b2",
+          "foreground": "#ff1493",
+          "properties": {
+            "always_enabled": true
+          },
+          "template": "\uf608 {{ .FormattedMs }}"
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "invert_powerline": true,
+          "foreground": "#ff1493",
+          "properties": {
+            "time_format": "15:04:05 JST+9:00"
+          },
+          "template": " \uf64f {{ dateInZone .Format .CurrentDate \"Asia/Tokyo\" }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "foreground": "#dc143c",
+          "type": "text",
           "style": "plain",
-          "template": "\u276f ",
-          "type": "text"
+          "foreground": "#ffffff",
+          "template": "{{ .Shell }}$"
         }
-      ],
-      "type": "prompt"
+      ]
     }
-  ],
-  "version": 2
+  ]
 }
