@@ -3,19 +3,22 @@
     path = ~/.gitconfig.user
 
 [alias]
+    alias = ! git config --get-regexp ^alias\\.\n | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /\n | sort -k1
+
     br = branch
+    ci = commit
+    df = diff
+    re = restore
+    stat = status
+    sw = switch
 
     type = cat-file -t
     dump = cat-file -p
 
-    co = checkout
-
-    ci = commit
     carn = commit --amend --reset-author --no-edit
 
     lasttag = describe --tags --abbrev=0
 
-    df = diff
     dc = diff --cached
     dlc = diff --cached HEAD^
     wdiff = diff --color-words
@@ -39,7 +42,6 @@
     who = shortlog -s --
 
     st = status -sb
-    stat = status
 
 [branch]
     autoSetupRebase = always
@@ -109,6 +111,3 @@
 
 [web]
     browser = default-browser
-
-[winUpdater]
-    recentlySeenVersion = 2.17.0.windows.1
