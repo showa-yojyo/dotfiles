@@ -56,6 +56,14 @@ shopt -s lithist
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Honor XDG_*_HOME
+# See XDG Base Directory Specification
+# <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
+declare -r MY_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+declare -r MY_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+declare -r MY_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+declare -r MY_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
 # Comment out so that WSLg works fine
 #if [[ -f /etc/resolv.conf ]]; then
 #    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
@@ -109,9 +117,6 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # Make __git_ps1 to do nothing in the case when the current directory is set
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
-
-# Honor XDG_CONFIG_HOME
-declare -r MY_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 test -f "$MY_CONFIG_HOME/.git-prompt.sh" && . "$MY_CONFIG_HOME/.git-prompt.sh"
 
