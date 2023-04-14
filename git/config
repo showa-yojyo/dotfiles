@@ -93,6 +93,9 @@
 [init]
     defaultBranch = main
 
+[mailmap]
+    file = ~/.config/git/mailmap
+
 [merge]
     tool = vscode
 
