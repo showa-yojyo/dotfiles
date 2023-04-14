@@ -201,6 +201,11 @@ export PS2='> '
 # an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
 # export PS4
 
+# Python
+# TODO: move ~/.python_history
+export PYTHONPYCACHEPREFIX="$MY_CACHE_HOME/python"
+export PYTHONUSERBASE="$MY_DATA_HOME/python"
+
 # SQLite
 # TODO: move ~/.sqliterc; sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"
 export SQLITE_HISTORY="$MY_STATE_HOME/sqlite_history"
