@@ -59,10 +59,10 @@ shopt -s lithist
 # Honor XDG_*_HOME
 # See XDG Base Directory Specification
 # <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
-declare -r MY_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-declare -r MY_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-declare -r MY_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-declare -r MY_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
 
 # Comment out so that WSLg works fine
 #if [[ -f /etc/resolv.conf ]]; then
@@ -118,7 +118,7 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
-test -f "$MY_CONFIG_HOME/.git-prompt.sh" && . "$MY_CONFIG_HOME/.git-prompt.sh"
+test -f "$XDG_CONFIG_HOME/.git-prompt.sh" && . "$XDG_CONFIG_HOME/.git-prompt.sh"
 
 # Enable the official completion script by Git.
 # Some examples:
@@ -130,7 +130,7 @@ test -f "$MY_CONFIG_HOME/.git-prompt.sh" && . "$MY_CONFIG_HOME/.git-prompt.sh"
 # --simplify-by-decoration  --src-prefix=
 # --simplify-merges         --stat
 # --since=                  --summary
-test -f "$MY_CONFIG_HOME/.git-completion.sh" && . "$MY_CONFIG_HOME/.git-completion.sh"
+test -f "$XDG_CONFIG_HOME/.git-completion.sh" && . "$XDG_CONFIG_HOME/.git-completion.sh"
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
@@ -149,7 +149,7 @@ export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 # export PROMPT_COMMAND="history -a"
 
 # ~/.bash_history
-export HISTFILE="$MY_STATE_HOME/bash_history"
+export HISTFILE="$XDG_STATE_HOME/bash_history"
 
 # The maximum number of lines contained in the history file
 export HISTFILESIZE=2200
@@ -157,7 +157,7 @@ export HISTSIZE=1000
 export HISTTIMEFORMAT="%F %T "
 
 # ~/.inputrc
-export INPUTRC="$MY_CONFIG_HOME/readline/inputrc"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # Locale
 #
@@ -178,10 +178,10 @@ export LC_ALL=
 export LESSHISTFILE=-
 
 # MySQL
-export MYSQL_HISTFILE="$MY_STATE_HOME/mysql_history"
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 
 # Node.js
-export NODE_REPL_HISTORY="$MY_STATE_HOME/node_repl_history"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 
 #export PATH
 
@@ -202,16 +202,16 @@ export PS2='> '
 # export PS4
 
 # Pylint
-export PYLINTRC="$MY_CONFIG_HOME/pylint/pylintrc"
+export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 
 # Python
 # TODO: move ~/.python_history
-export PYTHONPYCACHEPREFIX="$MY_CACHE_HOME/python"
-export PYTHONUSERBASE="$MY_DATA_HOME/python"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 
 # SQLite
 # TODO: move ~/.sqliterc; sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"
-export SQLITE_HISTORY="$MY_STATE_HOME/sqlite_history"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
@@ -233,12 +233,12 @@ export TZ=JST-09
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-test -f "$MY_CONFIG_HOME/.bash_aliases" && . "$MY_CONFIG_HOME/.bash_aliases"
+test -f "$XDG_CONFIG_HOME/.bash_aliases" && . "$XDG_CONFIG_HOME/.bash_aliases"
 
 # Functions
 #
 # Some people use a different file for functions
-test -f "$MY_CONFIG_HOME/.bash_functions" && . "$MY_CONFIG_HOME/.bash_functions"
+test -f "$XDG_CONFIG_HOME/.bash_functions" && . "$XDG_CONFIG_HOME/.bash_functions"
 
 # Lazy version of $(wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash).
 export NVM_DIR="$HOME/.nvm"
