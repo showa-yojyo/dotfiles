@@ -201,6 +201,9 @@ export PS2='> '
 # an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
 # export PS4
 
+# Pylint
+export PYLINTRC="$MY_CONFIG_HOME/pylint/pylintrc"
+
 # Python
 # TODO: move ~/.python_history
 export PYTHONPYCACHEPREFIX="$MY_CACHE_HOME/python"
