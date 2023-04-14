@@ -213,6 +213,9 @@ export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 # TODO: move ~/.sqliterc; sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
+# Vim
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
 # unexpected consequences.
