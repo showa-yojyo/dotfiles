@@ -174,6 +174,12 @@ export LC_ALL=
 # less
 export LESSHISTFILE=-
 
+# MySQL
+export MYSQL_HISTFILE="$MY_STATE_HOME/mysql_history"
+
+# Node.js
+export NODE_REPL_HISTORY="$MY_STATE_HOME/node_repl_history"
+
 #export PATH
 
 # Prompt
@@ -191,6 +197,10 @@ export PS2='> '
 # PS4: the value is printed before each command bash displays during
 # an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
 # export PS4
+
+# SQLite
+# TODO: move ~/.sqliterc; sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"
+export SQLITE_HISTORY="$MY_STATE_HOME/sqlite_history"
 
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
