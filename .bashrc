@@ -110,7 +110,10 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
-test -f "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
+# Honor XDG_CONFIG_HOME
+declare -r MY_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+test -f "$MY_CONFIG_HOME/.git-prompt.sh" && . "$MY_CONFIG_HOME/.git-prompt.sh"
 
 # Enable the official completion script by Git.
 # Some examples:
@@ -122,7 +125,7 @@ test -f "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
 # --simplify-by-decoration  --src-prefix=
 # --simplify-merges         --stat
 # --since=                  --summary
-test -f "${HOME}/.git-completion.sh" && . "${HOME}/.git-completion.sh"
+test -f "$MY_CONFIG_HOME/.git-completion.sh" && . "$MY_CONFIG_HOME/.git-completion.sh"
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
@@ -201,12 +204,12 @@ export TZ=JST-09
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-test -f "${HOME}/.bash_aliases" && . "${HOME}/.bash_aliases"
+test -f "$MY_CONFIG_HOME/.bash_aliases" && . "$MY_CONFIG_HOME/.bash_aliases"
 
 # Functions
 #
 # Some people use a different file for functions
-test -f "${HOME}/.bash_functions" && . "${HOME}/.bash_functions"
+test -f "$MY_CONFIG_HOME/.bash_functions" && . "$MY_CONFIG_HOME/.bash_functions"
 
 # Lazy version of $(wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash).
 export NVM_DIR="$HOME/.nvm"
