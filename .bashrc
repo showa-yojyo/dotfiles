@@ -156,6 +156,9 @@ export HISTFILESIZE=2200
 export HISTSIZE=1000
 export HISTTIMEFORMAT="%F %T "
 
+# ~/.inputrc
+export INPUTRC="$MY_CONFIG_HOME/readline/inputrc"
+
 # Locale
 #
 # LANG: the locale category for any category not specifically selected
