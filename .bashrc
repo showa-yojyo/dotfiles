@@ -148,6 +148,9 @@ export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
+# ~/.bash_history
+export HISTFILE="$MY_STATE_HOME/bash_history"
+
 # The maximum number of lines contained in the history file
 export HISTFILESIZE=2200
 export HISTSIZE=1000
