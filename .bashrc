@@ -208,12 +208,11 @@ export PS2='> '
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 
 # Python
-# TODO: move ~/.python_history
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc.py"
 export PYTHONUSERBASE="$XDG_DATA_HOME/python"
 
 # SQLite
-# TODO: move ~/.sqliterc; sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
 # Vim

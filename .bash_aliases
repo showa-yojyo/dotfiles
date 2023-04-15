@@ -53,10 +53,6 @@ a mount='mount | column -t'
 a today='LC_ALL=C date +"%F (%a)"'
 a now='LC_ALL=C date +"%F (%a) %T"'
 
-# Wget
-# See also $XDG_CONFIG_HOME/wgetrc or $HOME/.wgetrc
-a wget='wget --show-progress --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-
 # HTTP server
 a http-server='python -m http.server 8000 --bind 127.0.0.1'
 a http-server-php='php -S 127.0.0.1:8000'
@@ -94,5 +90,13 @@ esac
 a doctest='python -m doctest'
 a json-tool='python -m json.tool'
 a pdb='python -m pdb'
+
+# XDG
+
+# SQLite3
+a sqlite3='sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"'
+
+# See also $XDG_CONFIG_HOME/wgetrc or $HOME/.wgetrc
+a wget='wget --show-progress --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 unalias a
