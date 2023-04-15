@@ -219,6 +219,9 @@ export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 # Vim
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
+# wget
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
 # unexpected consequences.

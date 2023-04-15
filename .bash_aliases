@@ -53,8 +53,9 @@ a mount='mount | column -t'
 a today='LC_ALL=C date +"%F (%a)"'
 a now='LC_ALL=C date +"%F (%a) %T"'
 
-# wget
-a wget='wget --continue --random-wait --limit-rate=200k --quiet --show-progress --no-clobber'
+# Wget
+# See also $XDG_CONFIG_HOME/wgetrc or $HOME/.wgetrc
+a wget='wget --show-progress --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # HTTP server
 a http-server='python -m http.server 8000 --bind 127.0.0.1'
