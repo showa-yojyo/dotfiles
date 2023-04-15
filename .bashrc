@@ -177,6 +177,13 @@ export LC_ALL=
 # less
 export LESSHISTFILE=-
 
+# Ruby Gems bundler
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
+
+export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
+
 # MySQL
 export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 
