@@ -183,6 +183,9 @@ export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 # Node.js
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 
+# npm
+export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
+
 #export PATH
 
 # Prompt
