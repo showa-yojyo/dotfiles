@@ -86,22 +86,19 @@ case "$OSTYPE" in
         conda activate python-3.10
     fi
 
+    # Install Ruby Gems
+    test -v GEM_HOME && _munge_path "$GEM_HOME/bin" before
+
     if [[ -n "$WSL_DISTRO_NAME" ]]; then
       _prefix=/mnt/c
       _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
       _munge_path "$_prefix/WINDOWS/System32"
+      unset _prefix
     fi
-    unset _prefix
     ;;
   *)
     ;;
 esac
-
-# Install Ruby Gems to ~/gems
-if [[ -d "$HOME/gems" ]]; then
-  export GEM_HOME="$HOME/gems"
-  _munge_path "$HOME/gems/bin" before
-fi
 
 unset -f _munge_path
 

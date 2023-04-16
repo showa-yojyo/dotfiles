@@ -182,7 +182,16 @@ export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
 
+# XDG_CONFIG_HOME/gemrc
+
+# XDG_CONFIG_HOME/irb
 export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
+
+export GEM_HOME="$XDG_DATA_HOME/gem"
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+
+# XDG_DATA_HOME/rdoc
+
 
 # MySQL
 export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
