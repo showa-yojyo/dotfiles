@@ -221,6 +221,7 @@ export PS2='> '
 # export PS4
 
 # Pylint
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 
 # Python
