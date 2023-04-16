@@ -177,6 +177,8 @@ export LC_ALL=
 # less
 export LESSHISTFILE=-
 
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
+
 # Ruby Gems bundler
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
