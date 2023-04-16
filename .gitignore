@@ -1,8 +1,5 @@
 # .gitignore for dotfiles
 
-# .jupyter
-.jupyter/migrated
-
 # .matplotlib
 .matplotlib/fontList.json
 .matplotlib/fontlist-v*.json
