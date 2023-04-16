@@ -1,8 +1,4 @@
 # .gitignore for dotfiles
 
-# .matplotlib
-.matplotlib/fontList.json
-.matplotlib/fontlist-v*.json
-
 # XML
 .resolver/CatalogManager.properties.*.bak
