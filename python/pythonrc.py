@@ -8,26 +8,22 @@ import os
 import atexit
 import readline
 
-PYTHON_HISTFILE_PATH = None
+python_histfile_path = None
 if XDG_STATE_HOME := os.environ.get('XDG_STATE_HOME'):
     # $XDG_STATE_HOME/python_history
-    PYTHON_HISTFILE_PATH = os.path.join(XDG_STATE_HOME, 'python_history')
+    python_histfile_path = os.path.join(XDG_STATE_HOME, 'python_history')
 else:
     # ~/.local/state/python_history
-    PYTHON_HISTFILE_PATH = os.path.join(os.path.expanduser('~/.local/state'), 'python_history')
+    python_histfile_path = os.path.join(os.path.expanduser('~/.local/state'), 'python_history')
 
-if not PYTHON_HISTFILE_PATH:
-    PYTHON_HISTFILE_PATH = os.path.join(os.path.expanduser('~'), '.python_history')
+if not python_histfile_path:
+    python_histfile_path = os.path.join(os.path.expanduser('~'), '.python_history')
 
 try:
-    readline.read_history_file(PYTHON_HISTFILE_PATH)
-except OSError:
+    readline.read_history_file(python_histfile_path)
+    # default history len is -1 (infinite), which may grow unruly
+    readline.set_history_length(1000)
+except FileNotFoundError:
     pass
 
-def write_history():
-    try:
-        readline.write_history_file(PYTHON_HISTFILE_PATH)
-    except OSError:
-        pass
-
-atexit.register(write_history)
+atexit.register(readline.write_history_file, python_histfile_path)
