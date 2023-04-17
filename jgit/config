@@ -1,0 +1,3 @@
+[filesystem "Private Build|18.0.2-ea|/dev/sdb"]
+	timestampResolution = 5400 nanoseconds
+	minRacyThreshold = 14370 microseconds
