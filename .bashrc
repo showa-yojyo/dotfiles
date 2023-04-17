@@ -177,6 +177,9 @@ export LC_ALL=
 # less
 export LESSHISTFILE=-
 
+# Docker (only config.json?)
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
 export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
 
 # Rust
