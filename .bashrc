@@ -185,6 +185,7 @@ export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+[ -s "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
 
 # Ruby Gems bundler
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
@@ -288,6 +289,3 @@ nvm() {
 
 # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-
-# Rust
-[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
