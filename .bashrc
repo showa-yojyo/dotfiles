@@ -179,6 +179,10 @@ export LESSHISTFILE=-
 
 export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
 
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+
 # Ruby Gems bundler
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
@@ -193,7 +197,6 @@ export GEM_HOME="$XDG_DATA_HOME/gem"
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 
 # XDG_DATA_HOME/rdoc
-
 
 # MySQL
 export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
