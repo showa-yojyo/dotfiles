@@ -210,6 +210,9 @@ export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 # npm
 export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
 
+# NuGet (only ~/.nuget/packages)
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+
 #export PATH
 
 # Prompt
