@@ -277,15 +277,17 @@ test -f "$XDG_CONFIG_HOME/.bash_aliases" && . "$XDG_CONFIG_HOME/.bash_aliases"
 # Some people use a different file for functions
 test -f "$XDG_CONFIG_HOME/.bash_functions" && . "$XDG_CONFIG_HOME/.bash_functions"
 
-# Lazy version of $(wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash).
-export NVM_DIR="$HOME/.nvm"
+# NVM: Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 
 # This lazy loads nvm
 nvm() {
     unset -f nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+    # This loads nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
     nvm $@
 }
 
 # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
