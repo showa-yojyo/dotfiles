@@ -34,7 +34,13 @@ function _munge_path
 }
 
 # source the users bashrc if it exists
-test -f "${HOME}/.bashrc" && . "${HOME}/.bashrc"
+declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
+if [ -f "$bash_config_home/bashrc" ]; then
+  source "$bash_config_home/bashrc"
+elif [ -f "$HOME/.bashrc" ]; then
+  source "$HOME/.bashrc"
+fi
+unset bash_config_home
 
 PATH=/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 

@@ -269,16 +269,18 @@ export TMPDIR=/tmp
 
 export TZ=JST-09
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# Alias and functions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-test -f "$XDG_CONFIG_HOME/.bash_aliases" && . "$XDG_CONFIG_HOME/.bash_aliases"
-
-# Functions
-#
-# Some people use a different file for functions
-test -f "$XDG_CONFIG_HOME/.bash_functions" && . "$XDG_CONFIG_HOME/.bash_functions"
+declare bash_config_home="$XDG_CONFIG_HOME/bash"
+for f in bash_aliases bash_functions; do
+    if [ -f "$bash_config_home/$f" ]; then
+        source "$bash_config_home/$f"
+    else
+        source "$HOME/$f"
+    fi
+done
+unset f
+unset bash_config_home
 
 # NVM: Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
 export NVM_DIR="$XDG_DATA_HOME/nvm"
