@@ -93,6 +93,9 @@ a pdb='python -m pdb'
 
 # XDG
 
+# rst2pdf
+a rst2pdf='rst2pdf --config="$XDG_CONFIG_HOME/rst2pdf/config"'
+
 # SQLite3
 a sqlite3='sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"'
 
