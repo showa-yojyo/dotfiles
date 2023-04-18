@@ -120,7 +120,7 @@ test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # Enable Oh My Posh
-eval "$(oh-my-posh init bash --config ~/.omp.json)"
+command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init bash)"
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.

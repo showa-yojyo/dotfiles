@@ -214,6 +214,9 @@ export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
 # NuGet (only ~/.nuget/packages)
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 
+# Oh My Posh
+export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
+
 #export PATH
 
 # Prompt
