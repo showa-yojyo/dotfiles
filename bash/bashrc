@@ -118,19 +118,12 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
-test -f "$XDG_CONFIG_HOME/.git-prompt.sh" && . "$XDG_CONFIG_HOME/.git-prompt.sh"
-
-# Enable the official completion script by Git.
-# Some examples:
-# $ git co<tab><tab>
-# commit config
-#
-# $ git log --s<tab><tab>
-# --shortstat               --sparse
-# --simplify-by-decoration  --src-prefix=
-# --simplify-merges         --stat
-# --since=                  --summary
-test -f "$XDG_CONFIG_HOME/.git-completion.sh" && . "$XDG_CONFIG_HOME/.git-completion.sh"
+declare git_tool_home="$XDG_CONFIG_HOME/git"
+for f in git-prompt.sh git-completion.sh;
+do
+    test -f "$git_tool_home/$f" && source "$git_tool_home/$f"
+done
+unset f git_tool_home
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
