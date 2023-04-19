@@ -87,13 +87,6 @@ case "$OSTYPE" in
     unset _miniconda_path
     ;;
   linux*)
-    miniconda_home="${XDG_DATA_HOME}/miniconda3"
-    if [[ -d "$miniconda_home/bin" ]]; then
-        eval "$($miniconda_home/bin/conda shell.bash hook)"
-        conda activate python-3.10
-    fi
-    unset miniconda_home
-
     # Install Ruby Gems
     test -v GEM_HOME && _munge_path "$GEM_HOME/bin" before
 
