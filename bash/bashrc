@@ -56,6 +56,14 @@ shopt -s lithist
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Honor XDG_*_HOME
+# See XDG Base Directory Specification
+# <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
+
 # Comment out so that WSLg works fine
 #if [[ -f /etc/resolv.conf ]]; then
 #    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
@@ -110,19 +118,12 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 # up to be ignored by git.
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
-test -f "${HOME}/.git-prompt.sh" && . "${HOME}/.git-prompt.sh"
-
-# Enable the official completion script by Git.
-# Some examples:
-# $ git co<tab><tab>
-# commit config
-#
-# $ git log --s<tab><tab>
-# --shortstat               --sparse
-# --simplify-by-decoration  --src-prefix=
-# --simplify-merges         --stat
-# --since=                  --summary
-test -f "${HOME}/.git-completion.sh" && . "${HOME}/.git-completion.sh"
+declare git_tool_home="$XDG_CONFIG_HOME/git"
+for f in git-prompt.sh git-completion.sh;
+do
+    test -f "$git_tool_home/$f" && source "$git_tool_home/$f"
+done
+unset f git_tool_home
 
 # grep's default options
 #export GREP_OPTIONS='--color=auto'
@@ -140,10 +141,16 @@ export HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
+# ~/.bash_history
+export HISTFILE="$XDG_STATE_HOME/bash_history"
+
 # The maximum number of lines contained in the history file
 export HISTFILESIZE=2200
 export HISTSIZE=1000
 export HISTTIMEFORMAT="%F %T "
+
+# ~/.inputrc
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # Locale
 #
@@ -163,6 +170,46 @@ export LC_ALL=
 # less
 export LESSHISTFILE=-
 
+# Docker (only config.json?)
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
+
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+[ -s "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
+
+# Ruby Gems bundler
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
+
+# XDG_CONFIG_HOME/gemrc
+
+# XDG_CONFIG_HOME/irb
+export IRBRC="$XDG_CONFIG_HOME/irb/irbrc"
+
+export GEM_HOME="$XDG_DATA_HOME/gem"
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+
+# XDG_DATA_HOME/rdoc
+
+# MySQL
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+
+# Node.js
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+
+# npm
+export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
+
+# NuGet (only ~/.nuget/packages)
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+
+# Oh My Posh
+export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
+
 #export PATH
 
 # Prompt
@@ -181,6 +228,24 @@ export PS2='> '
 # an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
 # export PS4
 
+# Pylint
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
+export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
+
+# Python
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc.py"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+
+# SQLite
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+
+# Vim
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+# wget
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
 # unexpected consequences.
@@ -197,29 +262,45 @@ export TMPDIR=/tmp
 
 export TZ=JST-09
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# Alias and functions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-test -f "${HOME}/.bash_aliases" && . "${HOME}/.bash_aliases"
+declare bash_config_home="$XDG_CONFIG_HOME/bash"
+for f in bash_aliases bash_functions; do
+    if [ -f "$bash_config_home/$f" ]; then
+        source "$bash_config_home/$f"
+    else
+        source "$HOME/$f"
+    fi
+done
+unset f
+unset bash_config_home
 
-# Functions
-#
-# Some people use a different file for functions
-test -f "${HOME}/.bash_functions" && . "${HOME}/.bash_functions"
+# >>> conda initialize >>>
+declare __conda_home="$XDG_DATA_HOME/miniconda3"
+declare __conda_setup="$($__conda_home/bin/conda shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$__conda_home/etc/profile.d/conda.sh" ]; then
+        source "$__conda_home/etc/profile.d/conda.sh"
+    else
+        export PATH="$__conda_home/bin:$PATH"
+    fi
+fi
+unset __conda_setup __conda_home
+conda activate python-3.11
+# <<< conda initialize <<<
 
-# Lazy version of $(wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash).
-export NVM_DIR="$HOME/.nvm"
+# NVM: Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 
 # This lazy loads nvm
 nvm() {
     unset -f nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+    # This loads nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
     nvm $@
 }
 
 # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-
-# Rust
-[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

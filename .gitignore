@@ -1,24 +1,4 @@
 # .gitignore for dotfiles
 
-# .ipython
-.ipython/README
-.ipython/*/db/
-.ipython/*/log/
-.ipython/*/pid/
-.ipython/*/security/
-.ipython/*/startup/README
-.ipython/*/history.sqlite
-
-# .jupyter
-.jupyter/migrated
-
-# .matplotlib
-.matplotlib/fontList.json
-.matplotlib/fontlist-v*.json
-
 # XML
 .resolver/CatalogManager.properties.*.bak
-
-# VS Code
-.config/Code/User/workspaceStorage
-.config/Code/User/globalStorage
