@@ -1,120 +1,73 @@
 # ~/.bash_profile: executed by bash(1) for login shells.
 
-# The latest version as installed by the Cygwin Setup program can
-# always be found at /etc/defaults/etc/skel/.bash_profile
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+umask 022
 
-# Modifying /etc/skel/.bash_profile directly will prevent
-# setup from updating it.
-
-# The copy in your home directory (~/.bash_profile) is yours, please
-# feel free to customise it to create a shell
-# environment to your liking.  If you feel a change
-# would be benifitial to all, please feel free to send
-# a patch to the cygwin mailing list.
-
-# User dependent .bash_profile file
-
-# Code by Bash Guide for Beginners
+# original code by Bash Guide for Beginners
 function _munge_path
 {
-  local a_path="$1"
+    local a_path="$1"
+    local first_or_last="$2"
 
-  if [[ ! -d "$a_path" ]]; then
-    echo Warning: $a_path is not directory. >&2
-    return
-  fi
-
-  if ! echo $PATH | command egrep -q "(^|:)$a_path($|:)" ; then
-    if [[ "$2" == "before" ]]; then
-      PATH="$a_path${PATH:+:${PATH}}"
-    else
-      PATH="${PATH:+${PATH}:$a_path}"
+    if [[ ! -d "$a_path" ]]; then
+        echo Warning: $a_path is not directory. >&2
+        return
     fi
-  fi
+
+    if [[ $PATH =~ (^|:)$a_path($|:) ]] ; then
+        return
+    fi
+
+    if [[ $first_or_last == first ]]; then
+        PATH="$a_path${PATH:+:${PATH}}"
+    else
+        PATH="${PATH:+${PATH}:$a_path}"
+    fi
 }
 
-PATH=/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# remove all /mnt/c/path/to/something from $PATH
+PATH="$(echo -e ${PATH//:/\\n} | grep -v ^/mnt/c/ | tr \\n :)"
+PATH="${PATH%:}"
 
 # source the users bashrc if it exists
 declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
 if [ -f "$bash_config_home/bashrc" ]; then
-  source "$bash_config_home/bashrc"
+    source "$bash_config_home/bashrc"
 elif [ -f "$HOME/.bashrc" ]; then
-  source "$HOME/.bashrc"
+    source "$HOME/.bashrc"
 fi
 unset bash_config_home
 
-# Set PATH so it includes user's private bin if it exists
-_home_bin="${HOME}/bin"
-test -d "${_home_bin}" && _munge_path ${_home_bin} before
-unset _home_bin
-
 # Set MANPATH so it includes users' private man if it exists
 if [ -d "${HOME}/man" ]; then
-  MANPATH="${HOME}/man:${MANPATH}"
+    MANPATH="${HOME}/man:${MANPATH}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
 if [ -d "${HOME}/info" ]; then
-  INFOPATH="${HOME}/info:${INFOPATH}"
+    INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
 case "$OSTYPE" in
-  cygwin | msys)
-    _prefix=
-    #_munge_path "${_prefix}/c/texlive/2015/bin/win32"
-    #_munge_path "$(cygpath "${PROGRAMFILES}/Graphviz/bin")"
-    #_munge_path "$(cygpath "${PROGRAMFILES}/Pandoc")"
-    _munge_path "${_prefix}/c/Ruby26-x64/bin"
-    _munge_path "$(cygpath "${PROGRAMFILES}/Git/cmd")"
-    _munge_path "$(cygpath "${PROGRAMFILES}/nodejs")"
-    _munge_path "$(cygpath ${APPDATA}/npm)"
-    _munge_path "$(cygpath "${PROGRAMFILES}/Microsoft VS Code/bin")"
-    _munge_path "${_prefix}/c/WINDOWS/System32"
-    unset _prefix
+    linux*)
+        test -v GEM_HOME && _munge_path "$GEM_HOME/bin" first
 
-    # Java stuff
-    if [[ -n "$JAVA_HOME" ]]; then
-      JAVA_HOME=$(cygpath -pu "$JAVA_HOME")
-      _munge_path "$JAVA_HOME/bin"
-    fi
-
-    # Python stuffs
-    _miniconda_path="$(cygpath ${ALLUSERSPROFILE})/Miniconda3"
-    _munge_path "${_miniconda_path}/Library/bin" before
-    _munge_path "${_miniconda_path}/Scripts" before
-    _munge_path "${_miniconda_path}" before
-    unset _miniconda_path
-    ;;
-  linux*)
-    # Install Ruby Gems
-    test -v GEM_HOME && _munge_path "$GEM_HOME/bin" before
-
-    if [[ -n "$WSL_DISTRO_NAME" ]]; then
-      _prefix=/mnt/c
-      _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
-      _munge_path "$_prefix/WINDOWS/System32"
-      unset _prefix
-    fi
-    ;;
-  *)
-    ;;
+        if [[ -n "$WSL_DISTRO_NAME" ]]; then
+            _prefix=/mnt/c
+            _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
+            _munge_path "$_prefix/WINDOWS/System32"
+            _munge_path "$_prefix/WINDOWS/System32"
+            _munge_path "$_prefix/WINDOWS/System32"
+            unset _prefix
+        fi
+        ;;
+    *)
+        echo Warning: $OSTYPE not supported >&2
+        ;;
 esac
 
 unset -f _munge_path
-
-## NVM stuffs
-#export NVM_DIR="~/.nvm"
-#
-## Load nvm
-#_nvm_sh=/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh
-#test -s $_nvm_sh && . $_nvm_sh
-#unset _nvm_sh
-#
-## Load nvm bash_completion
-#_nvm_completion=/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm
-#test -s $_nvm_completion && . $_nvm_completion
-#unset _nvm_completion
 
 # XXX: Homebrew
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
@@ -123,6 +76,11 @@ test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew
 # Enable Oh My Posh
 command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init bash)"
 
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-umask 022
+# set PATH so it includes user's private bin if it exists
+for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
+    if [ -d "$private_dir" ] ; then
+        PATH="$private_dir:$PATH"
+        break
+    fi
+done
+unset private_dir
