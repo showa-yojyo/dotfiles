@@ -1,18 +1,6 @@
-# ~/.bashrc: executed by bash(1) for interactive shells.
-
-# The latest version as installed by the Cygwin Setup program can
-# always be found at /etc/defaults/etc/skel/.bashrc
-
-# Modifying /etc/skel/.bashrc directly will prevent
-# setup from updating it.
-
-# The copy in your home directory (~/.bashrc) is yours, please
-# feel free to customise it to create a shell
-# environment to your liking.  If you feel a change
-# would be benificial to all, please feel free to send
-# a patch to the cygwin mailing list.
-
-# User dependent .bashrc file
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
@@ -284,23 +272,23 @@ else
     if [ -f "$__conda_home/etc/profile.d/conda.sh" ]; then
         source "$__conda_home/etc/profile.d/conda.sh"
     else
-        export PATH="$__conda_home/bin:$PATH"
+        PATH="$__conda_home/bin:$PATH"
     fi
 fi
 unset __conda_setup __conda_home
 conda activate python-3.11
 # <<< conda initialize <<<
 
-# NVM: Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
-export NVM_DIR="$XDG_DATA_HOME/nvm"
-
-# This lazy loads nvm
+# WIP
 nvm() {
     unset -f nvm
-    # This loads nvm
+
+    # Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
+    export NVM_DIR="$XDG_DATA_HOME/nvm"
+
+    # want to manually run `nvm use`
     [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+    # run the authentic nvm
     nvm $@
 }
-
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
