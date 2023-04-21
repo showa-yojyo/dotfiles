@@ -263,3 +263,6 @@ nvm() {
     # run the authentic nvm
     nvm $@
 }
+
+# Enable Oh My Posh
+command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init bash)"

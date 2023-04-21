@@ -30,6 +30,14 @@ function _munge_path
 PATH="$(echo -e ${PATH//:/\\n} | grep -v ^/mnt/c/ | tr \\n :)"
 PATH="${PATH%:}"
 
+# Homebrew
+for private_dir in "$HOME/.linuxbrew" "/home/linuxbrew/.linuxbrew"; do
+    if [ -d "$private_dir" ] ; then
+        eval $("$private_dir/bin/brew" shellenv)
+    fi
+done
+unset private_dir
+
 # source the users bashrc if it exists
 declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
 if [ -f "$bash_config_home/bashrc" ]; then
@@ -68,13 +76,6 @@ case "$OSTYPE" in
 esac
 
 unset -f _munge_path
-
-# XXX: Homebrew
-test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-# Enable Oh My Posh
-command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init bash)"
 
 # set PATH so it includes user's private bin if it exists
 for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
