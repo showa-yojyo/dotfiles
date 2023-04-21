@@ -56,18 +56,13 @@ HISTTIMEFORMAT="%F %T "
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Don't wait for job termination notification
-# set -o notify
-
-# Don't use ^D to exit
-# set -o ignoreeof
-
-# Use case-insensitive filename globbing
-# shopt -s nocaseglob
-
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell dirspell
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -93,10 +88,11 @@ esac
 export EDITOR='code --wait' # --new-window
 
 # FCEDIT: the default editor for the fc builtin command.
-export FCEDIT=$EDITOR
+FCEDIT=$EDITOR
 
 # Git
 
+# cf. EDITOR, VISUAL; core.editor in .gitconfig
 export GIT_EDITOR=$EDITOR
 
 # See .git-prompt.sh
@@ -133,28 +129,25 @@ do
 done
 unset f git_tool_home
 
-# grep's default options
-#export GREP_OPTIONS='--color=auto'
-
-# ~/.inputrc
-export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+# Readline
+#
+# INPUTRC: initialization file
+INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # Locale
 #
-# LANG: the locale category for any category not specifically selected
-# with a variable starting with LC_.
-export LANG=ja_JP.UTF-8
+# LANG: the locale category for any category not specifically selected with a
+# variable starting with LC_. export LANG=ja_JP.UTF-8
+export LANG=C.UTF-8
 
-# LC_ALL: overrides the value of LANG and any other LC_ variable
-# specifying a locale category.
-export LC_ALL=
-
-#LC_COLLATE
-#LC_CTYPE
-#LC_MESSAGES
-#LC_NUMERIC
+# LC_ALL: overrides the value of LANG and any other LC_ variable specifying a
+# locale category.
+export LC_ALL=C.UTF-8
 
 # less
+#
+# LESSHISTFILE: if set to "-" or "/dev/null", a history file is not used. The
+# default is "$XDG_DATA_HOME/lesshst" or "$HOME/.lesshst".
 export LESSHISTFILE=-
 
 # Docker (only config.json?)
@@ -197,24 +190,6 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 # Oh My Posh
 export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
 
-#export PATH
-
-# Prompt
-# See .git-prompt.sh
-#export PROMPT_COMMAND="__git_ps1; $PROMPT_COMMAND"
-
-# PS1: the primary prompt string.
-#export PS1='[$OSTYPE \s \W \!]\\$ '
-#export PS1='\u@\h \w> '
-export PS2='> '
-
-# PS3: the prompt for the select command
-# export PS3
-
-# PS4: the value is printed before each command bash displays during
-# an execution trace, e.g. `set -x`, `bash -x script.sh`, etc.
-# export PS4
-
 # Pylint
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
@@ -236,18 +211,16 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 # TMP and TEMP are defined in the Windows environment.  Leaving
 # them set to the default Windows temporary directory can have
 # unexpected consequences.
-unset TMP
-unset TEMP
-
 # Alternatively, set them to the Cygwin temporary directory
 # or to any other tmp directory of your choice
-export TMP=/tmp
-export TEMP=/tmp
-
-# Or use TMPDIR instead
-export TMPDIR=/tmp
-
-export TZ=JST-09
+case "$OSTYPE" in
+    cygwin | msys)
+        unset TMP TEMP
+        export TMP=/tmp TEMP=/tmp
+        TMPDIR=/tmp
+        ;;
+    *) ;;
+esac
 
 # Alias and functions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
@@ -259,8 +232,7 @@ for f in bash_aliases bash_functions; do
         source "$HOME/$f"
     fi
 done
-unset f
-unset bash_config_home
+unset f bash_config_home
 
 # >>> conda initialize >>>
 declare __conda_home="$XDG_DATA_HOME/miniconda3"
