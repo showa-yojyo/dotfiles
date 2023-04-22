@@ -65,8 +65,6 @@ case "$OSTYPE" in
             _prefix=/mnt/c
             _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
             _munge_path "$_prefix/WINDOWS/System32"
-            _munge_path "$_prefix/WINDOWS/System32"
-            _munge_path "$_prefix/WINDOWS/System32"
             unset _prefix
         fi
         ;;
