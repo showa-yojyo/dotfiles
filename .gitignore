@@ -1,4 +1,6 @@
 # .gitignore for dotfiles
 
+gh/hosts.yml
+
 # XML
 .resolver/CatalogManager.properties.*.bak
