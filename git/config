@@ -112,5 +112,8 @@
 [push]
     default = current
 
+[user]
+    email = 2386769+showa-yojyo@users.noreply.github.com
+
 [web]
     browser = default-browser
