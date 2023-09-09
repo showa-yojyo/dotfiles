@@ -83,7 +83,7 @@ case "$OSTYPE" in
             a s='wslview'
             a getclip='/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -noprofile -command Get-Clipboard'
             a putclip='/mnt/c/Windows/System32/clip.exe'
-            a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscape.com'
+            a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscapecom.com'
         fi
         ;;
 esac
