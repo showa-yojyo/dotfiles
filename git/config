@@ -1,6 +1,6 @@
 # .gitconfig
 [include]
-    path = ~/.gitconfig.user
+    path = ~/.gitconfig.user # authentication, e.g. signingKey
 
 [alias]
     alias = ! git config --get-regexp ^alias\\.\n | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /\n | sort -k1
@@ -68,6 +68,9 @@
 [color]
     ui = auto
 
+[commit]
+    gpgsign = true
+
 [core]
     autocrlf = input
     editor = code --wait
@@ -81,6 +84,9 @@
 
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
+
+[gpg]
+    format = ssh
 
 [gui]
     encoding = utf-8
@@ -111,9 +117,6 @@
 
 [push]
     default = current
-
-[user]
-    email = 2386769+showa-yojyo@users.noreply.github.com
 
 [web]
     browser = default-browser
