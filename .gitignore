@@ -1,5 +1,8 @@
 # .gitignore for dotfiles
 
+ipython/profile_*/db
+ipython/profile_*/history.sqlite
+
 gh/hosts.yml
 
 # XML
