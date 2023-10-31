@@ -194,6 +194,9 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 # Oh My Posh
 export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
 
+# PulseAudio
+export PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie"
+
 # Pylint
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
