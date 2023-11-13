@@ -81,8 +81,13 @@ case "$OSTYPE" in
     linux*)
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
             a s='wslview'
-            a getclip='/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -noprofile -command Get-Clipboard'
-            a putclip='/mnt/c/Windows/System32/clip.exe'
+
+            a getclip='/mnt/c/Program\ Files/PowerShell/7-Preview/pwsh.exe -noprofile -command Get-Clipboard'
+
+            # command line - Copy to clipboard using Bash for Windows - Stack Overflow
+            # <https://stackoverflow.com/questions/43144008/copy-to-clipboard-using-bash-for-windows/>
+            a putclip='iconv -f utf-8 -t utf-16le | clip.exe'
+
             a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscapecom.com'
         fi
         ;;
