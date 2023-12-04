@@ -6,7 +6,7 @@ alias a='alias'
 a cp='cp -i'
 a ln='ln -i'
 a mv='mv -i'
-a rm='rm -i'
+a rm='rm -I --preserve-root'
 
 a ..='cd ..'
 a ..2='cd ../..'
