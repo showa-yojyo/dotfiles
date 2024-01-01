@@ -41,6 +41,8 @@ a la='ls -A' # all but . and ..
 a l='ls -CF'
 a lsd='\ls -d */'
 
+a dv='dirs -v'
+
 a j='jobs -l'
 
 a h='history 16'
