@@ -90,7 +90,7 @@ case "$OSTYPE" in
             # <https://stackoverflow.com/questions/43144008/copy-to-clipboard-using-bash-for-windows/>
             a putclip='iconv -f utf-8 -t utf-16le | clip.exe'
 
-            a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscapecom.com'
+            a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscape.com'
         fi
         ;;
 esac
