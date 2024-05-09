@@ -254,7 +254,7 @@ else
     fi
 fi
 unset __conda_setup __conda_home
-conda activate python-3.11
+conda activate python-3.12
 # <<< conda initialize <<<
 
 # WIP
