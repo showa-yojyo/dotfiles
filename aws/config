@@ -1,0 +1,3 @@
+[default]
+region = ap-northease-1
+output = json
