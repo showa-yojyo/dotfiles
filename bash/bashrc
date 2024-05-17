@@ -166,7 +166,12 @@ export AWS_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/credentials"
 export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/shared-credentials"
 
-export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
+# Azure CLI
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure" # not XDG_CONFIG_HOME?
+
+# Docker
+# <https://docs.docker.com/engine/reference/commandline/cli/>
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
@@ -214,6 +219,14 @@ export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc.py"
 export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+
+# IPython and Jupyter
+# <https://github.com/jupyter/notebook/issues/2374#issuecomment-551765192>
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+
+# Matplotlib
+export MATPLOTLIBRC="$XDG_CONFIG_HOME/matplotlib"
 
 # SQLite
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
