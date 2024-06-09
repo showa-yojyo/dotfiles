@@ -154,9 +154,6 @@ export LC_ALL=C.UTF-8
 # default is "$XDG_DATA_HOME/lesshst" or "$HOME/.lesshst".
 export LESSHISTFILE=-
 
-# Docker (only config.json?)
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-
 # AWS
 # <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html>
 # <https://github.com/aws/aws-sdk/issues/30>
