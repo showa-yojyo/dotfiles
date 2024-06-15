@@ -110,4 +110,7 @@ a sqlite3='sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"'
 # See also $XDG_CONFIG_HOME/wgetrc or $HOME/.wgetrc
 a wget='wget --show-progress --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
+# Docker, etc.
+a kubectl='minikube kubectl --'
+
 unalias a
