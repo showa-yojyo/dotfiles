@@ -84,7 +84,7 @@ case "$OSTYPE" in
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
             a s='wslview'
 
-            a getclip='/mnt/c/Program\ Files/PowerShell/7-Preview/pwsh.exe -noprofile -command Get-Clipboard'
+            a getclip='sed "s/\r//" <(/mnt/c/Program\ Files/PowerShell/7-Preview/pwsh.exe -noprofile -command Get-Clipboard)'
 
             # command line - Copy to clipboard using Bash for Windows - Stack Overflow
             # <https://stackoverflow.com/questions/43144008/copy-to-clipboard-using-bash-for-windows/>
