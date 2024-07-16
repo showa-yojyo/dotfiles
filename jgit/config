@@ -1,3 +1,6 @@
 [filesystem "Private Build|18.0.2-ea|/dev/sdb"]
 	timestampResolution = 5400 nanoseconds
 	minRacyThreshold = 14370 microseconds
+[filesystem "Microsoft|21.0.3|/dev/sdc"]
+	timestampResolution = 5100 nanoseconds
+	minRacyThreshold = 12412 microseconds
