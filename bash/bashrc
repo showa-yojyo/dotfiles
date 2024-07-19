@@ -214,6 +214,10 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 # Oh My Posh
 export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
 
+# PostgreSQL
+export PSQLRC="$XDG_CONFIG_HOME/postgresql/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/postgresql/psql_history"
+
 # PulseAudio
 export PULSE_COOKIE="$XDG_CACHE_HOME/pulse/cookie"
 

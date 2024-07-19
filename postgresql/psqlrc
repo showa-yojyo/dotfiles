@@ -1,0 +1,3 @@
+-- .psqlrc
+
+\encoding unicode
