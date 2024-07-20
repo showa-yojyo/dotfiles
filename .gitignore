@@ -1,5 +1,7 @@
 # .gitignore for dotfiles
 
+docker/buildx
+
 ipython/profile_*/db
 ipython/profile_*/history.sqlite
 
