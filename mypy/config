@@ -1,4 +1,5 @@
 # Global options:
 
 [mypy]
+cache_dir: ~/.cache/mypy
 check_untyped_defs: True
