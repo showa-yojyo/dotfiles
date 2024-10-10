@@ -290,6 +290,9 @@ unset __conda_setup __conda_home
 conda activate python-3.12
 # <<< conda initialize <<<
 
+# Enable Pipenv completion
+[ -x "$(command -v pipenv)" ] && eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
+
 # WIP
 nvm() {
     unset -f nvm
