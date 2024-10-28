@@ -293,6 +293,9 @@ conda activate python-3.12
 # Enable Pipenv completion
 [ -x "$(command -v pipenv)" ] && eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
 
+# Enable Hatch completion
+[ -x "$(command -v hatch)" ] && eval "$(_HATCH_COMPLETE=bash_source hatch)"
+
 # WIP
 nvm() {
     unset -f nvm
