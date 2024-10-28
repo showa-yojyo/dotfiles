@@ -1,0 +1,40 @@
+mode = "local"
+project = ""
+shell = "bash"
+
+[dirs]
+project = []
+python = "isolated"
+data = "$XDG_DATA_HOME/hatch"
+cache = "$XDG_CACHE_HOME/hatch"
+
+[dirs.env]
+
+[projects]
+
+[publish.index]
+repo = "main"
+
+[template]
+name = "showa_yojyo"
+email = "2386769+showa-yojyo@users.noreply.github.com"
+
+[template.licenses]
+headers = true
+default = [
+    "MIT",
+]
+
+[template.plugins.default]
+tests = true
+ci = false
+src-layout = true
+
+[terminal.styles]
+info = "bold"
+success = "bold cyan"
+error = "bold red"
+warning = "bold yellow"
+waiting = "bold magenta"
+debug = "bold"
+spinner = "simpleDotsScrolling"
