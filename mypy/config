@@ -1,5 +1,7 @@
 # Global options:
 
 [mypy]
-cache_dir: ~/.cache/mypy
-check_untyped_defs: True
+cache_dir = ~/.cache/mypy
+check_untyped_defs = True
+
+enable_incomplete_feature = NewGenericSyntax
