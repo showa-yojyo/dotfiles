@@ -290,6 +290,18 @@ unset __conda_setup __conda_home
 conda activate python-3.12
 # <<< conda initialize <<<
 
+# Enable Oh My Posh
+if [ -x "$(command -v oh-my-posh)" ]; then
+    eval "$(oh-my-posh init bash)"
+
+    # <https://stackoverflow.com/questions/78652215/>
+    function set_poshcontext() {
+        # export CURRENT_HISTORY_NUMBER=$(history -n ${HISTFILE}; history 1 | cut -f2 -d$" ")
+        export CURRENT_HISTORY_NUMBER=$(history 1 | cut -f2 -d$" ")
+    }
+    export -f set_poshcontext
+fi
+
 # Enable Pipenv completion
 [ -x "$(command -v pipenv)" ] && eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
 
@@ -309,6 +321,3 @@ nvm() {
     # run the authentic nvm
     nvm $@
 }
-
-# Enable Oh My Posh
-command -v oh-my-posh &>/dev/null && eval "$(oh-my-posh init bash)"

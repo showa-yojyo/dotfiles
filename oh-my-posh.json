@@ -130,7 +130,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#ffffff",
-          "template": "{{ .Shell }}$"
+          "template": "{{ .Shell }} [{{ .Env.CURRENT_HISTORY_NUMBER }}] $"
         }
       ]
     }
