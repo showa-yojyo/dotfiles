@@ -308,6 +308,9 @@ fi
 # Enable Hatch completion
 [ -x "$(command -v hatch)" ] && eval "$(_HATCH_COMPLETE=bash_source hatch)"
 
+# Enable Ruff completion
+[ -x "$(command -v ruff)" ] && eval "$(ruff generate-shell-completion bash)"
+
 # WIP
 nvm() {
     unset -f nvm
