@@ -297,7 +297,7 @@ if [ -x "$(command -v oh-my-posh)" ]; then
     # <https://stackoverflow.com/questions/78652215/>
     function set_poshcontext() {
         # export CURRENT_HISTORY_NUMBER=$(history -n ${HISTFILE}; history 1 | cut -f2 -d$" ")
-        export CURRENT_HISTORY_NUMBER=$(history 1 | cut -f2 -d$" ")
+        export CURRENT_HISTORY_NUMBER=$(history 1 | awk '{print $1}')
     }
     export -f set_poshcontext
 fi
