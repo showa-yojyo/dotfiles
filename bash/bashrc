@@ -139,14 +139,15 @@ eval $(keychain --agents ssh --eval id_ed25519)
 INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # Locale
+# n.b. To see which locales are supported, invoke: locale -a
 #
 # LANG: the locale category for any category not specifically selected with a
-# variable starting with LC_. export LANG=ja_JP.UTF-8
-export LANG=C.UTF-8
+# variable starting with LC_.
+export LANG=C.utf8
 
 # LC_ALL: overrides the value of LANG and any other LC_ variable specifying a
 # locale category.
-export LC_ALL=C.UTF-8
+export LC_ALL=C.utf8
 
 # less
 #
@@ -287,7 +288,7 @@ else
     fi
 fi
 unset __conda_setup __conda_home
-conda activate python-3.12
+conda activate python-3.13
 # <<< conda initialize <<<
 
 # Enable Oh My Posh
