@@ -1,3 +1,6 @@
+auto_activate_base: False
+channels:
+  - conda-forge
 conda-build:
   # Replace /home/user/.local/share with your $XDG_DATA_HOME path, as the
   # `conda-build.root-dir` option does not support environment expansion
@@ -6,5 +9,3 @@ envs_dirs:
   - ${XDG_DATA_HOME}/conda/envs
 pkgs_dirs:
   - ${XDG_CACHE_HOME}/conda/pkgs
-
-auto_activate_base: False

@@ -275,6 +275,10 @@ for f in bash_aliases bash_functions; do
 done
 unset f bash_config_home
 
+# CONDARC must be a path to a file named .condarc, condarc, or end with a YAML
+# suffix (.yml or .yaml).
+export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
+
 # >>> conda initialize >>>
 declare __conda_home="$XDG_DATA_HOME/miniconda3"
 declare __conda_setup="$($__conda_home/bin/conda shell.bash hook 2> /dev/null)"
