@@ -1,4 +1,4 @@
-auto_activate_base: False
+auto_activate_base: false
 channels:
   - conda-forge
 conda-build:
@@ -9,3 +9,4 @@ envs_dirs:
   - ${XDG_DATA_HOME}/conda/envs
 pkgs_dirs:
   - ${XDG_CACHE_HOME}/conda/pkgs
+channel_priority: strict

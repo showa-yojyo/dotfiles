@@ -288,12 +288,12 @@ else
     if [ -f "$__conda_home/etc/profile.d/conda.sh" ]; then
         source "$__conda_home/etc/profile.d/conda.sh"
     else
-        PATH="$__conda_home/bin:$PATH"
+        export PATH="$__conda_home/bin:$PATH"
     fi
 fi
 unset __conda_setup __conda_home
-conda activate python-3.13
 # <<< conda initialize <<<
+conda activate python-3.13
 
 # Enable Oh My Posh
 if [ -x "$(command -v oh-my-posh)" ]; then
