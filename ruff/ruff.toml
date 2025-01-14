@@ -1,1 +1,36 @@
+# ruff.toml
+
+# Use $XDG_CACHE_HOME/ruff
+cache-dir = "~/.cache/ruff"
+
+# Allow lines to be as long as 88.
+#line-length = 88
+
+# PEP 8 recommends using 4 spaces per indentation level.
+indent-width = 4
+
 target-version = "py313"
+
+[lint]
+# TODO
+# typing-modules = []
+
+[format]
+# Enable reformatting of code snippets in docstrings.
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+# Use 4 space indentation.
+indent-style = "space"
+
+# Use `\n` line endings for all files.
+line-ending = "lf"
+
+# Enable preview style formatting.
+preview = true
+
+# Prefer single quotes over double quotes.
+quote-style = "single"
+
+# Ignore the magic trailing comma.
+skip-magic-trailing-comma = true
