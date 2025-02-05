@@ -2,6 +2,8 @@
 
 [mypy]
 cache_dir = ~/.cache/mypy
-check_untyped_defs = True
-
 enable_incomplete_feature = NewGenericSyntax
+
+# Enable all optional error checking flags.
+# (n.b. includes check_untyped_defs and disallow_untyped_defs options)
+strict = True
