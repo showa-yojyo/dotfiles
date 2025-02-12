@@ -30,7 +30,7 @@ line-ending = "lf"
 preview = true
 
 # Prefer single quotes over double quotes.
-quote-style = "single"
+quote-style = "double"
 
 # Ignore the magic trailing comma.
-skip-magic-trailing-comma = true
+skip-magic-trailing-comma = false
