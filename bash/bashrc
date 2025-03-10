@@ -36,7 +36,7 @@ HISTCONTROL="ignoreboth"
 
 # Ignore some controlling instructions
 # The '&' is a special pattern which suppresses duplicate entries.
-HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+'
+HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+:dv:pushd.+:popd.+'
 
 # change ~/.bash_history
 HISTFILE="$XDG_STATE_HOME/bash_history"
