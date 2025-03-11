@@ -1,16 +1,6 @@
+# hatch/config.toml
+# See <https://hatch.pypa.io/latest/config/hatch/>
 mode = "local"
-project = ""
-shell = "bash"
-
-[dirs]
-project = []
-python = "isolated"
-data = "$XDG_DATA_HOME/hatch"
-cache = "$XDG_CACHE_HOME/hatch"
-
-[dirs.env]
-
-[projects]
 
 [publish.index]
 repo = "main"
@@ -27,7 +17,7 @@ default = [
 
 [template.plugins.default]
 tests = true
-ci = false
+ci = true
 src-layout = true
 
 [terminal.styles]
