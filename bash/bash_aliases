@@ -91,6 +91,7 @@ case "$OSTYPE" in
             a putclip='iconv -f utf-8 -t utf-16le | clip.exe'
 
             a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscape.com'
+            a edit='/mnt/c/Program\ Files/WinGet/Links/edit.exe'
         fi
         ;;
 esac
