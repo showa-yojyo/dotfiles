@@ -8,11 +8,31 @@ a ln='ln -i'
 a mv='mv -i'
 a rm='rm -I --preserve-root'
 
+# aliases for cd, pushd, popd, and dirs.
+# cd
 a ..='cd ..'
 a ..2='cd ../..'
 a ..3='cd ../../..'
 a ..4='cd ../../../..'
-a ..5='cd ../../../../..'
+
+# pushd
+a pushd='>/dev/null pushd'
+a pd=pushd
+a pd1='pushd +1'
+a pd2='pushd +2'
+a pd3='pushd +3'
+a pd4='pushd +4'
+
+# popd
+a popd='>/dev/null popd'
+a po=popd
+a po1='popd +1'
+a po2='popd +2'
+a po3='popd +3'
+a po4='popd +4'
+
+# dirs
+a dv='dirs -v'
 
 # Default to human readable figures
 a df='df -h'
@@ -46,8 +66,6 @@ fi
 a ll='ls --long' # long list
 a la='ls -A' # all but . and ..
 a l='ls -F'
-
-a dv='dirs -v'
 
 a j='jobs -l'
 
