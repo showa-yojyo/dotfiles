@@ -23,9 +23,10 @@ a du='du -h'
 # a whence='type -a'    # where, of a sort
 
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    a ls='ls -hF --show-control-chars --color=tty --time-style=long-iso --group-directories-first'
+    a ls='ls --color=tty'
+
     #a dir='dir --color=auto'
     #a vdir='vdir --color=auto'
 
@@ -35,11 +36,16 @@ if [ -x /usr/bin/dircolors ]; then
     a fgrep='fgrep --color=auto'
 fi
 
+if [ -x "$(command -v exa)" ]; then
+    a ls='exa --header --time-style=long-iso --group-directories-first'
+else
+    a ls='ls -hF --show-control-chars --time-style=long-iso --group-directories-first'
+fi
+
 # Some more ls aliases
-a ll='ls -l' # long list
+a ll='ls --long' # long list
 a la='ls -A' # all but . and ..
-a l='ls -CF'
-a lsd='\ls -d */'
+a l='ls -F'
 
 a dv='dirs -v'
 
