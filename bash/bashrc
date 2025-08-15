@@ -317,7 +317,7 @@ fi
 [ -x "$(command -v ruff)" ] && eval "$(ruff generate-shell-completion bash)"
 
 # Initialize zoxide
-[ -x "$(command -v zoxide)" ] && eval "$(zoxide init bash)"
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init --cmd cd bash)"
 
 # WIP
 nvm() {
