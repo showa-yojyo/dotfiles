@@ -303,7 +303,7 @@ conda activate python-3.13
 
 # Enable Oh My Posh
 if [ -x "$(command -v oh-my-posh)" ]; then
-    eval "$(oh-my-posh init bash)"
+    eval "$(oh-my-posh init bash --config $XDG_CONFIG_HOME/oh-my-posh.json)"
 
     # <https://stackoverflow.com/questions/78652215/>
     function set_poshcontext() {
