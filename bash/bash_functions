@@ -368,3 +368,16 @@ function z
     )
     test -d "$selected_dir" && \cd "$_"
 }
+
+function pcloud-mount
+{
+    local target_drive="P:"
+    local mount_point=/mnt/p
+    local uid=$(id -u)
+    local gid=$(id -g)
+
+    #sudo mkdir -p $mound_point
+    #sudo chown -R "$USER:${GROUPS[0]}" $mound_point
+    #sudo chmod -R 777 $mound_point
+    sudo mount -t drvfs $target_drive $mound_point -o metadata,uid=$uid,gid=$gid,umask=22,fmask=111
+}
