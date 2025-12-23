@@ -123,7 +123,7 @@ GIT_PS1_SHOWCOLORHINTS="yes"
 #GIT_PS1_HIDE_IF_PWD_IGNORED=
 
 declare git_tool_home="$XDG_CONFIG_HOME/git"
-for f in git-prompt.sh git-completion.sh;
+for f in git-prompt.sh git-completion.bash;
 do
     test -f "$git_tool_home/$f" && source "$git_tool_home/$f"
 done
