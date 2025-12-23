@@ -83,7 +83,7 @@
     prompt = false
 
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+    cmd = code -n --wait --diff $LOCAL $REMOTE
 
 [gpg]
     format = ssh
