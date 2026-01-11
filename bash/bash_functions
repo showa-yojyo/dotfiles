@@ -376,8 +376,7 @@ function pcloud-mount
     local uid=$(id -u)
     local gid=$(id -g)
 
-    #sudo mkdir -p $mound_point
-    #sudo chown -R "$USER:${GROUPS[0]}" $mound_point
-    #sudo chmod -R 777 $mound_point
-    sudo mount -t drvfs $target_drive $mound_point -o metadata,uid=$uid,gid=$gid,umask=22,fmask=111
+    sudo mkdir -m 777 -p $mount_point
+    sudo chown -R "$USER:${GROUPS[0]}" $mount_point
+    sudo mount -t drvfs $target_drive $mount_point -o metadata,uid=$uid,gid=$gid,umask=22,fmask=11
 }
