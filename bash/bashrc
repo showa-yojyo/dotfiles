@@ -285,21 +285,19 @@ unset f bash_config_home
 # suffix (.yml or .yaml).
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
 
-# >>> conda initialize >>>
-declare __conda_home="$XDG_DATA_HOME/miniconda3"
-declare __conda_setup="$($__conda_home/bin/conda shell.bash hook 2> /dev/null)"
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE="$XDG_DATA_HOME/conda/envs/python-3.14/bin/mamba"
+export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/conda"
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+    eval "$__mamba_setup"
 else
-    if [ -f "$__conda_home/etc/profile.d/conda.sh" ]; then
-        source "$__conda_home/etc/profile.d/conda.sh"
-    else
-        export PATH="$__conda_home/bin:$PATH"
-    fi
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
 fi
-unset __conda_setup __conda_home
-# <<< conda initialize <<<
-conda activate python-3.13
+unset __mamba_setup
+# <<< mamba initialize <<<
+mamba activate python-3.14
 
 # Enable Oh My Posh
 if [ -x "$(command -v oh-my-posh)" ]; then
