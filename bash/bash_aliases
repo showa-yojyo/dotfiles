@@ -120,8 +120,10 @@ case "$OSTYPE" in
         ;;
 esac
 
+# Useful CLI tools provided by Python standard library (as of Python 3.14)
 a doctest='python -m doctest'
 a json-tool='python -m json'
+a mimetypes='python -m mimetypes'
 a pdb='python -m pdb'
 a random='python -m random'
 a venv='python -m venv'
