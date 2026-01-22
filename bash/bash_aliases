@@ -121,7 +121,7 @@ case "$OSTYPE" in
 esac
 
 a doctest='python -m doctest'
-a json-tool='python -m json.tool'
+a json-tool='python -m json'
 a pdb='python -m pdb'
 a random='python -m random'
 a venv='python -m venv'
