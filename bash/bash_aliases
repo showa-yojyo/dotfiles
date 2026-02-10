@@ -56,6 +56,11 @@ if [ -x /usr/bin/dircolors ]; then
     a fgrep='fgrep --color=auto'
 fi
 
+# batcat <https://github.com/sharkdp/bat>
+if [ -x "$(command -v batcat)" ]; then
+    alias bathelp='batcat --plain --language=help'
+fi
+
 if [ -x "$(command -v exa)" ]; then
     a ls='exa --header --time-style=long-iso --group-directories-first'
 else
@@ -126,6 +131,7 @@ a json-tool='python -m json'
 a mimetypes='python -m mimetypes'
 a pdb='python -m pdb'
 a random='python -m random'
+a uuid='python -m uuid -u uuid8'
 a venv='python -m venv'
 
 # XDG
