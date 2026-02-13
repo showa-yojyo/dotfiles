@@ -56,11 +56,6 @@ if [ -x /usr/bin/dircolors ]; then
     a fgrep='fgrep --color=auto'
 fi
 
-# bat <https://github.com/sharkdp/bat>
-if [ -x "$(command -v bat)" ]; then
-    alias bathelp='bat --plain --language=help'
-fi
-
 if [ -x "$(command -v exa)" ]; then
     a ls='exa --header --time-style=long-iso --group-directories-first'
 else

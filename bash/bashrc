@@ -158,7 +158,7 @@ export LESSHISTFILE=-
 # man
 if [ -x "$(command -v bat)" ]; then
     # bat <https://github.com/sharkdp/bat>
-    export MANPAGER="bat -plman"
+    export MANPAGER="bat --strip-ansi=auto -plman"
 fi
 
 # AWS
