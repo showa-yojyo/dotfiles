@@ -156,9 +156,9 @@ export LC_ALL=C.utf8
 export LESSHISTFILE=-
 
 # man
-if [ -x "$(command -v batcat)" ]; then
-    # batcat <https://github.com/sharkdp/bat>
-    export MANPAGER="batcat -plman"
+if [ -x "$(command -v bat)" ]; then
+    # bat <https://github.com/sharkdp/bat>
+    export MANPAGER="bat -plman"
 fi
 
 # AWS

@@ -56,9 +56,9 @@ if [ -x /usr/bin/dircolors ]; then
     a fgrep='fgrep --color=auto'
 fi
 
-# batcat <https://github.com/sharkdp/bat>
-if [ -x "$(command -v batcat)" ]; then
-    alias bathelp='batcat --plain --language=help'
+# bat <https://github.com/sharkdp/bat>
+if [ -x "$(command -v bat)" ]; then
+    alias bathelp='bat --plain --language=help'
 fi
 
 if [ -x "$(command -v exa)" ]; then
