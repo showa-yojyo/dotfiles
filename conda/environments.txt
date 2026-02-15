@@ -2,4 +2,3 @@
 /home/work/.local/share/conda/envs/python-3.12
 /home/work/.local/share/conda/envs/python-3.13
 /home/work/.local/share/conda/envs/python-3.14
-/home/work/.local/share/miniconda3
