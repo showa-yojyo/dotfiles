@@ -32,8 +32,8 @@
      showgrid="false"
      showguides="true"
      inkscape:zoom="0.5"
-     inkscape:cx="51"
-     inkscape:cy="1096"
+     inkscape:cx="489"
+     inkscape:cy="776"
      inkscape:window-width="1366"
      inkscape:window-height="684"
      inkscape:window-x="-8"
@@ -104,10 +104,10 @@
        inkscape:menu-tooltip="Overlays two copies with different blur amounts and modifiable blend and composite"
        style="color-interpolation-filters:sRGB;"
        id="filter2"
-       x="-0.25870637"
-       y="-0.025210492"
-       width="1.5174127"
-       height="1.050421"><feGaussianBlur
+       x="-0.2822251"
+       y="-0.027502353"
+       width="1.5644502"
+       height="1.0550047"><feGaussianBlur
          stdDeviation="5"
          result="fbSourceGraphic"
          id="feGaussianBlur1" /><feGaussianBlur
@@ -177,7 +177,7 @@
          x="-42.135574"
          y="1118.7566">図書館逃避行</tspan></text><text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:55.8781px;font-family:'07LightNovelPOP';-inkscape-font-specification:'07LightNovelPOP, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:tb-rl;text-orientation:upright;fill-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.2216px;font-family:'07LightNovelPOP';-inkscape-font-specification:'07LightNovelPOP, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;writing-mode:tb-rl;text-orientation:upright;fill-opacity:1;paint-order:stroke markers fill;stop-color:#000000"
        x="413.58414"
        y="646.453"
        id="library-name"
@@ -224,4 +224,4 @@
        style="fill:url(#linearGradient3);fill-opacity:1;stroke:none;stroke-width:1.88564976;stroke-dasharray:none"
        inkscape:label="logotype-top" /></g><metadata
      id="metadata251"><rdf:RDF><cc:Work
-         rdf:about="" /></rdf:RDF></metadata><inkscape:templateinfo><inkscape:name>video-template</inkscape:name><inkscape:date>2025-05-10</inkscape:date></inkscape:templateinfo></svg>
+         rdf:about="" /></rdf:RDF></metadata><inkscape:templateinfo><inkscape:name>video-template</inkscape:name><inkscape:date>2025-05-10</inkscape:date></inkscape:templateinfo><inkscape:templateinfo><inkscape:name>video-title-font-size-77</inkscape:name><inkscape:author>プレハブ小屋</inkscape:author><inkscape:shortdesc>図書館逃避行 font size 77</inkscape:shortdesc><inkscape:date>2026-02-07</inkscape:date></inkscape:templateinfo></svg>
