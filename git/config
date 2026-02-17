@@ -75,6 +75,7 @@
     autocrlf = input
     editor = code --wait
     fileMode = true
+    pager = bat -p
 
 [diff]
     tool = vscode
@@ -111,6 +112,11 @@
 
 [mergetool "vscode"]
     cmd = code --wait $MERGED
+
+[pager]
+    diff = bat -l diff --style=changes
+    log = bat -p -l 'Git Log'
+    show = bat -p -ldiff --style=changes
 
 [pull]
     ff = only
