@@ -45,27 +45,33 @@ a du='du -h'
 if [ -x /usr/bin/dircolors ]; then
     [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    a ls='ls --color=tty'
-
-    #a dir='dir --color=auto'
-    #a vdir='vdir --color=auto'
-
-    # show differences in colour
+    a ls='ls --color=auto'
+    a dir='dir --color=auto'
+    a vdir='vdir --color=auto'
     a grep='grep --color=auto'
     a egrep='egrep --color=auto'
     a fgrep='fgrep --color=auto'
 fi
 
-if [ -x "$(command -v exa)" ]; then
-    a ls='exa --header --time-style=long-iso --group-directories-first'
-else
-    a ls='ls -hF --show-control-chars --time-style=long-iso --group-directories-first'
+if [ -x "$(command -v bat)" ]; then
+    # <https://github.com/sharkdp/bat>
+    a cat='bat --paging=never'
 fi
 
 # Some more ls aliases
-a ll='ls --long' # long list
-a la='ls -A' # all but . and ..
-a l='ls -F'
+if [ -x "$(command -v eza)" ]; then
+    # <https://eza.rocks/>
+    a exa='eza --group-directories-first --sort=extension'
+
+    a ll='exa -alF --header --time-style=long-iso' # long list
+    a la='exa -A' # all but . and ..
+    a l='exa -F'
+else
+    a ls='ls --group-directories-first -x'
+    a ll='ls -alF' # long list
+    a la='ls -A' # all but . and ..
+    a l='ls -CF'
+fi
 
 a j='jobs -l'
 
