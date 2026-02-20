@@ -305,6 +305,18 @@ unset __mamba_setup
 # <<< mamba initialize <<<
 mamba activate python-3.14
 
+# Homebrew
+if [ -x "$(command -v brew)" ]; then
+    HOMEBREW_PREFIX="$(brew --prefix)"
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    else
+        for f in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+            [[ -r "$f" ]] && source "$f"
+        done
+    fi
+fi
+
 # Enable Oh My Posh
 if [ -x "$(command -v oh-my-posh)" ]; then
     eval "$(oh-my-posh init bash --config $XDG_CONFIG_HOME/oh-my-posh.json)"
