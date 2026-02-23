@@ -61,9 +61,9 @@ fi
 # Some more ls aliases
 if [ -x "$(command -v eza)" ]; then
     # <https://eza.rocks/>
-    a exa='eza --group-directories-first --sort=extension'
+    a exa='eza --group-directories-first --sort=extension --no-quotes'
 
-    a ll='exa -alF --header --time-style=long-iso' # long list
+    a ll='exa -alF --color-scale=age --color-scale-mode=gradient --git --header --smart-group --time-style=long-iso' # long list
     a la='exa -A' # all but . and ..
     a l='exa -F'
 else
