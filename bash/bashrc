@@ -324,10 +324,8 @@ fi
 if [ -x "$(command -v oh-my-posh)" ]; then
     eval "$(oh-my-posh init bash --config $XDG_CONFIG_HOME/oh-my-posh.json)"
 
-    # <https://stackoverflow.com/questions/78652215/>
     function set_poshcontext() {
-        # export CURRENT_HISTORY_NUMBER=$(history -n ${HISTFILE}; history 1 | cut -f2 -d$" ")
-        export CURRENT_HISTORY_NUMBER=$(history 1 | awk '{print $1}')
+        export CURRENT_HISTORY_NUMBER="$HISTCMD"
     }
     export -f set_poshcontext
 fi
