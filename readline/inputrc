@@ -147,7 +147,10 @@ $endif
 
 ## Customize key bindings.
 $if Bash
-  "\C-xgl": "git lds -n 8\C-m"
-  "\C-xgs": "git st\C-m"
-  "\C-xl": "ll\C-m"
+  "\C-xmd": " sudo ~/.local/bin/wsl-drop-cache\C-m"
+  "\C-xmf": " free -ht\C-m"
+  "\C-xgl": " git lds -n 8\C-m"
+  "\C-xgp": " git push || git push --force-with-lease\C-m"
+  "\C-xgs": " git st\C-m"
+  "\C-xl": " ll\C-m"
 $endif
