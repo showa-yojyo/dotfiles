@@ -187,6 +187,9 @@ export FX_LINE_NUMBERS=true
 export FX_COLLAPED=true
 export FX_INDENT=4
 
+# fzf <https://junegunn.github.io/fzf/>
+export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
+
 # Kubernetes
 export KUBECONFIG="$XDG_CONFIG_HOME/kube"
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
