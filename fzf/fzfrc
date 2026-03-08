@@ -1,0 +1,18 @@
+# FZF configuration file
+
+# SEARCH
+--no-sort
+
+# GLOBAL STYLE
+--style=minimal
+
+# LIST SECTION
+--highlight-line
+--cycle
+--tabstop=4
+
+# INPUT SECTION
+--info=inline-right
+
+# OTHERS
+--no-mouse

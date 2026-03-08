@@ -83,17 +83,6 @@
           "background": "#cc342d",
           "type": "ruby",
           "style": "powerline"
-        },
-        {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": " \ue20f ",
-          "foreground": "#ffffff",
-          "powerline_symbol": "\ue0b0",
-          "background": "#ff8080",
-          "type": "exit",
-          "style": "powerline"
         }
       ]
     },
@@ -143,6 +132,6 @@
       "newline": true
     }
   ],
-  "version": 3,
+  "version": 4,
   "final_space": true
 }
