@@ -1,12 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "accent_color": "#ff1493",
   "blocks": [
     {
       "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "properties": {
+          "options": {
             "cache_duration": "none"
           },
           "template": " \uf0e7 ",
@@ -17,7 +18,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none",
             "folder_icon": "\uf115",
             "folder_separator_icon": " \ue0b1 ",
@@ -31,7 +32,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none",
             "fetch_stash_count": true,
             "fetch_status": true,
@@ -46,7 +47,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none"
           },
           "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} | \ue235 {{ end }}{{ .Full }}{{ end }} ",
@@ -57,7 +58,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none",
             "display_mode": "files",
             "fetch_version": true,
@@ -71,7 +72,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none",
             "display_mode": "files",
             "fetch_version": true,
@@ -85,7 +86,7 @@
           "style": "powerline"
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none"
           },
           "template": " \ue20f ",
@@ -102,7 +103,7 @@
       "alignment": "right",
       "segments": [
         {
-          "properties": {
+          "options": {
             "always_enabled": true,
             "cache_duration": "none"
           },
@@ -114,7 +115,7 @@
           "invert_powerline": true
         },
         {
-          "properties": {
+          "options": {
             "cache_duration": "none",
             "time_format": "15:04:05 JST+9:00"
           },
@@ -131,7 +132,7 @@
       "alignment": "left",
       "segments": [
         {
-          "properties": {
+          "options": {
             "cache_duration": "none"
           },
           "template": "[{{ .Env.CURRENT_HISTORY_NUMBER }}] $",
@@ -143,6 +144,11 @@
       "newline": true
     }
   ],
-  "version": 4,
-  "final_space": true
+  "final_space": true,
+  "terminal_background": "#ffc0b0",
+  "upgrade": {
+    "auto": true,
+    "notice": true
+  },
+  "version": 4
 }
