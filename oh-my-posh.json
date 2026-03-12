@@ -55,7 +55,7 @@
             "cache_duration": "none",
             "display_mode": "context"
           },
-          "template": " {{ .Full }} ",
+          "template": "{{ .Full }}",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "background": "#ff1493",
@@ -68,7 +68,7 @@
             "display_mode": "files",
             "fetch_version": true
           },
-          "template": " \ue718 {{ .Full }} ",
+          "template": "\ue718{{ .Full }}",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "background": "#6CA35E",
@@ -81,7 +81,7 @@
             "display_mode": "files",
             "fetch_version": true
           },
-          "template": "\ue791 {{ .Full }}",
+          "template": "\ue791{{ .Full }}",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
           "background": "#cc342d",
@@ -106,7 +106,7 @@
           "options": {
             "threshold": 500
           },
-          "template": "\uf608 {{ .FormattedMs }}",
+          "template": "\uf608{{ .FormattedMs }}",
           "foreground": "#fefefe",
           "powerline_symbol": "\ue0b2",
           "type": "executiontime",
@@ -117,7 +117,7 @@
           "options": {
             "time_format": "15:04:05 JST+9:00"
           },
-          "template": "\uf64f {{ dateInZone .Format .CurrentDate \"Asia/Tokyo\" }}",
+          "template": "\uf64f{{ dateInZone .Format .CurrentDate \"Asia/Tokyo\" }}",
           "foreground": "#fefefe",
           "type": "time",
           "style": "plain",
@@ -130,7 +130,7 @@
       "alignment": "left",
       "segments": [
         {
-          "template": "{{ .Env.CURRENT_HISTORY_NUMBER }} $",
+          "template": "{{ if eq .Shell \"bash\" }}{{ .Env.CURRENT_HISTORY_NUMBER }} ${{ else if eq .Shell \"pwsh\" }}PS >{{ end }}",
           "foreground": "#ffffff",
           "type": "text",
           "style": "plain"
@@ -141,9 +141,5 @@
   ],
   "final_space": true,
   "terminal_background": "#ffc0b0",
-  "upgrade": {
-    "auto": true,
-    "notice": true
-  },
   "version": 4
 }
