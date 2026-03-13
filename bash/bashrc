@@ -230,9 +230,6 @@ export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
 # NuGet (only ~/.nuget/packages)
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 
-# Oh My Posh
-export POSH_THEME="$XDG_CONFIG_HOME/oh-my-posh.json"
-
 # PostgreSQL
 export PSQLRC="$XDG_CONFIG_HOME/postgresql/psqlrc"
 export PSQL_HISTORY="$XDG_STATE_HOME/postgresql/psql_history"
@@ -325,12 +322,12 @@ fi
 
 # Enable Oh My Posh
 if [ -x "$(command -v oh-my-posh)" ]; then
+    # post-condition: [[ "$POSH_THEME" == "$XDG_CONFIG_HOME/oh-my-posh.json" ]]
     eval "$(oh-my-posh init bash --config $XDG_CONFIG_HOME/oh-my-posh.json)"
 
     function set_poshcontext() {
         export CURRENT_HISTORY_NUMBER="$HISTCMD"
     }
-    export -f set_poshcontext
 fi
 
 # Enable Pipenv completion
