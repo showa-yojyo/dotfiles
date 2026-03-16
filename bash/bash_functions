@@ -393,7 +393,6 @@ if [[ -n "$WSL_DISTRO_NAME" ]]; then
 
     function peek
     {
-        local cmd='/mnt/c/Program Files/PowerToys/WinUI3Apps/PowerToys.Peek.UI.exe'
-        "$cmd" "$(wslpath -aw "$1")"
+        peekui "$(wslpath -aw "$1")"
     }
 fi
