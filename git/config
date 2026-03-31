@@ -41,7 +41,7 @@
 
     who = shortlog -s --
 
-    st = status -sb
+    st = status -s
 
 [branch]
     autoSetupRebase = always
