@@ -154,10 +154,6 @@ $if Bash
   # C-x g bindings are for Git operations
   "\C-xga": "git add "
   "\C-xgc": "git commit -m \"\"\C-b"
-  "\C-xgl": "git lds -n 8\C-m"
+  "\C-xgd": "git diff "
   "\C-xgp": "git push || git push --force-with-lease\C-m"
-  "\C-xgs": "git st\C-m"
-
-  # Misc.
-  "\C-xl": "ll\C-m"
 $endif
