@@ -193,6 +193,9 @@ export FX_INDENT=4
 # fzf <https://junegunn.github.io/fzf/>
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
 
+# fzf-git.h <https://github.com/junegunn/fzf-git.sh/>
+FZF_GIT_SH="$XDG_CONFIG_HOME/fzf/fzf-git.sh"
+
 # Kubernetes
 export KUBECONFIG="$XDG_CONFIG_HOME/kube"
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"

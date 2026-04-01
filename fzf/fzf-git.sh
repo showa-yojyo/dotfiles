@@ -1,0 +1,1 @@
+/home/work/devel/fzf-git.sh/fzf-git.sh

@@ -382,6 +382,9 @@ function z
     test -d "$selected_dir" && builtin cd "$_"
 }
 
+# See <https://github.com/junegunn/fzf-git.sh>.
+[ -f "$FZF_GIT_SH" ] && source "$FZF_GIT_SH"
+
 if [[ -n "$WSL_DISTRO_NAME" ]]; then
     function pcloud-mount
     {
