@@ -312,7 +312,6 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-mamba activate python-3.14
 
 # Homebrew
 if [ -x "$(command -v brew)" ]; then
