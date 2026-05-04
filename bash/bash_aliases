@@ -112,7 +112,8 @@ case "$OSTYPE" in
         ;;
     linux*)
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            a s='wslview'
+            a open='wslview'
+            a xdg-open='wslview'
 
             a getclip='sed "s/\r//" <(/mnt/c/Program\ Files/PowerShell/7-Preview/pwsh.exe -noprofile -command Get-Clipboard)'
 
