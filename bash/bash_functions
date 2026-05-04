@@ -234,12 +234,13 @@ function twitter-merge-video-audio
         -map 0:v -map 1:a $ffmpeg_output_options "$output"
 }
 
-# Download an audio file (m4a) from YouTube
+# Download an audio file (mp3) from YouTube
 function youtube-download-audio
 {
     local -r video_url="${1:?Usage: $FUNCNAME VIDEO_URL}"
-    local -r options="-q --no-playlist -x --audio-format m4a"
-    youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
+    local -r options="-q --no-playlist -t mp3"
+
+    yt-dlp $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
 }
 
 # Download a video file (mp4) from YouTube
@@ -250,7 +251,7 @@ function youtube-download-video
         -q --no-playlist
         -f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
         "
-    youtube-dl $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
+    yt-dlp $options -o "%(id)s-%(title)s.%(ext)s" "$video_url"
 }
 
 # Show summary of all items in a play list
@@ -259,7 +260,7 @@ function youtube-playlist-summary
     local -r playlist_url="${1:?Usage: $FUNCNAME PLAYLIST_URL}"
     local -r options="--flat-playlist --yes-playlist -J"
 
-    youtube-dl $options "$playlist_url" \
+    yt-dlp $options "$playlist_url" \
         | jq -r '.entries[] | ["https://www.youtube.com/watch?v=" + .id, .title, .duration] | @tsv'
 }
 
