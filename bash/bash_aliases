@@ -123,6 +123,7 @@ case "$OSTYPE" in
 
             a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscape.com'
             a edit='/mnt/c/Program\ Files/WinGet/Links/edit.exe'
+            a notepad='/mnt/c/Windows/System32/Notepad.exe'
         fi
         ;;
 esac
