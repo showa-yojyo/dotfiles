@@ -11,6 +11,10 @@ set bell-style none
 # some defaults / modifications for the emacs mode
 $if mode=emacs
   ## Customize key bindings.
+  set keymap emacs
+  "\ew": copy-region-as-kill
+  "\C-w": kill-region
+
   set keymap emacs-ctlx
 
   # C-x m bindings are for memory management
