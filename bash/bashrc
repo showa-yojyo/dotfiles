@@ -52,6 +52,9 @@ HISTTIMEFORMAT="%F %T "
 #
 # See man bash for more options...
 
+# Prevent overwriting files with redirection.
+set -o noclobber
+
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -60,9 +63,8 @@ shopt -s checkwinsize
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell dirspell
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+# If set, the shell will check for running jobs before exiting.
+shopt -s checkjobs
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -313,7 +315,7 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# Homebrew
+# Homebrew <https://docs.brew.sh/Shell-Completion>
 if [ -x "$(command -v brew)" ]; then
     HOMEBREW_PREFIX="$(brew --prefix)"
     if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
