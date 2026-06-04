@@ -66,6 +66,13 @@ shopt -s cdspell dirspell
 # If set, the shell will check for running jobs before exiting.
 shopt -s checkjobs
 
+# For better handling of glob patterns that do not match any files:
+# - With nullglob, the pattern will expand to an empty string instead of
+#   remaining unchanged.
+# - With failglob, an error will be raised if a pattern does not match any
+#   files.
+shopt -s nullglob failglob
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -130,10 +137,6 @@ do
     test -f "$git_tool_home/$f" && source "$git_tool_home/$f"
 done
 unset f git_tool_home
-
-# SSH
-# For detailed information, see <https://www.funtoo.org/Funtoo:Keychain>.
-eval $(keychain --agents ssh --quiet --eval id_ed25519)
 
 # Readline
 #
