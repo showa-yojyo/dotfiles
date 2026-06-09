@@ -86,6 +86,12 @@ function image-resize-medium
     _image-resize 1366x768 "$@"
 }
 
+# Resize image to fit within 1920x1080 dots
+function image-resize-fullhd
+{
+    _image-resize 1920x1080 "$@"
+}
+
 # For uploading to Twitter
 function video-optimize
 {
@@ -204,7 +210,7 @@ function video-fadeout
 # Preview a video with ffplay
 function video-preview
 {
-    if [ -t 0 ]; then
+    if [[ -t 0 ]]; then
         local -r input="${1:?Usage: $FUNCNAME INPUT_VIDEO_PATH}"
     else
         local -r input="-"
@@ -297,7 +303,7 @@ function extract
         7z x "$archive"
         ;;
     *)
-        echo $archive cannot be extracted via $FUNCNAME
+        echo $archive cannot be extracted via $FUNCNAME >&2
         return 1
         ;;
     esac

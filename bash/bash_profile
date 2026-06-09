@@ -32,28 +32,28 @@ PATH="${PATH%:}"
 
 # Homebrew
 for private_dir in "$HOME/.linuxbrew" "/home/linuxbrew/.linuxbrew"; do
-    if [ -d "$private_dir" ] ; then
-        eval $("$private_dir/bin/brew" shellenv)
+    if [[ -d "$private_dir" ]] ; then
+        eval $("${private_dir}/bin/brew" shellenv)
     fi
 done
 unset private_dir
 
 # source the users bashrc if it exists
 declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
-if [ -f "$bash_config_home/bashrc" ]; then
+if [[ -f "$bash_config_home/bashrc" ]]; then
     source "$bash_config_home/bashrc"
-elif [ -f "$HOME/.bashrc" ]; then
+elif [[ -f "$HOME/.bashrc" ]]; then
     source "$HOME/.bashrc"
 fi
 unset bash_config_home
 
 # Set MANPATH so it includes users' private man if it exists
-if [ -d "${HOME}/man" ]; then
+if [[ -d "${HOME}/man" ]]; then
     MANPATH="${HOME}/man:${MANPATH}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
-if [ -d "${HOME}/info" ]; then
+if [[ -d "${HOME}/info" ]]; then
     INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
@@ -75,16 +75,15 @@ case "$OSTYPE" in
         ;;
 esac
 
-unset -f _munge_path
-
 # set PATH so that it includes user's private bin
 for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
-    if [ -d "$private_dir" ] ; then
-        PATH="$private_dir:$PATH"
+    if [[ -d "$private_dir" ]] ; then
+        _munge_path "$private_dir" first
         break
     fi
 done
 unset private_dir
+unset -f _munge_path
 
 # SSH
 # For detailed information, see <https://www.funtoo.org/Funtoo:Keychain>.

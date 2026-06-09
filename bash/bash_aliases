@@ -42,8 +42,8 @@ a du='du -h'
 # a less='less -r'      # raw control characters
 # a whence='type -a'    # where, of a sort
 
-if [ -x /usr/bin/dircolors ]; then
-    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [[ -x /usr/bin/dircolors ]]; then
+    [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
     a ls='ls --color=auto'
     a dir='dir --color=auto'
@@ -53,13 +53,13 @@ if [ -x /usr/bin/dircolors ]; then
     a fgrep='fgrep --color=auto'
 fi
 
-if [ -x "$(command -v bat)" ]; then
+if [[ -x "$(command -v bat)" ]]; then
     # <https://github.com/sharkdp/bat>
     a cat='bat --paging=never'
 fi
 
 # Some more ls aliases
-if [ -x "$(command -v eza)" ]; then
+if [[ -x "$(command -v eza)" ]]; then
     # <https://eza.rocks/>
     a exa='eza --group-directories-first --sort=extension --no-quotes'
 
