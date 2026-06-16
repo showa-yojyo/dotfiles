@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+# shellcheck disable=SC1090,SC1091
 
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
@@ -66,6 +67,8 @@ shopt -s cdspell dirspell
 # If set, the shell will check for running jobs before exiting.
 shopt -s checkjobs
 
+shopt -s no_empty_cmd_completion
+
 # For better handling of glob patterns that do not match any files:
 # - With nullglob, the pattern will expand to an empty string instead of
 #   remaining unchanged.
@@ -74,7 +77,7 @@ shopt -s checkjobs
 shopt -s nullglob failglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Comment out so that WSLg works fine
 #if [[ -f /etc/resolv.conf ]]; then
@@ -106,26 +109,26 @@ export GIT_EDITOR=$EDITOR
 
 # See .git-prompt.sh
 # Show unstaged (*) and staged (+) changes.
-GIT_PS1_SHOWDIRTYSTATE="yes"
+export GIT_PS1_SHOWDIRTYSTATE="yes"
 
 # Show if currently something is stashed.
-GIT_PS1_SHOWSTASHSTATE="yes"
+export GIT_PS1_SHOWSTASHSTATE="yes"
 
 # Show if there're untracked files.
-#GIT_PS1_SHOWUNTRACKEDFILES=
+#export GIT_PS1_SHOWUNTRACKEDFILES=
 
 # Show the difference between HEAD and its upstream.
-GIT_PS1_SHOWUPSTREAM="verbose"
+export GIT_PS1_SHOWUPSTREAM="verbose"
 
 # Specify the separator between the branch name and the state symbol.
-#GIT_PS1_STATESEPARATOR=" "
+#export GIT_PS1_STATESEPARATOR=" "
 
 # Show more information about the identity of commits checked out as a
 # detached HEAD.
-#GIT_PS1_DESCRIBE_STYLE="default"
+#export GIT_PS1_DESCRIBE_STYLE="default"
 
 # Enable a colored hint about the current dirty state.
-GIT_PS1_SHOWCOLORHINTS="yes"
+export GIT_PS1_SHOWCOLORHINTS="yes"
 
 # Make __git_ps1 to do nothing in the case when the current directory is set
 # up to be ignored by git.
@@ -199,7 +202,7 @@ export FX_INDENT=4
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/fzfrc"
 
 # fzf-git.h <https://github.com/junegunn/fzf-git.sh/>
-FZF_GIT_SH="$XDG_CONFIG_HOME/fzf/fzf-git.sh"
+export FZF_GIT_SH="$XDG_CONFIG_HOME/fzf/fzf-git.sh"
 
 # Kubernetes
 export KUBECONFIG="$XDG_CONFIG_HOME/kube"
@@ -212,7 +215,7 @@ export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-[ -s "$CARGO_HOME/env" ] && source "$CARGO_HOME/env"
+[[ -s "$CARGO_HOME/env" ]] && source "$CARGO_HOME/env"
 
 # Ruby Gems bundler
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
@@ -270,6 +273,7 @@ export MATPLOTLIBRC="$XDG_CONFIG_HOME/matplotlib"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
 # Vim
+# shellcheck disable=SC2016
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # wget
@@ -293,7 +297,7 @@ esac
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 declare bash_config_home="$XDG_CONFIG_HOME/bash"
 for f in bash_aliases bash_functions; do
-    if [ -f "$bash_config_home/$f" ]; then
+    if [[ -f "$bash_config_home/$f" ]]; then
         source "$bash_config_home/$f"
     else
         source "$HOME/$f"
@@ -309,17 +313,17 @@ export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
 # !! Contents within this block are managed by 'mamba shell init' !!
 export MAMBA_EXE="$XDG_DATA_HOME/conda/envs/python-3.14/bin/mamba"
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/conda"
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
+if ! __mamba_setup="$("$MAMBA_EXE" shell hook \
+    --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"; then
     eval "$__mamba_setup"
 else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+    alias mamba='$MAMBA_EXE'  # Fallback on help from mamba activate
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
 # Homebrew <https://docs.brew.sh/Shell-Completion>
-if [ -x "$(command -v brew)" ]; then
+if [[ -x "$(command -v brew)" ]]; then
     HOMEBREW_PREFIX="$(brew --prefix)"
     if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
         source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
@@ -331,40 +335,40 @@ if [ -x "$(command -v brew)" ]; then
 fi
 
 # Enable Oh My Posh
-if [ -x "$(command -v oh-my-posh)" ]; then
+if [[ -x "$(command -v oh-my-posh)" ]]; then
     # post-condition: [[ "$POSH_THEME" == "$XDG_CONFIG_HOME/oh-my-posh.json" ]]
-    eval "$(oh-my-posh init bash --config $XDG_CONFIG_HOME/oh-my-posh.json)"
+    eval "$(oh-my-posh init bash --config "$XDG_CONFIG_HOME/oh-my-posh.json")"
 
-    function set_poshcontext() {
+    function set_poshcontext {
         export CURRENT_HISTORY_NUMBER="$HISTCMD"
     }
 fi
 
 # Enable Pipenv completion
-[ -x "$(command -v pipenv)" ] && eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
+[[ -x "$(command -v pipenv)" ]] && eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
 
 # Enable Hatch completion
-[ -x "$(command -v hatch)" ] && eval "$(_HATCH_COMPLETE=bash_source hatch)"
+[[ -x "$(command -v hatch)" ]] && eval "$(_HATCH_COMPLETE=bash_source hatch)"
 
 # Enable Ruff completion
-[ -x "$(command -v ruff)" ] && eval "$(ruff generate-shell-completion bash)"
+[[ -x "$(command -v ruff)" ]] && eval "$(ruff generate-shell-completion bash)"
 
 # Initialize fzf
-[ -x "$(command -v fzf)" ] && eval "$(fzf --bash)"
+[[ -x "$(command -v fzf)" ]] && eval "$(fzf --bash)"
 
 # Initialize zoxide
-[ -x "$(command -v zoxide)" ] && eval "$(zoxide init --cmd cd bash)"
+[[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init --cmd cd bash)"
 
 # WIP
-nvm() {
+function nvm {
     unset -f nvm
 
     # Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
     export NVM_DIR="$XDG_DATA_HOME/nvm"
 
     # want to manually run `nvm use`
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
+    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
     # run the authentic nvm
-    nvm $@
+    nvm "$@"
 }

@@ -7,16 +7,16 @@ umask 022
 # original code by Bash Guide for Beginners
 function _munge_path
 {
-    local a_path="$1"
-    local first_or_last="$2"
+    local -r a_path="$1"
+    local -r first_or_last="$2"
 
     if [[ ! -d "$a_path" ]]; then
-        echo Warning: $a_path is not directory. >&2
-        return
+        echo "Warning: $a_path is not directory." >&2
+        return 1
     fi
 
     if [[ $PATH =~ (^|:)$a_path($|:) ]] ; then
-        return
+        return 0
     fi
 
     if [[ $first_or_last == first ]]; then
@@ -27,13 +27,13 @@ function _munge_path
 }
 
 # remove all /mnt/c/path/to/something from $PATH
-PATH="$(echo -e ${PATH//:/\\n} | grep -v ^/mnt/c/ | tr \\n :)"
+PATH="$(echo -e "${PATH//:/\\n}" | grep -v ^/mnt/c/ | tr \\n :)"
 PATH="${PATH%:}"
 
 # Homebrew
 for private_dir in "$HOME/.linuxbrew" "/home/linuxbrew/.linuxbrew"; do
     if [[ -d "$private_dir" ]] ; then
-        eval $("${private_dir}/bin/brew" shellenv)
+        eval "$("${private_dir}/bin/brew" shellenv)"
     fi
 done
 unset private_dir
@@ -41,8 +41,10 @@ unset private_dir
 # source the users bashrc if it exists
 declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
 if [[ -f "$bash_config_home/bashrc" ]]; then
+    # shellcheck disable=SC1091
     source "$bash_config_home/bashrc"
 elif [[ -f "$HOME/.bashrc" ]]; then
+    # shellcheck disable=SC1091
     source "$HOME/.bashrc"
 fi
 unset bash_config_home
@@ -64,14 +66,14 @@ case "$OSTYPE" in
         test -v GEM_HOME && _munge_path "$GEM_HOME/bin" first
 
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            _prefix=/mnt/c
+            declare _prefix=/mnt/c
             _munge_path "$_prefix/Program Files/Microsoft VS Code/bin"
             _munge_path "$_prefix/WINDOWS/System32"
             unset _prefix
         fi
         ;;
     *)
-        echo Warning: $OSTYPE not supported >&2
+        echo "Warning: $OSTYPE not supported" >&2
         ;;
 esac
 
@@ -87,4 +89,4 @@ unset -f _munge_path
 
 # SSH
 # For detailed information, see <https://www.funtoo.org/Funtoo:Keychain>.
-eval $(keychain --agents ssh --quiet --eval id_ed25519)
+eval "$(keychain --agents ssh --quiet --eval id_ed25519)"

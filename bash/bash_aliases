@@ -42,16 +42,23 @@ a du='du -h'
 # a less='less -r'      # raw control characters
 # a whence='type -a'    # where, of a sort
 
+declare grep_options='--binary-files=without-match'
 if [[ -x /usr/bin/dircolors ]]; then
-    [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    if [[ -r ~/.dircolors ]]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
 
     a ls='ls --color=auto'
-    a dir='dir --color=auto'
     a vdir='vdir --color=auto'
-    a grep='grep --color=auto'
-    a egrep='egrep --color=auto'
-    a fgrep='fgrep --color=auto'
+    grep_options+=' --color=auto'
 fi
+
+a grep="grep $grep_options"
+a egrep="egrep $grep_options"
+a fgrep="fgrep $grep_options"
+unset grep_options
 
 if [[ -x "$(command -v bat)" ]]; then
     # <https://github.com/sharkdp/bat>
@@ -77,6 +84,7 @@ a j='jobs -l'
 
 a h='history 16'
 
+# shellcheck disable=SC2016
 a path='echo -e ${PATH//:/\\n}'
 
 a mount='mount | column -t'
@@ -99,6 +107,7 @@ case "$OSTYPE" in
         # Cygwin exclusive
         # Cygwin, Bash for Windows, MSYS.
         a s=cygstart
+        # shellcheck disable=SC2016
         a cygwin-setup='s $(cygpath -m ~/Downloads/setup-x86_64.exe)'
 
         # Clipboard
@@ -140,12 +149,15 @@ a venv='python -m venv'
 # XDG
 
 # rst2pdf
+# shellcheck disable=SC2016
 a rst2pdf='rst2pdf --config="$XDG_CONFIG_HOME/rst2pdf/config"'
 
 # SQLite3
+# shellcheck disable=SC2016
 a sqlite3='sqlite3 -init "$XDG_CONFIG_HOME/sqlite3/sqliterc"'
 
 # See also $XDG_CONFIG_HOME/wgetrc or $HOME/.wgetrc
+# shellcheck disable=SC2016
 a wget='wget --show-progress --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 
 # Docker, etc.
