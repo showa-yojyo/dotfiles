@@ -3,7 +3,7 @@
 alias a='alias'
 
 # Interactive operation
-a cp='cp -i'
+a cp='cp -i -p'
 a ln='ln -i'
 a mv='mv -i'
 a rm='rm -I --preserve-root'
