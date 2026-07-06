@@ -27,9 +27,8 @@ shopt -u histreedit
 # parser.
 shopt -s histverify
 
-# multi-line commands are saved to the history with embedded newlines rather
-# than using semicolon separators where possible.
-shopt -s lithist
+# Address multiline history entries well.
+shopt -s cmdhist lithist
 
 # Don't put duplicate lines or lines starting with space in the history. See
 # bash(1) for more options
