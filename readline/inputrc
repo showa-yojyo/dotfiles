@@ -15,7 +15,14 @@ $if mode=emacs
   "\ew": copy-region-as-kill
   "\C-w": kill-region
 
+  # C-M-f and C-M-v dump functions and variables.
+  #"\e\C-f": dump-functions  # bind -P
+  #"\e\C-v": dump-variables  # bind -V
+
   set keymap emacs-ctlx
+
+  # Prints the last recorded macro
+  "P": print-last-kbd-macro
 
   # C-x m bindings are for memory management
   "md": "sudo ~/.local/bin/wsl-drop-cache\C-m"
@@ -116,7 +123,7 @@ $if Bash
   # a history expansion in the line
   #Space: magic-space
 
-  #Tab: menu-complete
+  Tab: menu-complete
 
   set keymap emacs
   "\e/": dabbrev-expand
