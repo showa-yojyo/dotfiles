@@ -34,9 +34,9 @@ shopt -s cmdhist lithist
 # bash(1) for more options
 HISTCONTROL="ignoreboth"
 
-# Ignore some controlling instructions
-# The '&' is a special pattern which suppresses duplicate entries.
-HISTIGNORE=$'[ \t]*:&:?:[fb]g:hibernate*:exit:which.+:dv:pushd.+:popd.+'
+# Define which command lines should not be saved in the history.
+# - ?, ??: one and two character commands
+HISTIGNORE='?:??:cd -:hibernate*:exit:pushd*:popd*:pwd:reboot*:shutdown*'
 
 # change ~/.bash_history
 HISTFILE="$XDG_STATE_HOME/bash_history"
@@ -74,6 +74,9 @@ shopt -s no_empty_cmd_completion
 # - With failglob, an error will be raised if a pattern does not match any
 #   files.
 shopt -s nullglob failglob
+
+# Disable Ctrl-S and Ctrl-Q flow control.
+stty -ixon
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
