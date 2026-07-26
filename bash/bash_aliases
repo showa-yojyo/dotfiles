@@ -102,6 +102,10 @@ a ffmpeg='ffmpeg -hide_banner'
 a ffplay='ffplay -hide_banner -v error'
 a ffprobe='ffprobe -hide_banner -v error'
 
+# Aliases for calling programs in conda/mamba environments.
+a mjnet='mamba run -n scrapy mjnet-scraper.py'
+a yt-dlp='mamba run -n yt-dlp yt-dlp'
+
 case "$OSTYPE" in
     cygwin | msys)
         # Cygwin exclusive
