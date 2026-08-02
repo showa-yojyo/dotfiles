@@ -21,7 +21,7 @@ shopt -s histappend
 
 # When a history substitution fails, grant a chance to edit the failed history
 # substitution.
-shopt -u histreedit
+shopt -s histreedit
 
 # Do not the results of history substitution immediately pass to the shell
 # parser.
@@ -41,9 +41,8 @@ HISTIGNORE='?:??:cd -:hibernate*:exit:pushd*:popd*:pwd:reboot*:shutdown*'
 # change ~/.bash_history
 HISTFILE="$XDG_STATE_HOME/bash_history"
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# set only HISTSIZE but not HISTFILESIZE
 HISTSIZE=1000
-HISTFILESIZE=2000
 
 # %F %T, or %+4Y-%m-%d %H:%M:%S
 HISTTIMEFORMAT="%F %T "
@@ -54,6 +53,9 @@ HISTTIMEFORMAT="%F %T "
 
 # Prevent overwriting files with redirection.
 set -o noclobber
+
+# Automatically close file descriptors assigned using the {varname}rd syntax.
+shopt -s varredir_close
 
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
