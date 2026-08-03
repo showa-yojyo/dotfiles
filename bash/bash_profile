@@ -68,7 +68,7 @@ case "$OSTYPE" in
 
             _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
 
-            declare system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
+            system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
             _munge_path "$system32_path"
             EXECIGNORE="${system32_path}/*.!(exe)"
             unset system32_path
