@@ -62,14 +62,9 @@ case "$OSTYPE" in
         test -v GEM_HOME && _munge_path "$GEM_HOME/bin" first
 
         if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            # remove all /mnt/c/path/to/something from $PATH
-            PATH="$(echo -e "${PATH//:/\\n}" | grep -v ^/mnt/c/ | tr \\n :)"
-            PATH="${PATH%:}"
-
             _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
 
             system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
-            _munge_path "$system32_path"
             EXECIGNORE="${system32_path}/*.!(exe)"
             unset system32_path
         fi
