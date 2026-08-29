@@ -4,28 +4,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 umask 022
 
-# original code by Bash Guide for Beginners
-function _munge_path
-{
-    local -r a_path="$1"
-    local -r first_or_last="$2"
-
-    if [[ ! -d "$a_path" ]]; then
-        echo "Warning: $a_path is not directory." >&2
-        return 1
-    fi
-
-    if [[ $PATH =~ (^|:)$a_path($|:) ]] ; then
-        return 0
-    fi
-
-    if [[ $first_or_last == first ]]; then
-        PATH="$a_path${PATH:+:${PATH}}"
-    else
-        PATH="${PATH:+${PATH}:$a_path}"
-    fi
-}
-
 # source the users bashrc if it exists
 declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
 if [[ -f "$bash_config_home/bashrc" ]]; then
@@ -36,35 +14,6 @@ elif [[ -f "$HOME/.bashrc" ]]; then
     source "$HOME/.bashrc"
 fi
 unset bash_config_home
-
-case "$OSTYPE" in
-    linux*)
-        CDPATH=$(wslpath "$(wslvar USERPROFILE)")
-
-        test -v GEM_HOME && _munge_path "$GEM_HOME/bin" first
-
-        if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
-
-            system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
-            EXECIGNORE="${system32_path}/*.!(exe)"
-            unset system32_path
-        fi
-        ;;
-    *)
-        echo "Warning: $OSTYPE not supported" >&2
-        ;;
-esac
-
-# set PATH so that it includes user's private bin
-for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
-    if [[ -d "$private_dir" ]] ; then
-        _munge_path "$private_dir" first
-        break
-    fi
-done
-unset private_dir
-unset -f _munge_path
 
 # SSH
 # For detailed information, see <https://www.funtoo.org/Funtoo:Keychain>.
