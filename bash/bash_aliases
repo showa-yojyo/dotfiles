@@ -71,7 +71,7 @@ if [[ -x "$(command -v eza)" ]]; then
     a exa='eza --group-directories-first --sort=extension --no-quotes'
 
     a ll='exa -alF --color-scale=age --color-scale-mode=gradient --git --header --smart-group --time-style=long-iso' # long list
-    a la='exa -A' # all but . and ..
+    a la='exa -lA' # all but . and ..
     a l='exa -F'
 else
     a ls='ls --group-directories-first -x'
