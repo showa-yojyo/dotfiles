@@ -241,7 +241,7 @@ export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 
 # npm
-export NPM_CONFIG_USERCONFIG="$MY_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # NuGet (only ~/.nuget/packages)
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
@@ -377,7 +377,7 @@ function nvm {
 function _munge_path
 {
     local -r a_path="$1"
-    local -r first_or_last="$2"
+    local -r first_or_last="${2-}"
 
     if [[ ! -d "$a_path" ]]; then
         echo "Warning: $a_path is not directory." >&2
