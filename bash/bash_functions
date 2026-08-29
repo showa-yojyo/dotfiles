@@ -21,6 +21,20 @@ function sunset-anniversary
     _anniversary_helper "date(2020, 4, 27)"
 }
 
+# WIP
+function nvm {
+    unset -f nvm
+
+    # Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
+    export NVM_DIR="$XDG_DATA_HOME/nvm"
+
+    # want to manually run `nvm use`
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
+    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+    # run the authentic nvm
+    nvm "$@"
+}
+
 # Convert Markdown to reStructuredText
 function convert_md_to_rst
 {
