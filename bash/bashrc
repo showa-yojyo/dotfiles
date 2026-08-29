@@ -36,7 +36,7 @@ HISTCONTROL="ignoreboth"
 
 # Define which command lines should not be saved in the history.
 # - ?, ??: one and two character commands
-HISTIGNORE='?:??:cd -:hibernate*:exit:pushd*:popd*:pwd:reboot*:shutdown*'
+HISTIGNORE='?:??:cd -:hibernate*:exit:pushd*:popd*:pwd:reboot*:shutdown*:which*'
 
 # change ~/.bash_history
 HISTFILE="$XDG_STATE_HOME/bash_history"
@@ -46,6 +46,9 @@ HISTSIZE=1000
 
 # %F %T, or %+4Y-%m-%d %H:%M:%S
 HISTTIMEFORMAT="%F %T "
+
+# Mail Options
+MAILCHECK=0
 
 # Shell Options
 #
