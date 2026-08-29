@@ -4,8 +4,16 @@
 # for ssh logins, install and configure the libpam-umask package.
 umask 022
 
+# Honor XDG_*_HOME
+# See XDG Base Directory Specification
+# <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html>
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 # source the users bashrc if it exists
-declare bash_config_home="${XDG_HOME_CONFIG:-$HOME/.config}/bash"
+declare bash_config_home="$XDG_HOME_CONFIG/.config/bash"
 if [[ -f "$bash_config_home/bashrc" ]]; then
     # shellcheck disable=SC1091
     source "$bash_config_home/bashrc"
