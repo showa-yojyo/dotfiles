@@ -297,18 +297,6 @@ case "$OSTYPE" in
     *) ;;
 esac
 
-# Alias and functions.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-declare bash_config_home="$XDG_CONFIG_HOME/bash"
-for f in bash_aliases bash_functions; do
-    if [[ -f "$bash_config_home/$f" ]]; then
-        source "$bash_config_home/$f"
-    else
-        source "$HOME/$f"
-    fi
-done
-unset f bash_config_home
-
 # CONDARC must be a path to a file named .condarc, condarc, or end with a YAML
 # suffix (.yml or .yaml).
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
@@ -325,17 +313,28 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# Homebrew <https://docs.brew.sh/Shell-Completion>
-if [[ -x "$(command -v brew)" ]]; then
-    HOMEBREW_PREFIX="$(brew --prefix)"
-    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-    else
+# Homebrew
+# - Define HOMEBREW_PREFIX, HOMEBREW_CELLAR, HOMEBREW_REPOSITORY.
+# - Modify PATH, MANPATH, INFOPATH.
+for dir in "$HOME/.linuxbrew" "/home/linuxbrew/.linuxbrew"; do
+    if [[ -d "$dir" ]] ; then
+        eval "$("${dir}/bin/brew" shellenv)"
+
+        # <https://docs.brew.sh/Shell-Completion>
+        declare f="${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        if [[ -r "$f" ]]; then
+            source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+            break
+
         for f in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
             [[ -r "$f" ]] && source "$f"
-        done
+            done
+        fi
+        unset f
+        break
     fi
-fi
+done
+unset dir
 
 # Enable Oh My Posh
 if [[ -x "$(command -v oh-my-posh)" ]]; then
@@ -375,3 +374,15 @@ function nvm {
     # run the authentic nvm
     nvm "$@"
 }
+
+# Alias and functions.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+declare bash_config_home="$XDG_CONFIG_HOME/bash"
+for f in bash_aliases bash_functions; do
+    if [[ -f "$bash_config_home/$f" ]]; then
+        source "$bash_config_home/$f"
+    else
+        source "$HOME/$f"
+    fi
+done
+unset f bash_config_home
