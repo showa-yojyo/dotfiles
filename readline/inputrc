@@ -10,18 +10,27 @@ set bell-style none
 
 # some defaults / modifications for the emacs mode
 $if mode=emacs
-  ## Customize key bindings.
+  # Customize key bindings.
   set keymap emacs
-  "\ew": copy-region-as-kill
-  "\C-w": kill-region
 
-  # C-M-f and C-M-v dump functions and variables.
+  # Killing And Yanking
+  "\C-w": kill-region
+  "\ew": copy-region-as-kill
+
+  # Letting Readline Type For You
+  Tab: menu-complete
+  "\e/": dabbrev-expand
+
+  # Some Miscellaneous Commands
   #"\e\C-f": dump-functions  # bind -P
   #"\e\C-v": dump-variables  # bind -V
+  # 'Magic Space'
+  # Insert a space character then performs a history expansion in the line
+  #Space: magic-space
 
   set keymap emacs-ctlx
 
-  # Prints the last recorded macro
+  # Keyboard Macros
   "P": print-last-kbd-macro
 
   # C-x m bindings are for memory management
@@ -33,6 +42,7 @@ $if mode=emacs
   "gc": "git commit -m \"\"\C-b"
   "gd": "git diff "
   "gp": "git push || git push --force-with-lease\C-m"
+  #"gs": "git st\C-j"  # Use fzf_git_file bound below
 
   # fzg-git.sh bindings
   # \e[0n: redraw-current-line
@@ -42,7 +52,7 @@ $if mode=emacs
   "gh": " \C-u \C-a\C-k`fzf_git_hash`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
   "gl": " \C-u \C-a\C-k`fzf_git_reflog`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
   "gr": " \C-u \C-a\C-k`fzf_git_remote`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
-  "gs": " \C-u \C-a\C-k`fzf_git_stashe`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
+  "gs": " \C-u \C-a\C-k`fzf_git_stash`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
   "gt": " \C-u \C-a\C-k`fzf_git_tag`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
   "gw": " \C-u \C-a\C-k`fzf_git_worktree`\e\C-e\C-y\C-a\C-y\ey\C-h\C-e\e[0n \C-h"
 $endif
@@ -117,14 +127,4 @@ $if Bash
   # Append a character denoting a file's type as reported by stat(2) to the
   # filename when listing possible completions.
   set visible-stats on
-
-  # 'Magic Space'
-  # Insert a space character then performs
-  # a history expansion in the line
-  #Space: magic-space
-
-  Tab: menu-complete
-
-  set keymap emacs
-  "\e/": dabbrev-expand
 $endif
