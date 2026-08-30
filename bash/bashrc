@@ -81,19 +81,12 @@ stty -ixon
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Comment out so that WSLg works fine
-#if [[ -f /etc/resolv.conf ]]; then
-#    export DISPLAY=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf):0.0
-#    export XDG_RUNTIME_DIR=/tmp/xdg-runtime
-#    export RUNLEVEL=3
-#fi
-
 case "$OSTYPE" in
     cygwin | msys)
         export BROWSER=cygstart
         ;;
     linux-gnu)
-        if [[ -n "$WSL_DISTRO_NAME" ]]; then
+        if [[ -v WSL_DISTRO_NAME ]]; then
             export BROWSER=wslview
         fi
         ;;
@@ -281,20 +274,6 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
-# TMP and TEMP are defined in the Windows environment.  Leaving
-# them set to the default Windows temporary directory can have
-# unexpected consequences.
-# Alternatively, set them to the Cygwin temporary directory
-# or to any other tmp directory of your choice
-case "$OSTYPE" in
-    cygwin | msys)
-        unset TMP TEMP
-        export TMP=/tmp TEMP=/tmp
-        TMPDIR=/tmp
-        ;;
-    *) ;;
-esac
-
 # CONDARC must be a path to a file named .condarc, condarc, or end with a YAML
 # suffix (.yml or .yaml).
 export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
@@ -303,7 +282,7 @@ export CONDARC="$XDG_CONFIG_HOME/conda/condarc.d/.condarc"
 # !! Contents within this block are managed by 'mamba shell init' !!
 export MAMBA_EXE="$XDG_DATA_HOME/conda/envs/python-3.14/bin/mamba"
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/conda"
-if __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"; then
+if __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"; then
     eval "$__mamba_setup"
 else
     alias mamba='$MAMBA_EXE'  # Fallback on help from mamba activate
@@ -363,7 +342,7 @@ fi
 function _munge_path
 {
     local -r a_path="$1"
-    local -r first_or_last="${2-}"
+    local -r first_or_last="${2:-last}"
 
     if [[ ! -d "$a_path" ]]; then
         echo "Warning: $a_path is not directory." >&2
@@ -381,24 +360,18 @@ function _munge_path
     fi
 }
 
-case "$OSTYPE" in
-    linux*)
-        CDPATH=$(wslpath "$(wslvar USERPROFILE)")
+[[ -v GEM_HOME ]] && _munge_path "$GEM_HOME/bin" first
 
-        test -v GEM_HOME && _munge_path "$GEM_HOME/bin" first
+# WSL-specific settings
+if [[ -v WSL_DISTRO_NAME ]]; then
+    CDPATH=$(wslpath "$(wslvar USERPROFILE)")
 
-        if [[ -n "$WSL_DISTRO_NAME" ]]; then
-            _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
+    _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
 
-            system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
-            EXECIGNORE="${system32_path}/*.!(exe)"
-            unset system32_path
-        fi
-        ;;
-    *)
-        echo "Warning: $OSTYPE not supported" >&2
-        ;;
-esac
+    system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
+    EXECIGNORE="${system32_path}/*.!(exe)"
+    unset system32_path
+fi
 
 # set PATH so that it includes user's private bin
 for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
