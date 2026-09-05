@@ -87,8 +87,6 @@ a h='history 16'
 # shellcheck disable=SC2016
 a path='echo -e ${PATH//:/\\n}'
 
-a mount='mount | column -t'
-
 # Calendar
 a today='LC_ALL=C date +"%F (%a)"'
 a now='LC_ALL=C date +"%F (%a) %T"'
