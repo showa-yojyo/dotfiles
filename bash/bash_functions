@@ -423,20 +423,7 @@ function z
 # shellcheck source=/dev/null
 [[ -f "$FZF_GIT_SH" ]] && source "$FZF_GIT_SH"
 
-if [[ -n "$WSL_DISTRO_NAME" ]]; then
-    function pcloud-mount
-    {
-        local target_drive="P:"
-        local mount_point=/mnt/p
-        uid=$(id -u)
-        gid=$(id -g)
-        local -r uid gid
-
-        sudo mkdir -m 777 -p $mount_point
-        sudo chown -R "$USER:${GROUPS[0]}" $mount_point
-        sudo mount -t drvfs $target_drive $mount_point -o "metadata,uid=$uid,gid=$gid,umask=22,fmask=11"
-    }
-
+if [[ -v WSL_DISTRO_NAME ]]; then
     function peek
     {
         peekui "$(wslpath -aw "$1")"
