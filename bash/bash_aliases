@@ -123,16 +123,13 @@ case "$OSTYPE" in
         ;;
     linux*)
         if [[ -v WSL_DISTRO_NAME ]]; then
-            a open='wslview'
-            a xdg-open='wslview'
-
+            a open=xdg-open
             a getclip='sed "s/\r//" <(/mnt/c/Program\ Files/PowerShell/7/pwsh.exe -noprofile -command Get-Clipboard)'
 
             # command line - Copy to clipboard using Bash for Windows - Stack Overflow
             # <https://stackoverflow.com/questions/43144008/copy-to-clipboard-using-bash-for-windows/>
             a putclip='iconv -f utf-8 -t utf-16le | clip.exe'
 
-            a inkscape='/mnt/c/Program\ Files/Inkscape/bin/inkscape.com'
             a edit='/mnt/c/Program\ Files/WinGet/Links/edit.exe'
             a notepad='/mnt/c/Windows/System32/Notepad.exe'
 

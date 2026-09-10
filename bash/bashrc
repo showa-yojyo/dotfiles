@@ -87,7 +87,7 @@ case "$OSTYPE" in
         ;;
     linux-gnu)
         if [[ -v WSL_DISTRO_NAME ]]; then
-            export BROWSER=wslview
+            export BROWSER=xdg-open
         fi
         ;;
 esac
