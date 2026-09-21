@@ -407,6 +407,26 @@ function batman {
     command man "$@" 2>&1 | bat --plain --language=man
 }
 
+# EXPERIMENTAL
+function help {
+    case $# in
+    1)
+        builtin help -m "$1" | bat --plain --language=man
+        ;;
+    2)
+        if [[ $1 == -m ]]; then
+            builtin help "$@" | bat --plain --language=man
+        else
+            # do not use -m
+            builtin help "$@"
+        fi
+        ;;
+    *)
+        builtin help "$@"
+        ;;
+    esac
+}
+
 # See <https://junegunn.github.io/fzf/examples/directory-navigation/>.
 function z
 {
