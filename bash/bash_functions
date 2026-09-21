@@ -344,19 +344,6 @@ function pskill
     echo "slaughtered." >&2
 }
 
-# Reference: info which
-function which
-{
-    if [[ -n "$WSL_DISTRO_NAME" ]]; then
-        command which "$@"
-    else
-        { alias ; declare -f ; } |
-            command which \
-            --tty-only --read-alias --read-functions --show-tilde --show-dot \
-            "$@"
-    fi
-}
-
 function _g++base
 {
     local -ar CPPFLAG=(-g -Werror -Wall -Wextra -ansi -pedantic -std="$1")
