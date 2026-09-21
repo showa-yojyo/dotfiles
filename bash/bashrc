@@ -236,6 +236,9 @@ export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 # npm
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
+# Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
+export NVM_DIR="$XDG_DATA_HOME/nvm"
+
 # NuGet (only ~/.nuget/packages)
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 

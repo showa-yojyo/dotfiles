@@ -21,12 +21,9 @@ function sunset-anniversary
     _anniversary_helper "date(2020, 4, 27)"
 }
 
-# WIP
+# shellcheck disable=SC1091
 function nvm {
     unset -f nvm
-
-    # Use XDG_DATA_HOME instead of XDG_CONFIG_HOME
-    export NVM_DIR="$XDG_DATA_HOME/nvm"
 
     # want to manually run `nvm use`
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh" --no-use
