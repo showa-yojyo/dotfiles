@@ -304,6 +304,9 @@ function extract
     *.tar.gz|*.tgz)
         tar xvzf "$archive"
         ;;
+    *.tar)
+        tar xvf "$archive"
+        ;;
     *.bz2)
         bunzip2 "$archive"
         ;;
@@ -313,11 +316,11 @@ function extract
     *.gz)
         gunzip "$archive"
         ;;
-    *.tar)
-        tar xvf "$archive"
-        ;;
     *.zip)
         unzip "$archive"
+        ;;
+    *.xz)
+        unxz "$archive"
         ;;
     *.Z)
         uncompress "$archive"
