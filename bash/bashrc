@@ -7,7 +7,7 @@
 [[ "$-" != *i* ]] && return
 
 # XXX: Setting XDG variables now in .bash_profile
-: ${XDG_CONFIG_HOME:?Warning: XDG variables are not set.}
+: "${XDG_CONFIG_HOME:?Warning: XDG variables are not set.}"
 
 # History Options
 
@@ -293,28 +293,24 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# Homebrew
-# - Define HOMEBREW_PREFIX, HOMEBREW_CELLAR, HOMEBREW_REPOSITORY.
-# - Modify PATH, MANPATH, INFOPATH.
-for dir in "$HOME/.linuxbrew" "/home/linuxbrew/.linuxbrew"; do
-    if [[ -d "$dir" ]] ; then
-        eval "$("${dir}/bin/brew" shellenv)"
+# Homebrew <https://docs.brew.sh/Shell-Completion>
+declare mybrew=/home/linuxbrew/.linuxbrew/bin/brew
+if [[ -x $(command -v $mybrew) ]] ; then
+    # - Define HOMEBREW_PREFIX, HOMEBREW_CELLAR, HOMEBREW_REPOSITORY.
+    # - Modify PATH, MANPATH, INFOPATH.
+    eval "$("$mybrew" shellenv)"
 
-        # <https://docs.brew.sh/Shell-Completion>
-        declare f="${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-        if [[ -r "$f" ]]; then
-            source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-            break
-
-        for f in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-            [[ -r "$f" ]] && source "$f"
-            done
-        fi
-        unset f
-        break
+    declare compdef="${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    if [[ -r "${compdef}" ]]; then
+        source "${compdef}"
+    else
+        for compdef in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"* ; do
+            [[ -r "${compdef}" ]] && source "${compdef}"
+        done
     fi
-done
-unset dir
+    unset compdef
+fi
+unset mybrew
 
 # Enable Oh My Posh
 if [[ -x "$(command -v oh-my-posh)" ]]; then
