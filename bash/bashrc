@@ -332,9 +332,12 @@ fi
 [[ -x "$(command -v ruff)" ]] && eval "$(ruff generate-shell-completion bash)"
 
 # Initialize fzf
-[[ -x "$(command -v fzf)" ]] && eval "$(fzf --bash)"
+# For detailed information, see <https://junegunn.github.io/fzf/shell-integration/>
+[[ -x "$(command -v fzf)" ]] &&
+    FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
 
-# Initialize zoxide
+# - Override cd by the function __zoxide_z
+# - Run `complete ... -F __zoxide_z_complete cd`
 [[ -x "$(command -v zoxide)" ]] && eval "$(zoxide init --cmd cd bash)"
 
 # original code by Bash Guide for Beginners
