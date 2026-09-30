@@ -334,7 +334,14 @@ fi
 # Initialize fzf
 # For detailed information, see <https://junegunn.github.io/fzf/shell-integration/>
 [[ -x "$(command -v fzf)" ]] &&
-    FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
+    # do not override transpose-chars
+    FZF_CTRL_T_COMMAND= \
+    # do not override transpose-words
+    FZF_ALT_C_COMMAND= \
+    FZF_COMPLETION_DIR_COMMANDS= \
+    FZF_COMPLETION_PATH_COMMANDS= \
+    FZF_COMPLETION_VAR_COMMANDS= \
+        eval "$(fzf --bash)"
 
 # - Override cd by the function __zoxide_z
 # - Run `complete ... -F __zoxide_z_complete cd`
