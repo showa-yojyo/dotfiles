@@ -372,15 +372,10 @@ function _munge_path
 [[ -v GEM_HOME ]] && _munge_path "$GEM_HOME/bin" first
 
 # WSL-specific settings
-if [[ -v WSL_DISTRO_NAME ]]; then
-    CDPATH=$(wslpath "$(wslvar USERPROFILE)")
-
-    _munge_path "$(wslpath "$(wslvar PROGRAMFILES)")/Microsoft VS Code/bin"
-
-    system32_path=$(wslpath "$(wslvar SystemRoot)/System32")
-    EXECIGNORE="${system32_path}/*.!(exe)"
-    unset system32_path
-fi
+# In Window: setx WSLENV "ProgramFiles/pu:SystemRoot/pu:USERPROFILE/pu"
+[[ -v USERPROFILE ]] && CDPATH="$USERPROFILE"
+[[ -v ProgramFiles ]] && _munge_path "${ProgramFiles}/Microsoft VS Code/bin"
+[[ -v SystemRoot ]] && EXECIGNORE="${SystemRoot}/System32/*.!(exe)"
 
 # set PATH so that it includes user's private bin
 for private_dir in "$HOME/.local/bin" "$HOME/bin"; do
