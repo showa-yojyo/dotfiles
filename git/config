@@ -3,7 +3,7 @@
     path = ~/.gitconfig.user # authentication, e.g. signingKey
 
 [alias]
-    alias = ! git config --get-regexp ^alias\\.\n | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /\n | sort -k1
+    alias = ! git config --get-regexp "^alias\\." | sed -e "s/^alias\\.//" -e "s/\\ /\\ =\\ /1" | sort -k1
 
     br = branch
     ci = commit
