@@ -18,7 +18,7 @@ $if mode=emacs
   "\ew": copy-region-as-kill
 
   # Letting Readline Type For You
-  Tab: menu-complete
+  #Tab: menu-complete
   "\e/": dabbrev-expand
 
   # Some Miscellaneous Commands
