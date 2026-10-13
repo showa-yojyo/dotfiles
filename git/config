@@ -39,6 +39,9 @@
     lg = log -p
     lfu = log --pretty=fuller
 
+    undo = reset --soft HEAD^
+    unstage = restore --staged --
+
     who = shortlog -s --
 
     st = status -s
