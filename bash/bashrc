@@ -277,21 +277,6 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
-export MAMBARC="$XDG_CONFIG_HOME/mamba/mambarc"
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE="/home/linuxbrew/.linuxbrew/Cellar/micromamba/2.9.0_1/bin/mamba"
-export MAMBA_ROOT_PREFIX="${XDG_DATA_HOME}/mamba"
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [[ $? == 0 ]]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
-
 # Homebrew <https://docs.brew.sh/Shell-Completion>
 declare mybrew=/home/linuxbrew/.linuxbrew/bin/brew
 if [[ -x $(command -v $mybrew) ]] ; then
@@ -310,6 +295,21 @@ if [[ -x $(command -v $mybrew) ]] ; then
     unset compdef
 fi
 unset mybrew
+
+export MAMBARC="$XDG_CONFIG_HOME/mamba/mambarc"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE="/home/linuxbrew/.linuxbrew/bin/mamba"
+export MAMBA_ROOT_PREFIX="${XDG_DATA_HOME}/mamba"
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+if [[ $? == 0 ]]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
 
 # Enable Oh My Posh
 if [[ -x "$(command -v oh-my-posh)" ]]; then
