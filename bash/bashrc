@@ -314,7 +314,7 @@ unset __mamba_setup
 # Enable Oh My Posh
 if [[ -x "$(command -v oh-my-posh)" ]]; then
     # post-condition: [[ "$POSH_THEME" == "$XDG_CONFIG_HOME/oh-my-posh.json" ]]
-    eval "$(oh-my-posh init bash --config "$XDG_CONFIG_HOME/oh-my-posh.json")"
+    eval "$(oh-my-posh init bash --strict --config "$XDG_CONFIG_HOME/oh-my-posh.json")"
 
     function set_poshcontext {
         export CURRENT_HISTORY_NUMBER="$HISTCMD"
