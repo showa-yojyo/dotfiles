@@ -100,13 +100,13 @@ a ffmpeg='ffmpeg -hide_banner'
 a ffplay='ffplay -hide_banner -v error'
 a ffprobe='ffprobe -hide_banner -v error'
 
-# Aliases for calling programs in conda/mamba environments.
-a mjnet='mamba run -n scrapy mjnet-scraper.py'
-a yt-dlp='mamba run -n yt-dlp yt-dlp'
+# Aliases for calling programs with uv
+a mjnet='uv run --script ~/.local/bin/mjnet-scraper.py'
+a rename-hash='uv run --script ~/.local/bin/rename-hash'
+a yt-dlp='uvx --pre --from "yt-dlp[default]" yt-dlp'
 
 case "$OSTYPE" in
     cygwin | msys)
-        # Cygwin exclusive
         # Cygwin, Bash for Windows, MSYS.
         a s=cygstart
         # shellcheck disable=SC2016

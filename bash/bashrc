@@ -311,6 +311,9 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
+# Enable uv completion
+[[ -x "$(command -v uv)" ]] && eval "$(uv generate-shell-completion bash)"
+
 # Enable Oh My Posh
 if [[ -x "$(command -v oh-my-posh)" ]]; then
     # post-condition: [[ "$POSH_THEME" == "$XDG_CONFIG_HOME/oh-my-posh.json" ]]
