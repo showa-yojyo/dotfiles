@@ -9,7 +9,7 @@ cache-dir = "~/.cache/ruff"
 # PEP 8 recommends using 4 spaces per indentation level.
 indent-width = 4
 
-target-version = "py313"
+target-version = "py315"
 
 [lint]
 # TODO
